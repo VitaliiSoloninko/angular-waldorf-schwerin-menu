@@ -1,7 +1,12 @@
-span {
-  color: var(--main-color);
-}
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
 
-.h2 {
-  text-align: center;
+.container {
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+  @media (max-width: $mobile) {
+    margin-top: 72px;
+  }
 }
