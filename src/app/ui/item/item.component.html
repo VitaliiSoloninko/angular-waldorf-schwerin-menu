@@ -1,0 +1,24 @@
+<div class="items">
+  <div class="item" *ngFor="let foodItem of foodItems">
+    <div class="item-title">
+      <div class="date">{{ foodItem.data }} - {{ foodItem.day }}</div>
+      <div class="arrow-down">></div>
+    </div>
+
+    <div class="food-item">
+      <div class="food-item__title">
+        <div class="food-name">{{ foodItem.name }}</div>
+        <div class="food-price">{{ foodItem.price }} €</div>
+      </div>
+
+      <div class="food-description text">
+        {{ foodItem.description }}
+      </div>
+      <div class="food-image">Image icon</div>
+      <div class="food-order">
+        <div class="check-icon">O</div>
+        <div class="check-text">wählen</div>
+      </div>
+    </div>
+  </div>
+</div>
