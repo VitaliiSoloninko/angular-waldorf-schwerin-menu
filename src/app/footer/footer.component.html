@@ -1,1 +1,26 @@
-<p>footer works!</p>
+<div class="footer__menu">
+  <nav class="footer__body">
+    <ul class="menu__list">
+      <li class="menu__item">
+        <a routerLink="menu" class="menu__link">
+          <lucide-icon [img]="utensils" class="my-icon"></lucide-icon>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a routerLink="cart" class="menu__link">
+          <lucide-icon [img]="shoppingCart" class="my-icon"></lucide-icon>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a routerLink="calendar" class="menu__link">
+          <lucide-icon [img]="calendar" class="my-icon"></lucide-icon>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a routerLink="auth" class="menu__link">
+          <lucide-icon [img]="user" class="my-icon"></lucide-icon>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
