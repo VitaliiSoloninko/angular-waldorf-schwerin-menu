@@ -4,7 +4,9 @@ $mobileSmall: 479.98px;
 
 .container {
   margin-top: 90px;
+  margin-bottom: 20px;
   display: flex;
+
   justify-content: center;
   @media (max-width: $mobile) {
     margin-top: 72px;

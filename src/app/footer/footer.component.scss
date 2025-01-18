@@ -2,6 +2,13 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
 .footer__menu {
   background-color: var(--dark-color);
   height: 70px;
@@ -9,7 +16,7 @@ $mobileSmall: 479.98px;
 }
 
 .menu__list {
-  padding: 1.5rem;
+  padding: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: space-around;

@@ -1,13 +1,17 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
 
 @Component({
   selector: 'app-item',
-  imports: [NgFor],
+  imports: [NgFor, LucideAngularModule],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss',
 })
 export class ItemComponent {
+  chevronDown: any = ChevronDown;
+  vegan: any = Vegan;
+
   foodItems = [
     {
       data: '13.01.2025',
