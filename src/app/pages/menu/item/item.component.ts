@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
-import { CheckBoxComponent } from '../check-box/check-box.component';
+import { CheckBoxComponent } from '../../../ui/check-box/check-box.component';
 
 @Component({
   selector: 'app-item',

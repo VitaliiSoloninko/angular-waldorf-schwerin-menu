@@ -1,0 +1,30 @@
+@if(!results){
+<p class="center">Sie haben diesen Monat nichts bestellt.</p>
+
+} @else {
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Datum</th>
+      <th>Tag</th>
+      <th>Menu №</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for(result of results; track result.number) {
+    <tr>
+      <td>{{ result.number }}</td>
+      <td>{{ result.data }}</td>
+      <td>{{ result.day }}</td>
+      <td>{{ result.menu }}</td>
+      <td>{{ result.price | currency : "EUR" }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
+
+<p class="center">Preis aller Bestellungen in diesem Monat <span>36 €</span></p>

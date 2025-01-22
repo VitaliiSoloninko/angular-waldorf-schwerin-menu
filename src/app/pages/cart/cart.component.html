@@ -1,9 +1,40 @@
-<h1 class="h2 mb16"><span>Waten</span>korb</h1>
+<h1 class="h2 mb16 title"><span>Waten</span>korb</h1>
 
-<p class="mb16">Das gesamte Essen, das Sie bestellt haben, ist hier.</p>
+<p class="mb16 subtitle">
+  Das gesamte Essen, das Sie bestellt haben, ist hier.
+</p>
 
-<div class="two-buttons">
-  <button class="btn">Bestellen</button>
+<div class="items mb16">
+  <div class="item" *ngFor="let foodItem of foodItems">
+    <div class="item-title">
+      <div class="date">
+        <div>
+          {{ foodItem.day }}
+        </div>
+        <div>
+          {{ foodItem.data }}
+        </div>
+      </div>
+      <div class="arrow-down">
+        <lucide-icon
+          [img]="trash2"
+          color="var(--red-color)"
+          [size]="18"
+          class="my-icon"
+        ></lucide-icon>
+      </div>
+    </div>
 
+    <div class="food-item__title">
+      <div class="food-name">{{ foodItem.name }}</div>
+      <div class="food-price">{{ foodItem.price }} €</div>
+    </div>
+  </div>
+</div>
+
+<p class="mb16">Voller Bestellpreis ist <span>20 €</span></p>
+
+<div class="two-buttons mb72">
   <button class="btn cancel-btn">Absagen</button>
+  <button class="btn">Bestellen</button>
 </div>

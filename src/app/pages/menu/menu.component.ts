@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ItemsComponent } from '../../ui/items/items.component';
+import { ItemComponent } from './item/item.component';
 
 @Component({
   selector: 'app-menu',
-  imports: [ItemsComponent, RouterLink],
+  imports: [RouterLink, ItemComponent],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
 })
