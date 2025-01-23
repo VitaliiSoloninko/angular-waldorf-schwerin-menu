@@ -1,0 +1,11 @@
+span {
+  color: var(--main-color);
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+}
