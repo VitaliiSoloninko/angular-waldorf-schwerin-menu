@@ -2,10 +2,23 @@ span {
   color: var(--main-color);
 }
 
+.link {
+  text-decoration: underline;
+}
+
+.form-body {
+  padding: 0 1rem;
+  margin: 0 1rem;
+}
+
 .form {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   flex-direction: column;
+}
+
+.control input {
+  width: 454px;
 }
