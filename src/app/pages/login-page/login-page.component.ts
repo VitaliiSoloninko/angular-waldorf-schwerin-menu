@@ -9,13 +9,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { debounceTime } from 'rxjs';
 
-function mustContainQuestionMark(control: AbstractControl) {
-  if (control.value.includes('?')) {
-    return null;
-  }
-  return { doesNotContainQuestionMark: true };
-}
-
 function emailIsUnique(control: AbstractControl) {
   if (control.value !== 'text@example.com') {
     return null;
@@ -38,11 +31,7 @@ export class LoginPageComponent implements OnInit {
     }),
 
     password: new FormControl('', {
-      validators: [
-        Validators.required,
-        Validators.minLength(6),
-        mustContainQuestionMark,
-      ],
+      validators: [Validators.required, Validators.minLength(6)],
     }),
   });
   returnUrl: any;

@@ -3,20 +3,23 @@ span {
 }
 
 .link {
+  font-size: 1.1rem;
+}
+
+.registration {
   text-decoration: underline;
 }
 
-.form-body {
-  padding: 0 1rem;
-  margin: 0 1rem;
-}
-
-.form {
+.form-login {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   flex-direction: column;
+}
+
+.control-error {
+  max-width: 454px;
 }
 
 .control input {

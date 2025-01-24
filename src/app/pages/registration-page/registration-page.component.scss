@@ -2,36 +2,36 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 1rem;
-  column-gap: 2rem;
-  @media (max-width: $tablet) {
-    display: flex;
-    flex-direction: column;
-  }
+span {
+  color: var(--main-color);
 }
 
-.registration {
+.link {
+  font-size: 1.1rem;
+}
+
+.login {
   text-decoration: underline;
 }
 
-.terms-and-conditions,
-input {
-  font-size: 16px;
+.form-three-column {
+  display: flex;
+  gap: 1rem;
 }
 
-.user-email input {
-  width: 100%;
-  justify-content: center;
+.school {
+  width: 50%;
 }
 
-.drop-down-list {
-  display: grid;
-  grid-template-columns: repeat(1fr 0.5fr 0.5fr);
+.class {
+  width: 25%;
+}
+.letter {
+  width: 25%;
 }
 
-span {
-  color: var(--main-color);
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

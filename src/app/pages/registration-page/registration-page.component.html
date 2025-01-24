@@ -1,176 +1,175 @@
 <h2 class="h2 mb16 center"><span>Neues </span>Konto erstellen</h2>
-<div class="center mb16">
+<div class="center mb16 link">
   Schon ein Benutzer? &nbsp;
-  <a routerLink="/login" class="registration">Hier anmelden</a>
+  <a routerLink="/login" class="login">Hier anmelden</a>
 </div>
-<div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form">
-      <div class="control-group personal-data">
-        <h3 class="h3 mb16 center">Persönliche Daten</h3>
-        <div class="control user-email">
-          <label for="email">E-Mail</label>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form">
+    <div class="form-main-column personal-data">
+      <h3 class="h3 center">Persönliche Daten</h3>
+      <div class="control user-email">
+        <label for="email">E-Mail</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [formControl]="form.controls.email"
+        />
+      </div>
+      @if (emailIsInvalid) {
+      <p class="control-error">
+        Bitte geben Sie eine gültige E-Mail-Adresse ein.
+      </p>
+      }
+
+      <div class="form-two-column user-password" formGroupName="passwords">
+        <div class="control">
+          <label for="password">Passwort</label>
           <input
-            id="email"
-            type="email"
-            name="email"
-            [formControl]="form.controls.email"
+            id="password"
+            type="password"
+            name="password"
+            formControlName="password"
           />
         </div>
-        @if (emailIsInvalid) {
-        <p class="control-error">
-          Bitte geben Sie eine gültige E-Mail-Adresse ein.
-        </p>
-        }
 
-        <div class="two-column user-password" formGroupName="passwords">
-          <div class="control">
-            <label for="password">Passwort</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              formControlName="password"
-            />
-          </div>
-
-          <div class="control">
-            <label for="confirm-password">Passwort bestätigen</label>
-            <input
-              id="confirm-password"
-              type="password"
-              name="confirm-password"
-              formControlName="confirmPassword"
-            />
-          </div>
-        </div>
-        @if (passwordsAreNotSame) {
-        <p class="control-error">
-          Passwörter müssen mindestens 6 Zeichen lang und gleich sein
-        </p>
-        }
-
-        <div class="two-column user-names">
-          <div class="control">
-            <label for="first-name">Vorname</label>
-            <input
-              type="text"
-              id="first-name"
-              name="first-name"
-              formControlName="firstName"
-            />
-          </div>
-          <div class="control">
-            <label for="last-name">Nachname</label>
-            <input
-              type="text"
-              id="last-name"
-              name="last-name"
-              formControlName="lastName"
-            />
-          </div>
-        </div>
-        <div class="two-column user-names-child">
-          <div class="control">
-            <label for="first-name">Vorname des Kindes</label>
-            <input
-              type="text"
-              id="first-name-child"
-              name="first-name-child"
-              formControlName="firstNameChild"
-            />
-          </div>
-          <div class="control">
-            <label for="last-name">Nachname des Kindes</label>
-            <input
-              type="text"
-              id="last-name-child"
-              name="last-name-child"
-              formControlName="lastNameChild"
-            />
-          </div>
+        <div class="control">
+          <label for="confirm-password">Passwort bestätigen</label>
+          <input
+            id="confirm-password"
+            type="password"
+            name="confirm-password"
+            formControlName="confirmPassword"
+          />
         </div>
       </div>
+      @if (passwordsAreNotSame) {
+      <p class="control-error">
+        Passwörter müssen mindestens 6 Zeichen lang und gleich sein
+      </p>
+      }
 
-      <div class="control-group">
-        <div class="address" formGroupName="address">
-          <h3 class="h3 mb16 center">Adresse</h3>
-          <div class="two-column">
-            <div class="control">
-              <label for="street">Straße</label>
-              <input
-                type="text"
-                id="street"
-                name="street"
-                formControlName="street"
-              />
-            </div>
-
-            <div class="control">
-              <label for="number">Nummer</label>
-              <input
-                type="text"
-                id="number"
-                name="number"
-                formControlName="number"
-              />
-            </div>
-          </div>
-          <div class="two-column">
-            <div class="control">
-              <label for="postal-code">Postleitzahl</label>
-              <input
-                type="text"
-                id="postal-code"
-                name="postal-code"
-                formControlName="postalCode"
-              />
-            </div>
-            <div class="control">
-              <label for="city">Stadt</label>
-              <input type="text" id="city" name="city" formControlName="city" />
-            </div>
-          </div>
+      <div class="form-two-column user-names">
+        <div class="control">
+          <label for="first-name">Vorname</label>
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            formControlName="firstName"
+          />
         </div>
-        <div class="drop-down-list">
-          <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
-          <div class="two-column">
-            <div class="control">
-              <select id="school" name="school" formControlName="school">
-                <option value="waldorf">Waldorf</option>
-              </select>
-            </div>
-            <div class="control">
-              <select id="class" name="class" formControlName="class">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-            <div class="control">
-              <select id="letter" name="letter" formControlName="letter">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-              </select>
-            </div>
-          </div>
+        <div class="control">
+          <label for="last-name">Nachname</label>
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            formControlName="lastName"
+          />
+        </div>
+      </div>
+      <div class="form-two-column user-names-child">
+        <div class="control">
+          <label for="first-name">Vorname des Kindes</label>
+          <input
+            type="text"
+            id="first-name-child"
+            name="first-name-child"
+            formControlName="firstNameChild"
+          />
+        </div>
+        <div class="control">
+          <label for="last-name">Nachname des Kindes</label>
+          <input
+            type="text"
+            id="last-name-child"
+            name="last-name-child"
+            formControlName="lastNameChild"
+          />
         </div>
       </div>
     </div>
 
-    @if (form.dirty && form.touched && form.invalid) {
-    <p class="control-error mt16">
-      Ungültiges Formular. Bitte überprüfen Sie Ihre Eingabedaten.
-    </p>
-    }
+    <div class="form-main-column address-and-school">
+      <h3 class="h3 center">Adresse</h3>
+      <div class="address" formGroupName="address">
+        <div class="form-two-column">
+          <div class="control">
+            <label for="street">Straße</label>
+            <input
+              type="text"
+              id="street"
+              name="street"
+              formControlName="street"
+            />
+          </div>
 
-    <p class="form-actions mt16 mb72">
-      <button type="button" class="btn cancel-btn" (click)="onReset()">
-        Zurücksetzen
-      </button>
-      <button type="submit" class="btn">Anmelden</button>
-    </p>
-  </form>
-</div>
+          <div class="control">
+            <label for="number">Nummer</label>
+            <input
+              type="text"
+              id="number"
+              name="number"
+              formControlName="number"
+            />
+          </div>
+        </div>
+        <div class="form-two-column">
+          <div class="control">
+            <label for="postal-code">Postleitzahl</label>
+            <input
+              type="text"
+              id="postal-code"
+              name="postal-code"
+              formControlName="postalCode"
+            />
+          </div>
+          <div class="control">
+            <label for="city">Stadt</label>
+            <input type="text" id="city" name="city" formControlName="city" />
+          </div>
+        </div>
+      </div>
+      <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
+      <div class="drop-down-list">
+        <div class="form-three-column">
+          <div class="control school">
+            <select id="school" name="school" formControlName="school">
+              <option value="waldorf">Waldorf</option>
+            </select>
+          </div>
+          <div class="control class">
+            <select id="class" name="class" formControlName="class">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="control letter">
+            <select id="letter" name="letter" formControlName="letter">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (form.dirty && form.touched && form.invalid) {
+  <p class="control-error">
+    Ungültiges Formular. Bitte überprüfen Sie Ihre Eingabedaten.
+  </p>
+  }
+
+  <p class="two-buttons mb72">
+    <button type="button" class="btn cancel-btn" (click)="onReset()">
+      Zurücksetzen
+    </button>
+    <button type="submit" class="btn">Registrieren</button>
+  </p>
+</form>
