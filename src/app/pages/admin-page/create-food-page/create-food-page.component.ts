@@ -15,6 +15,7 @@ export class CreateFoodPageComponent {
 
   formData: CreateFood = {
     name: 'Menu ...',
+    week: 1,
     price: 4,
     description: '',
   };

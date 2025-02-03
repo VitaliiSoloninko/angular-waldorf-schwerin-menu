@@ -3,56 +3,44 @@
     {
       "id": "1",
       "name": "Menu 1",
+      "week": 1,
       "price": 4,
       "description": "Blumenkohl-Käse-Stern, Kräuter-Rahmsauce, Reis und Möhrensalat"
     },
     {
       "id": "2",
       "name": "Menu 2",
+      "week": 1,
       "price": "4",
       "description": "Vollkornnudeln mit Tomaten- Mozzarella-Sauce, Möhrensalat, Obst"
     },
     {
       "id": "3",
       "name": "Menu 3",
+      "week": 1,
       "price": 4,
       "description": "Pan. Gouda-Schnitzel mit Milchbohnen und Salzkartoffeln, Dessert"
     },
     {
       "id": "4",
       "name": "Menu 4",
+      "week": 1,
       "price": 4,
       "description": "Reispfanne mit Erbsen, Mais, Paprika, Sonnenblumenkernen, fruchtiger Tomatenquark-Dip, Eisberg-Birnen-Salat, Obst"
     },
     {
       "id": "5",
-      "name": "Test",
+      "name": "Menu 5",
+      "week": 1,
       "price": 4,
-      "description": "123456"
+      "description": "Blumenkohl-Käse-Stern, Kräuter-Rahmsauce, Reis und Möhrensalat"
     },
     {
-      "id": "3e2d",
-      "name": "",
-      "price": "400",
-      "description": ""
-    },
-    {
-      "id": "057a",
-      "name": "",
-      "price": 4,
-      "description": ""
-    },
-    {
-      "id": "6a3a",
+      "id": "6",
       "name": "Menu 6",
+      "week": "2",
       "price": 4,
-      "description": "vcvxvxv"
-    },
-    {
-      "id": "c7af",
-      "name": "Menu ...",
-      "price": 4,
-      "description": ""
+      "description": "Blumenkohl-Käse-Stern, Kräuter-Rahmsauce, Reis und Möhrensalat"
     }
   ]
 }

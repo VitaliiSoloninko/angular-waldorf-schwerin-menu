@@ -9,20 +9,29 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
         <th scope="col" class="name">Name</th>
+        <th scope="col">Woche</th>
         <th scope="col" class="price">Preis</th>
         <th scope="col">Beschreibung</th>
-        <th scope="col">Aktion</th>
+        <th scope="col" class="action">Aktion</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let food of foods">
-        <th scope="row">{{ food.id }}</th>
         <td>{{ food.name }}</td>
+        <td>{{ food.week }}</td>
         <td>{{ food.price }}</td>
         <td>{{ food.description }}</td>
-        <td></td>
+        <td>
+          <button type="button" (click)="removeFood(food.id)">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

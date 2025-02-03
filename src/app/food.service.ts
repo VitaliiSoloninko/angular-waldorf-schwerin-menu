@@ -18,4 +18,8 @@ export class FoodService {
   create(val: CreateFood) {
     return this.httpClient.post(this.baseApiUrl, val);
   }
+
+  remove(id: number) {
+    return this.httpClient.delete<Food>(`http://localhost:3000/foods/${id}`);
+  }
 }
