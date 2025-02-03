@@ -1,3 +1,18 @@
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
+.header {
+  max-width: 50rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  @media (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
 table {
   max-width: 50rem;
   margin: 0.3rem auto;

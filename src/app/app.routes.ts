@@ -6,6 +6,7 @@ import { HistoryComponent } from './pages/history/history.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { CreateFoodPageComponent } from './pages/admin-page/create-food-page/create-food-page.component';
 
 export const routes: Routes = [
   { path: '', component: MenuComponent },
@@ -16,4 +17,5 @@ export const routes: Routes = [
   { path: 'registration', component: RegistrationPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'admin/foods', component: FoodsPageComponent },
+  { path: 'admin/foods/create', component: CreateFoodPageComponent },
 ];
