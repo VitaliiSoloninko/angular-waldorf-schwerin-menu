@@ -1,3 +1,7 @@
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
 span {
   color: var(--main-color);
 }
@@ -14,14 +18,13 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   flex-direction: column;
-}
-
-.control-error {
-  max-width: 454px;
+  gap: 1rem;
 }
 
 .control input {
   width: 454px;
+  @media (max-width: $mobileSmall) {
+    width: 100%;
+  }
 }

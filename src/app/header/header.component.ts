@@ -24,5 +24,9 @@ export class HeaderComponent {
       name: 'History',
       link: 'history',
     },
+		{
+      name: 'Admin',
+      link: 'admin',
+    },
   ];
 }
