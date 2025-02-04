@@ -15,6 +15,7 @@ $mobileSmall: 479.98px;
   line-height: 1;
   --main-color: #23b123;
   --main-hover-color: #1d971d;
+  --main-dark-color: #177417;
   --red-color: #f56565;
   --red-hover-color: #ef4b4b;
   --dark-color: #263238;
@@ -28,6 +29,15 @@ body {
 
 .container {
   padding: 1rem;
+  margin-top: 90px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: $mobile) {
+    margin-top: 72px;
+  }
 }
 
 .two-buttons {

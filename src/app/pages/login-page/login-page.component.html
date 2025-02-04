@@ -1,28 +1,32 @@
-<h2 class="h2 center mb16"><span>Anmelden</span></h2>
-<div class="center mb16 link">
-  Sind Sie neu hier? &nbsp;
-  <a routerLink="/registration" class="registration">Hier registrieren</a>
+<div class="container">
+  <h2 class="h2 center mb16"><span>Anmelden</span></h2>
+  <div class="center mb16 link">
+    Sind Sie neu hier? &nbsp;
+    <a routerLink="/registration" class="registration">Hier registrieren</a>
+  </div>
+
+  <form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="control">
+      <label for="email">E-Mail</label>
+      <input id="email" type="email" [formControl]="form.controls.email" />
+    </div>
+
+    <div class="control">
+      <label for="password">Passwort</label>
+      <input id="password" type="password" formControlName="password" />
+    </div>
+
+    <button class="btn mt16 login">Login</button>
+
+    @if (emailIsInvalid) {
+    <p class="control-error">
+      Bitte geben Sie eine gültige E-Mail-Adresse ein.
+    </p>
+    } @if (passwordIsInvalid) {
+    <p class="control-error">
+      Bitte geben Sie ein gültiges Passwort ein. Es muss mindestens 6 Zeichen
+      lang sein und ein Fragezeichen enthalten.
+    </p>
+    }
+  </form>
 </div>
-
-<form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="control">
-    <label for="email">E-Mail</label>
-    <input id="email" type="email" [formControl]="form.controls.email" />
-  </div>
-
-  <div class="control">
-    <label for="password">Passwort</label>
-    <input id="password" type="password" formControlName="password" />
-  </div>
-
-  <button class="btn mt16 login">Login</button>
-
-  @if (emailIsInvalid) {
-  <p class="control-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</p>
-  } @if (passwordIsInvalid) {
-  <p class="control-error">
-    Bitte geben Sie ein gültiges Passwort ein. Es muss mindestens 6 Zeichen lang
-    sein und ein Fragezeichen enthalten.
-  </p>
-  }
-</form>

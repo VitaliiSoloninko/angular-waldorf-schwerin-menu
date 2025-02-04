@@ -1,3 +1,13 @@
+<app-sidebar
+  [isSidebarSmall]="isSidebarSmall()"
+  (changeSidebarState)="changeSidebar($event)"
+></app-sidebar>
+
+<app-main
+  [isSidebarSmall]="isSidebarSmall()"
+  [screenWidth]="screenWidth()"
+></app-main>
+
 <div>
   <a routerLink="/admin/foods">Alle Menüs</a>
 </div>
