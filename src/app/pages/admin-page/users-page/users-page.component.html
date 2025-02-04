@@ -1,1 +1,52 @@
-<p>users-page works!</p>
+<div class="header">
+  <h1 class="h2 mb16 center"><span>Unsere</span> Kunden</h1>
+  <button class="btn" routerLink="/registration">Neuer Kunde</button>
+</div>
+
+<div class="table-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="name">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">First Name Child</th>
+        <th scope="col">Last Name Child</th>
+        <th scope="col">Street</th>
+        <th scope="col">Number</th>
+        <th scope="col">Postal Code</th>
+        <th scope="col">School</th>
+        <th scope="col">Class</th>
+        <th scope="col">Letter</th>
+        <th scope="col">PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.email }}</td>
+        <td>{{ user.passwords }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.firstNameChild }}</td>
+        <td>{{ user.lastNameChild }}</td>
+        <td>{{ user.street }}</td>
+        <td>{{ user.number }}</td>
+        <td>{{ user.postalCode }}</td>
+        <td>{{ user.school }}</td>
+        <td>{{ user.class }}</td>
+        <td>{{ user.letter }}</td>
+        <td>
+          <button type="button">
+            <lucide-icon
+              [img]="fileText"
+              color="var(--main-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

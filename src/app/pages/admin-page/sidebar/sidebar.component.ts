@@ -49,11 +49,11 @@ export class SidebarComponent {
       icon: 'svg/square-plus.svg',
       linkText: 'Neu Essen',
     },
-    {
-      routerLink: 'settings',
-      icon: 'svg/settings.svg',
-      linkText: 'Einstellungen',
-    },
+    // {
+    //   routerLink: 'settings',
+    //   icon: 'svg/settings.svg',
+    //   linkText: 'Einstellungen',
+    // },
   ];
 
   toggleSidebarLogo(): void {

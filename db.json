@@ -42,5 +42,71 @@
       "price": 4,
       "description": "Blumenkohl-Käse-Stern, Kräuter-Rahmsauce, Reis und Möhrensalat"
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "test@gmail.com",
+      "passwords": "test",
+      "firstName": "Vitalii",
+      "lastName": "Sol",
+      "firstNameChild": "Jas",
+      "lastNameChild": "Sol",
+      "street": "Lubeker Str.",
+      "number": 90,
+      "postalCode": 19053,
+      "city": "Schwerin",
+      "school": "Waldorf",
+      "class": "1",
+      "letter": "A"
+    },
+    {
+      "id": "2",
+      "email": "test@gmail.com",
+      "passwords": "test",
+      "firstName": "Vitalii",
+      "lastName": "Sol",
+      "firstNameChild": "Jas",
+      "lastNameChild": "Sol",
+      "street": "Lubeker Str.",
+      "number": 90,
+      "postalCode": 19053,
+      "city": "Schwerin",
+      "school": "Waldorf",
+      "class": "1",
+      "letter": "A"
+    },
+    {
+      "id": "3",
+      "email": "test@gmail.com",
+      "passwords": "test",
+      "firstName": "Vitalii",
+      "lastName": "Sol",
+      "firstNameChild": "Jas",
+      "lastNameChild": "Sol",
+      "street": "Lubeker Str.",
+      "number": 90,
+      "postalCode": 19053,
+      "city": "Schwerin",
+      "school": "Waldorf",
+      "class": "1",
+      "letter": "A"
+    },
+    {
+      "id": "4",
+      "email": "test@gmail.com",
+      "passwords": "test",
+      "firstName": "Vitalii",
+      "lastName": "Sol",
+      "firstNameChild": "Jas",
+      "lastNameChild": "Sol",
+      "street": "Lubeker Str.",
+      "number": 90,
+      "postalCode": 19053,
+      "city": "Schwerin",
+      "school": "Waldorf",
+      "class": "1",
+      "letter": "A"
+    }
   ]
 }
