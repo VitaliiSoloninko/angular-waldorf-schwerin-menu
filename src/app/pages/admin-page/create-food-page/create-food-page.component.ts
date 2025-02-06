@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateFood } from '../../../create-food.model';
-import { FoodService } from '../../../food.service';
+import { FoodService } from '../../../../services/food.service';
+import { CreateFood } from '../../../models/create-food.model';
 
 @Component({
   selector: 'app-create-food-page',
@@ -18,6 +18,7 @@ export class CreateFoodPageComponent {
     week: 1,
     price: 4,
     description: '',
+    image: '',
   };
 
   create() {

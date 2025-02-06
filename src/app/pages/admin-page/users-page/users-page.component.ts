@@ -2,8 +2,8 @@ import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FileText, LucideAngularModule } from 'lucide-angular';
-import { User } from '../../../user.model';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../../services/user.service';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-users-page',

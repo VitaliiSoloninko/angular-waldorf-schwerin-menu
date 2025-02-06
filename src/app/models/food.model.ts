@@ -4,4 +4,5 @@ export interface Food {
   week: number;
   price: number;
   description: string;
+  image: string;
 }

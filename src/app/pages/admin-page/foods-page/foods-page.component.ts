@@ -2,8 +2,8 @@ import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
-import { Food } from '../../../food.model';
-import { FoodService } from '../../../food.service';
+import { FoodService } from '../../../../services/food.service';
+import { Food } from '../../../models/food.model';
 
 @Component({
   selector: 'app-foods-page',

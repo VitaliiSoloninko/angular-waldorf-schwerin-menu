@@ -3,4 +3,5 @@ export interface CreateFood {
   week: number;
   price: number;
   description: string;
+  image: string;
 }
