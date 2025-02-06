@@ -6,8 +6,8 @@ export interface CreateUser {
   firstNameChild: string;
   lastNameChild: string;
   street: string;
-  number: number;
-  postalCode: number;
+  number: string;
+  postalCode: string;
   city: string;
   school: string;
   class: string;

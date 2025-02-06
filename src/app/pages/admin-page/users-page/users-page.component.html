@@ -19,7 +19,7 @@
         <th scope="col">School</th>
         <th scope="col">Class</th>
         <th scope="col">Letter</th>
-        <th scope="col">PDF</th>
+        <th scope="col">Aktion</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +37,14 @@
         <td>{{ user.class }}</td>
         <td>{{ user.letter }}</td>
         <td>
+          <button type="button">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
           <button type="button">
             <lucide-icon
               [img]="fileText"
