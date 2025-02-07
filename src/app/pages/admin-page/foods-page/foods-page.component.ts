@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LucideAngularModule, Trash2 } from 'lucide-angular';
+import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { FoodService } from '../../../../services/food.service';
 import { Food } from '../../../models/food.model';
 
@@ -12,7 +12,9 @@ import { Food } from '../../../models/food.model';
   styleUrl: './foods-page.component.scss',
 })
 export class FoodsPageComponent implements OnInit {
+  pencil: any = Pencil;
   trash2: any = Trash2;
+  fileText: any = FileText;
 
   constructor(private foodService: FoodService) {}
 

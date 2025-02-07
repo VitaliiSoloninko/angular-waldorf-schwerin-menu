@@ -2,22 +2,35 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
+.table-container {
+  max-width: 1280px;
+}
+
 .header {
-  max-width: 50rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
   flex-wrap: wrap;
   @media (max-width: $mobile) {
     flex-direction: column;
   }
 }
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-body {
+  display: flex;
+}
 
 table {
-  max-width: 50rem;
   margin: 0.3rem auto;
   padding: 0.5rem;
-  table-layout: fixed;
+  width: 100%;
   border-spacing: 1rem;
   text-align: left;
 }
@@ -39,6 +52,16 @@ span {
 }
 
 .name {
-  width: 5rem;
+  max-width: 5rem;
   font-weight: 700;
+}
+.week {
+  max-width: 3rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }

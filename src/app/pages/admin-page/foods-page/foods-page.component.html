@@ -1,36 +1,59 @@
-<div class="header">
-  <h1 class="h2 mb16 center"><span>Alle</span> Menüs</h1>
-  <button class="btn" routerLink="/admin/create">Neue Lebensmittel</button>
-</div>
+<div class="table-container">
+  <div class="header mb16">
+    <h1 class="h2 center"><span>Alle</span> Menüs</h1>
+    <button class="btn btn-small" routerLink="/admin/create">
+      Neue Lebensmittel
+    </button>
+  </div>
 
-<div class="table-body">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col" class="name">Name</th>
-        <th scope="col">Woche</th>
-        <th scope="col" class="price">Preis</th>
-        <th scope="col">Beschreibung</th>
-        <th scope="col" class="action">Aktion</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let food of foods">
-        <td>{{ food.name }}</td>
-        <td>{{ food.week }}</td>
-        <td>{{ food.price }}</td>
-        <td>{{ food.description }}</td>
-        <td>
-          <button type="button" (click)="removeFood(food.id)">
-            <lucide-icon
-              [img]="trash2"
-              color="var(--red-color)"
-              [size]="18"
-              class="my-icon"
-            ></lucide-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="center name">Name</th>
+          <th scope="col" class="center">Woche</th>
+          <th scope="col" class="center">Preis</th>
+          <th scope="col" class="center">Beschreibung</th>
+          <th scope="col" class="center action">Aktion</th>
+          <th scope="col" class="center">PDF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of foods">
+          <td>{{ food.name }}</td>
+          <td class="center">{{ food.week }}</td>
+          <td class="center">{{ food.price }}</td>
+          <td>{{ food.description }}</td>
+          <td class="buttons">
+            <button type="button">
+              <lucide-icon
+                [img]="pencil"
+                color="var(--dark-color)"
+                [size]="18"
+                class="my-icon"
+              ></lucide-icon>
+            </button>
+            <button type="button" (click)="removeFood(food.id)">
+              <lucide-icon
+                [img]="trash2"
+                color="var(--red-color)"
+                [size]="18"
+                class="my-icon"
+              ></lucide-icon>
+            </button>
+          </td>
+          <td class="center">
+            <button type="button">
+              <lucide-icon
+                [img]="fileText"
+                color="var(--main-color)"
+                [size]="18"
+                class="my-icon"
+              ></lucide-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -72,6 +72,13 @@ body {
   }
 }
 
+.btn-small {
+  width: 200px;
+  @media (max-width: $mobileSmall) {
+    width: 100%;
+  }
+}
+
 .cancel-btn {
   background-color: var(--red-color);
   &:hover,
