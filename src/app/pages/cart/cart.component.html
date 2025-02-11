@@ -16,19 +16,17 @@
             {{ foodItem.data }}
           </div>
         </div>
-        <div class="arrow-down">
-          <lucide-icon
-            [img]="trash2"
-            color="var(--red-color)"
-            [size]="18"
-            class="my-icon"
-          ></lucide-icon>
+        <div class="item-right">
+          <div class="food-price">{{ foodItem.price }} €</div>
+          <div class="icon">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </div>
         </div>
-      </div>
-
-      <div class="food-item__title">
-        <div class="food-name">{{ foodItem.name }}</div>
-        <div class="food-price">{{ foodItem.price }} €</div>
       </div>
     </div>
   </div>

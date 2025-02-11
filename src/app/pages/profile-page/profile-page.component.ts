@@ -6,8 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../../services/user.service';
+import { RouterLink } from '@angular/router';
 
 function equalValues(controlName1: string, controlName2: string) {
   return (control: AbstractControl) => {
@@ -22,21 +21,28 @@ function equalValues(controlName1: string, controlName2: string) {
 }
 
 @Component({
-  selector: 'app-registration-page',
+  selector: 'app-profile-page',
   imports: [ReactiveFormsModule, RouterLink],
-  templateUrl: './registration-page.component.html',
-  styleUrl: './registration-page.component.scss',
+  templateUrl: './profile-page.component.html',
+  styleUrl: './profile-page.component.scss',
 })
-export class RegistrationPageComponent {
-  constructor(private router: Router, private userService: UserService) {}
-
+export class ProfilePageComponent {
   form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
     }),
-    password: new FormControl('', {
-      validators: [Validators.required, Validators.minLength(6)],
-    }),
+
+    passwords: new FormGroup(
+      {
+        password: new FormControl('', {
+          validators: [Validators.required, Validators.minLength(6)],
+        }),
+        confirmPassword: new FormControl('', {
+          validators: [Validators.required, Validators.minLength(6)],
+        }),
+      },
+      { validators: [equalValues('password', 'confirmPassword')] }
+    ),
     firstName: new FormControl('', {
       validators: [Validators.required],
     }),
@@ -49,18 +55,22 @@ export class RegistrationPageComponent {
     lastNameChild: new FormControl('', {
       validators: [Validators.required],
     }),
-    street: new FormControl('', {
-      validators: [Validators.required],
+
+    address: new FormGroup({
+      street: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      number: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      postalCode: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      city: new FormControl('', {
+        validators: [Validators.required],
+      }),
     }),
-    number: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    postalCode: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    city: new FormControl('', {
-      validators: [Validators.required],
-    }),
+
     school: new FormControl<'waldorf'>('waldorf', {
       validators: [Validators.required],
     }),
@@ -80,20 +90,19 @@ export class RegistrationPageComponent {
     );
   }
 
-  createNewUser() {
+  get passwordsAreNotSame() {
+    return (
+      this.form.controls.passwords.controls.confirmPassword.invalid &&
+      this.form.value.passwords?.password !==
+        this.form.value.passwords?.confirmPassword
+    );
+  }
+
+  onSubmit() {
     if (this.form.invalid) {
       console.log('INVALID FORM');
     }
     console.log(this.form.value);
-    //@ts-ignore
-    this.userService.createUser(this.form.value).subscribe({
-      next: (val) => {
-        this.router.navigate(['/login']);
-      },
-      error: (er) => {
-        console.log(er);
-      },
-    });
   }
 
   onReset() {

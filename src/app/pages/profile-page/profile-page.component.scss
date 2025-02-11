@@ -1,0 +1,37 @@
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
+span {
+  color: var(--main-color);
+}
+
+.link {
+  font-size: 1.1rem;
+}
+
+.login {
+  text-decoration: underline;
+}
+
+.form-three-column {
+  display: flex;
+  gap: 1rem;
+}
+
+.school {
+  width: 50%;
+}
+
+.class {
+  width: 25%;
+}
+.letter {
+  width: 25%;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

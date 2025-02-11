@@ -5,7 +5,7 @@
     <a routerLink="/login" class="login">Hier anmelden</a>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="createNewUser()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form">
       <div class="form-main-column personal-data">
         <h3 class="h3 center">Persönliche Daten</h3>
@@ -24,15 +24,32 @@
         </p>
         }
 
-        <div class="control">
-          <label for="password">Passwort</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            formControlName="password"
-          />
+        <div class="form-two-column user-password" formGroupName="passwords">
+          <div class="control">
+            <label for="password">Passwort</label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              formControlName="password"
+            />
+          </div>
+
+          <div class="control">
+            <label for="confirm-password">Passwort bestätigen</label>
+            <input
+              id="confirm-password"
+              type="password"
+              name="confirm-password"
+              formControlName="confirmPassword"
+            />
+          </div>
         </div>
+        @if (passwordsAreNotSame) {
+        <p class="control-error">
+          Passwörter müssen mindestens 6 Zeichen lang und gleich sein
+        </p>
+        }
 
         <div class="form-two-column user-names">
           <div class="control first-name">
@@ -78,7 +95,7 @@
 
       <div class="form-main-column address-and-school">
         <h3 class="h3 center">Adresse</h3>
-        <div class="address">
+        <div class="address" formGroupName="address">
           <div class="form-two-column">
             <div class="control">
               <label for="street">Straße</label>

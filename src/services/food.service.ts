@@ -8,8 +8,6 @@ import { Food } from '../app/models/food.model';
 })
 export class FoodService {
   constructor(private httpClient: HttpClient) {}
-
-  // baseApiUrl = 'http://localhost:3000/api/foods';
   baseApiUrl =
     'https://nestjs-postgresql-waldorf-menu-production.up.railway.app/api/foods';
 
