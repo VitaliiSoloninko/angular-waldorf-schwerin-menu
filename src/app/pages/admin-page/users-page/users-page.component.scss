@@ -3,7 +3,6 @@ $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
 .header {
-  max-width: 50rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,13 +12,19 @@ $mobileSmall: 479.98px;
   }
 }
 
+.table-body {
+  display: flex;
+}
+
 table {
-  max-width: 50rem;
   margin: 0.3rem auto;
-  padding: 0.5rem;
   table-layout: fixed;
   border-spacing: 1rem;
   text-align: left;
+}
+
+th {
+  text-align: center;
 }
 
 table thead {

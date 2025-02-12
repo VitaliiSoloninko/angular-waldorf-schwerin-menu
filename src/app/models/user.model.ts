@@ -1,6 +1,15 @@
 export interface User {
   email: string;
   password: string;
-  token: string;
-  isAdmin: boolean;
+  firstName: string;
+  lastName: string;
+  firstNameChild: string;
+  lastNameChild: string;
+  street: string;
+  number: string;
+  postalCode: string;
+  city: string;
+  school: string;
+  class: string;
+  letter: string;
 }
