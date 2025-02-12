@@ -23,7 +23,7 @@ export class CreateFoodPageComponent {
 
   create() {
     console.log(this.formData);
-    this.foodService.create(this.formData).subscribe({
+    this.foodService.createFood(this.formData).subscribe({
       next: (val) => {
         this.router.navigate(['/admin/foods']);
       },

@@ -1,17 +1,15 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
-import { CheckBoxComponent } from '../../../ui/check-box/check-box.component';
+import { LucideAngularModule, Trash2 } from 'lucide-angular';
 
 @Component({
-  selector: 'app-item',
-  imports: [NgFor, LucideAngularModule, CheckBoxComponent],
-  templateUrl: './item.component.html',
-  styleUrl: './item.component.scss',
+  selector: 'app-cart-page',
+  imports: [NgFor, LucideAngularModule],
+  templateUrl: './cart-page.component.html',
+  styleUrl: './cart-page.component.scss',
 })
-export class ItemComponent {
-  chevronDown: any = ChevronDown;
-  vegan: any = Vegan;
+export class CartPageComponent {
+  trash2: any = Trash2;
 
   foodItems = [
     {
@@ -26,7 +24,7 @@ export class ItemComponent {
       data: '14.01.2025',
       day: 'Dienstag',
       name: 'Menu 2',
-      price: 3,
+      price: 4,
       description: `Mildes Karotten-Bohnen-Curry mit Sonnenblumenkernen, Vollkorn-Nudeln, Eisberg-Birnen-Salat, Obst`,
       image: 'vegen.svg',
     },

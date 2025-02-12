@@ -11,15 +11,19 @@ export class FoodService {
   baseApiUrl =
     'https://nestjs-postgresql-waldorf-menu-production.up.railway.app/api/foods';
 
-  getAll() {
+  getAllFoods() {
     return this.httpClient.get<Food[]>(this.baseApiUrl);
   }
 
-  create(val: CreateFood) {
+  getFoodById(id: number) {
+    return this.httpClient.get<Food>(this.baseApiUrl + `/${id}`);
+  }
+
+  createFood(val: CreateFood) {
     return this.httpClient.post(this.baseApiUrl, val);
   }
 
-  remove(id: number) {
+  removeFood(id: number) {
     return this.httpClient.delete<Food>(this.baseApiUrl + `/${id}`);
   }
 }

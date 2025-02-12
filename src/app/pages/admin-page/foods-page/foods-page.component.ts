@@ -21,13 +21,13 @@ export class FoodsPageComponent implements OnInit {
   foods: Food[] = [];
 
   ngOnInit(): void {
-    this.foodService.getAll().subscribe((data) => {
+    this.foodService.getAllFoods().subscribe((data) => {
       this.foods = data;
     });
   }
 
   removeFood(id: number) {
-    this.foodService.remove(id).subscribe({
+    this.foodService.removeFood(id).subscribe({
       next: (val) => {
         this.foods = this.foods.filter((_) => _.id != id);
       },
