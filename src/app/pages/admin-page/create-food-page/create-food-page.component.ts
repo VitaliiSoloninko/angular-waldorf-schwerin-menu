@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FoodService } from '../../../../services/food.service';
+
 import { CreateFood } from '../../../models/create-food.model';
+import { FoodService } from '../../../services/food.service';
 
 @Component({
   selector: 'app-create-food-page',
@@ -15,6 +16,7 @@ export class CreateFoodPageComponent {
 
   formData: CreateFood = {
     name: 'Menu ...',
+    day: 1,
     week: 1,
     price: 4,
     description: '',

@@ -1,5 +1,6 @@
 export interface Food {
   id: number;
+  day: number;
   name: string;
   week: number;
   price: number;

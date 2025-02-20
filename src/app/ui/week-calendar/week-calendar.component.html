@@ -1,0 +1,112 @@
+<div class="calendar-container">
+  <div class="header">
+    <div>
+      <h1 class="h2 mb16"><span>Speise</span>plan</h1>
+    </div>
+
+    <div class="calendar">
+      <div class="calendar-headline">
+        <div class="calendar-headline-month">
+          {{ firstDayOfActiveWeek().monthLong }}
+          {{ firstDayOfActiveWeek().year }}
+        </div>
+        <div class="calendar-headline-controls">
+          <div class="calendar-headline-control" (click)="goToPreviousWeek()">
+            <img src="/svg/arrow-left.svg" alt="" />
+          </div>
+          <div
+            class="calendar-headline-control-text"
+            (click)="goToActiveWeek()"
+          >
+            diese Woche
+          </div>
+          <div class="calendar-headline-control" (click)="goToNextWeek()">
+            <img src="/svg/arrow-right.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="calendar-weeks-grid">
+        @for (weekDay of weekDays(); track $index) {
+        <div class="calender-weeks-day-cell">
+          <div>
+            {{ weekDay }}
+          </div>
+        </div>
+        }
+      </div>
+      <div class="calendar-grid">
+        @for (dayOfWeek of daysOfWeek(); track $index) {
+        <div
+          [ngClass]="{
+							'calendar-grid-cell': true,
+							'calendar-grid-cell-active':
+								activeDay()?.toISODate() === dayOfWeek.toISODate(),
+						}"
+          (click)="activeDay.set(dayOfWeek)"
+        >
+          {{ dayOfWeek.day }}
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="items">
+    <div class="item" *ngFor="let foodItem of foodItems">
+      <div class="item-title">
+        <div class="date">
+          <div>
+            {{
+              firstDayOfActiveWeek()
+                .plus({ days: foodItem.day - 1 })
+                .toLocaleString(DATE_MED)
+            }}
+          </div>
+          <div>
+            {{
+              firstDayOfActiveWeek().plus({ days: foodItem.day - 1 })
+                .weekdayLong
+            }}
+          </div>
+        </div>
+        <div class="arrow-down">
+          <lucide-icon [img]="chevronDown" class="my-icon"></lucide-icon>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <div class="food-item-top">
+          <div class="food-item__title">
+            <div class="food-name">{{ foodItem.name }}</div>
+            <div class="food-image">
+              <lucide-icon
+                [img]="vegan"
+                [size]="24"
+                color="green"
+                class="my-icon"
+              ></lucide-icon>
+            </div>
+            <div class="food-price">{{ foodItem.price }} €</div>
+          </div>
+          <div class="food-description text">
+            {{ foodItem.description }}
+          </div>
+        </div>
+        <div class="food-item-bottom">
+          <div class="food-order">
+            <app-check-box />
+            <div class="check-text">
+              <label>Wählen</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt32 mb72">
+    <a routerLink="cart">
+      <button class="btn">In den Warenkorb</button>
+    </a>
+  </div>
+</div>
