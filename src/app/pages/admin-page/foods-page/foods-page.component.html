@@ -11,8 +11,9 @@
       <thead>
         <tr>
           <th scope="col" class="center name">Name</th>
+          <th scope="col" class="center">Tag</th>
           <th scope="col" class="center">Woche</th>
-          <th scope="col" class="center">Preis</th>
+          <th scope="col" class="center">€</th>
           <th scope="col" class="center">Beschreibung</th>
           <th scope="col" class="center action">Aktion</th>
           <th scope="col" class="center">PDF</th>
@@ -20,7 +21,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let food of foods">
-          <td>{{ food.name }}</td>
+          <td class="menu">{{ food.name }}</td>
+          <td class="center">{{ food.day }}</td>
           <td class="center">{{ food.week }}</td>
           <td class="center">{{ food.price }}</td>
           <td>{{ food.description }}</td>

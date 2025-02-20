@@ -2,6 +2,12 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
+@media (min-width: $tablet) {
+  footer {
+    display: none;
+  }
+}
+
 footer {
   position: fixed;
   width: 100%;

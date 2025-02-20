@@ -35,6 +35,10 @@ table tbody {
   color: #444;
 }
 
+td {
+  border-bottom: 1px dashed #999;
+}
+
 span {
   color: var(--main-color);
 }

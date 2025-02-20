@@ -10,9 +10,20 @@ $mobileSmall: 479.98px;
   gap: 1rem;
 }
 
-.header {
+.calender-container-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+@media (max-width: $mobile) {
+  .calender-container-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
 .calendar {
@@ -105,11 +116,12 @@ $mobileSmall: 479.98px;
 }
 
 .calendar-grid-cell:hover {
-  background: #9ba3bf;
+  background: #cdcdcd;
 }
 
 .calendar-grid-cell-active {
-  background: #9ba3bf;
+  background-color: var(--main-color);
+  color: var(--white-color);
 }
 
 .schedule {
@@ -132,22 +144,6 @@ span {
   color: var(--main-color);
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-@media (max-width: $mobileSmall) {
-  .header {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
 .h2 {
   text-align: center;
 }

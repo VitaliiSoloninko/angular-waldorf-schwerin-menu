@@ -43,12 +43,20 @@ table tbody {
   color: #444;
 }
 
+td {
+  border-bottom: 1px dashed #999;
+}
+
 span {
   color: var(--main-color);
 }
 
 .center {
   text-align: center;
+}
+
+.menu {
+  width: 3.5rem;
 }
 
 .name {
