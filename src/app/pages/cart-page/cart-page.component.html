@@ -6,32 +6,40 @@
   </p>
 
   <div class="items mb16">
-    <div class="item" *ngFor="let foodItem of foodItems">
+    <div class="item" *ngFor="let cartItem of cart.items">
       <div class="item-title">
         <div class="date">
+          <div>{{ cartItem.food.id }}</div>
           <div>
-            {{ foodItem.day }}
-          </div>
-          <div>
-            {{ foodItem.data }}
+            {{ cartItem.food.name }}
           </div>
         </div>
         <div class="item-right">
-          <div class="food-price">{{ foodItem.price }} €</div>
-          <div class="icon">
+          <div class="food-price">
+            {{ cartItem.food.price | currency : "EUR" }}
+          </div>
+          <button class="icon" (click)="removeFromCart(cartItem)">
             <lucide-icon
               [img]="trash2"
               color="var(--red-color)"
               [size]="18"
               class="my-icon"
             ></lucide-icon>
-          </div>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <p class="mb16">Voller Bestellpreis ist <span>20 €</span></p>
+  <p class="mb16">
+    Bestellpreis ist
+    <span>{{ cart.totalPrice | currency : "EUR" }}</span>
+  </p>
+
+  <p class="mb16">
+    Bestellungen
+    <span>{{ cart.totalCount }}</span>
+  </p>
 
   <div class="two-buttons mb72">
     <button class="btn cancel-btn">Absagen</button>

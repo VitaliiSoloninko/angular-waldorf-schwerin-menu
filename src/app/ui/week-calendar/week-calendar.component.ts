@@ -6,12 +6,13 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
 import { DateTime, Info, Interval } from 'luxon';
 import { FoodService } from '../../services/food.service';
 
 import { Food } from '../../models/food.model';
+import { CartService } from '../../services/cart.service';
 import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
 
 @Component({
@@ -28,6 +29,8 @@ import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
   exportAs: 'weekCalendar',
 })
 export class WeekCalendarComponent {
+  showItem = true;
+
   today: Signal<DateTime> = signal(
     DateTime.local({
       zone: 'Europe/Berlin',
@@ -62,7 +65,11 @@ export class WeekCalendarComponent {
   vegan: any = Vegan;
   foodItems: Food[] = [];
 
-  constructor(private foodService: FoodService) {}
+  constructor(
+    private foodService: FoodService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.foodService.getAllFoods().subscribe((foods) => {
       this.foodItems = foods;
@@ -81,5 +88,14 @@ export class WeekCalendarComponent {
   }
   goToActiveWeek() {
     this.firstDayOfActiveWeek.set(this.today().startOf('week'));
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.foodItems[0]);
+    this.cartService.addToCart(this.foodItems[1]);
+    this.cartService.addToCart(this.foodItems[2]);
+    this.cartService.addToCart(this.foodItems[3]);
+    this.cartService.addToCart(this.foodItems[4]);
+    this.router.navigateByUrl('/cart-page');
   }
 }

@@ -18,13 +18,13 @@ export class HeaderComponent {
     },
     {
       name: 'Warenkorb',
-      link: 'cart',
+      link: 'cart-page',
     },
     {
       name: 'History',
       link: 'history',
     },
-		{
+    {
       name: 'Admin',
       link: 'admin',
     },

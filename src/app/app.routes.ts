@@ -14,7 +14,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
   { path: 'menu', component: MenuPageComponent },
-  { path: 'cart', component: CartPageComponent },
+  { path: 'cart-page', component: CartPageComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },

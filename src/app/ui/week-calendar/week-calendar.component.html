@@ -72,6 +72,7 @@
           <lucide-icon [img]="chevronDown" class="my-icon"></lucide-icon>
         </div>
       </div>
+
       <div class="food-item">
         <div class="food-item-top">
           <div class="food-item__title">
@@ -103,8 +104,6 @@
   </div>
 
   <div class="mb72">
-    <a routerLink="cart">
-      <button class="btn">In den Warenkorb</button>
-    </a>
+    <button class="btn" (click)="addToCart()">In den Warenkorb</button>
   </div>
 </div>
