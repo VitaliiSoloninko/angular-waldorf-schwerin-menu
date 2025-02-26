@@ -6,6 +6,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Cart } from '../../models/cart.model';
@@ -32,7 +33,7 @@ export class CartPageComponent implements OnInit {
   trash2: any = Trash2;
   cart!: Cart;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.cartService.getCartObservable().subscribe((newCart) => {
@@ -42,5 +43,9 @@ export class CartPageComponent implements OnInit {
 
   removeFromCart(cartItem: CartItem) {
     this.cartService.removeFromCart(cartItem.food);
+  }
+
+  goToMenu() {
+    this.router.navigateByUrl('/menu');
   }
 }

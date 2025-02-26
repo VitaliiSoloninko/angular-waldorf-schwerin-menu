@@ -5,4 +5,5 @@ export interface CreateFood {
   price: number;
   description: string;
   image: string;
+  isChecked: boolean;
 }

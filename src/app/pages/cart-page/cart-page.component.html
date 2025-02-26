@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="h2 mb16 title"><span>Waten</span>korb</h1>
+  <h1 class="h2 mb16 title"><span>Waren</span>korb</h1>
 
   <p class="mb16 subtitle">
     Das gesamte Essen, das Sie bestellt haben, ist hier.
@@ -13,6 +13,7 @@
           <div>2</div>
         </div>
         <div class="item-right">
+          <div class="food-name">{{ cartItem.food.name }}</div>
           <div class="food-price">
             {{ cartItem.food.price | currency : "EUR" }}
           </div>
@@ -40,7 +41,7 @@
   </p>
 
   <div class="two-buttons mb72">
-    <button class="btn cancel-btn">Absagen</button>
+    <button class="btn cancel-btn" (click)="goToMenu()">Absagen</button>
     <button class="btn">Bestellen</button>
   </div>
 </div>

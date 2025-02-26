@@ -21,6 +21,7 @@ export class CreateFoodPageComponent {
     price: 4,
     description: '',
     image: '',
+    isChecked: false,
   };
 
   create() {
