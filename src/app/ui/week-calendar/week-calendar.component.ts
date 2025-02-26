@@ -65,6 +65,8 @@ export class WeekCalendarComponent {
   chevronDown: any = ChevronDown;
   vegan: any = Vegan;
   foodItems: Food[] = [];
+  date: Date;
+  dates: Date[] = [];
 
   constructor(
     private foodService: FoodService,
