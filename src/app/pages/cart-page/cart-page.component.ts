@@ -1,6 +1,13 @@
 import { CurrencyPipe, NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
+import { DateTime } from 'luxon';
 import { Cart } from '../../models/cart.model';
 import { CartItem } from '../../models/cartItem.model';
 import { CartService } from '../../services/cart.service';
@@ -12,6 +19,16 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './cart-page.component.scss',
 })
 export class CartPageComponent implements OnInit {
+  today: Signal<DateTime> = signal(
+    DateTime.local({
+      zone: 'Europe/Berlin',
+      locale: 'de',
+    })
+  );
+  firstDayOfActiveWeek: WritableSignal<DateTime> = signal(
+    this.today().startOf('week')
+  );
+
   trash2: any = Trash2;
   cart!: Cart;
 

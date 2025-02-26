@@ -51,7 +51,7 @@
   </div>
 
   <div class="items">
-    <div class="item" *ngFor="let foodItem of foodItems">
+    <!-- <div class="item" *ngFor="let foodItem of foodItems">
       <div class="item-title">
         <div class="date">
           <div>
@@ -94,13 +94,18 @@
         <div class="food-item-bottom">
           <div class="food-order">
             <app-check-box />
+
             <div class="check-text">
               <label>Wählen</label>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <app-food-item
+      *ngFor="let foodItem of foodItems"
+      [food]="foodItem"
+    ></app-food-item>
   </div>
 
   <div class="mb72">

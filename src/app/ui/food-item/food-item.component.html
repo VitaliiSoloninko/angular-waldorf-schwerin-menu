@@ -1,0 +1,44 @@
+<div class="item">
+  <div class="item-title" (click)="showDetails = !showDetails">
+    <div class="date">
+      <div>
+        {{ date.day }}
+      </div>
+      <div>
+        {{ date.dayOfTheWeek }}
+      </div>
+    </div>
+    <div class="arrow-down">
+      <lucide-icon [img]="chevronDown" class="my-icon"></lucide-icon>
+    </div>
+  </div>
+
+  <div class="food-item" *ngIf="showDetails">
+    <div class="food-item-top">
+      <div class="food-item__title">
+        <div class="food-name">{{ food.name }}</div>
+        <div class="food-image">
+          <lucide-icon
+            [img]="vegan"
+            [size]="24"
+            color="green"
+            class="my-icon"
+          ></lucide-icon>
+        </div>
+        <div class="food-price">{{ food.price }} €</div>
+      </div>
+      <div class="food-description text">
+        {{ food.description }}
+      </div>
+    </div>
+    <div class="food-item-bottom">
+      <div class="food-order">
+        <app-check-box />
+
+        <div class="check-text">
+          <label>Wählen</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

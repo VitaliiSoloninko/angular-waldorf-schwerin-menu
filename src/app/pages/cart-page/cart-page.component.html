@@ -9,9 +9,11 @@
     <div class="item" *ngFor="let cartItem of cart.items">
       <div class="item-title">
         <div class="date">
-          <div>{{ cartItem.food.id }}</div>
           <div>
-            {{ cartItem.food.name }}
+            {{ cartItem.date.day }}
+          </div>
+          <div>
+            {{ cartItem.date.dayOfTheWeek }}
           </div>
         </div>
         <div class="item-right">

@@ -2,35 +2,38 @@ import { CommonModule, NgFor } from '@angular/common';
 import {
   Component,
   computed,
-  Signal,
+  Input,
   signal,
+  Signal,
   WritableSignal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
 import { DateTime, Info, Interval } from 'luxon';
-import { FoodService } from '../../services/food.service';
-
+import { Date } from '../../models/date.model';
 import { Food } from '../../models/food.model';
 import { CartService } from '../../services/cart.service';
+import { FoodService } from '../../services/food.service';
 import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
-import { FoodItemComponent } from '../food-item/food-item.component';
 
 @Component({
-  selector: 'app-week-calendar',
+  selector: 'app-food-item',
   imports: [
     CommonModule,
     RouterLink,
     NgFor,
     LucideAngularModule,
     CheckBoxComponent,
-    FoodItemComponent,
   ],
-  templateUrl: './week-calendar.component.html',
-  styleUrl: './week-calendar.component.scss',
-  exportAs: 'weekCalendar',
+  templateUrl: './food-item.component.html',
+  styleUrl: './food-item.component.scss',
 })
-export class WeekCalendarComponent {
+export class FoodItemComponent {
+  @Input() food: Food;
+  @Input() date: Date;
+
+  showDetails: boolean = true;
+
   today: Signal<DateTime> = signal(
     DateTime.local({
       zone: 'Europe/Berlin',
@@ -65,6 +68,7 @@ export class WeekCalendarComponent {
   chevronDown: any = ChevronDown;
   vegan: any = Vegan;
   foodItems: Food[] = [];
+  dates: Date[] = [];
 
   constructor(
     private foodService: FoodService,
@@ -75,6 +79,15 @@ export class WeekCalendarComponent {
     this.foodService.getAllFoods().subscribe((foods) => {
       this.foodItems = foods;
     });
+
+    this.date = {
+      day: this.firstDayOfActiveWeek()
+        .plus({ days: this.food.day - 1 })
+        .toLocaleString(this.DATE_MED),
+      dayOfTheWeek:
+        this.firstDayOfActiveWeek().plus({ days: this.food.day - 1 })
+          .weekdayLong || '',
+    };
   }
 
   goToPreviousWeek() {
