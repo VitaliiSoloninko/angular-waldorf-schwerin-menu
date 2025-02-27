@@ -1,11 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import {
-  Component,
-  Input,
-  signal,
-  Signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
@@ -13,6 +7,7 @@ import { DateTime } from 'luxon';
 import { Date } from '../../models/date.model';
 import { Food } from '../../models/food.model';
 import { FoodService } from '../../services/food.service';
+import { LuxonDateService } from '../../services/luxon-date.service';
 import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
 
 @Component({
@@ -36,22 +31,16 @@ export class FoodItemComponent {
   vegan: any = Vegan;
 
   showDetails: boolean = true;
-  isChecked: boolean = false;
-
   DATE_MED = DateTime.DATE_MED;
 
-  today: Signal<DateTime> = signal(
-    DateTime.local({
-      zone: 'Europe/Berlin',
-      locale: 'de',
-    })
-  );
+  constructor(
+    private foodService: FoodService,
+    private luxonDateService: LuxonDateService
+  ) {}
 
-  firstDayOfActiveWeek: WritableSignal<DateTime> = signal(
-    this.today().startOf('week')
-  );
-
-  constructor(private foodService: FoodService) {}
+  firstDayOfActiveWeek(): DateTime {
+    return this.luxonDateService.firstDayOfActiveWeek();
+  }
 
   ngOnInit(): void {
     this.date = {

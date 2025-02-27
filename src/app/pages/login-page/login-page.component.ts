@@ -1,83 +1,57 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  FormControl,
+  FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { debounceTime } from 'rxjs';
-
-function emailIsUnique(control: AbstractControl) {
-  if (control.value !== 'text@example.com') {
-    return null;
-  }
-  return { notUnique: true };
-}
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { TextInputComponent } from '../../ui/text-input/text-input.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TextInputComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent implements OnInit {
-  private destroyRef = inject(DestroyRef);
+  loginForm!: FormGroup;
+  isSubmitted = false;
+  returnUrl = '';
 
-  form = new FormGroup({
-    email: new FormControl('', {
-      validators: [Validators.email, Validators.required],
-    }),
-
-    password: new FormControl('', {
-      validators: [Validators.required, Validators.minLength(6)],
-    }),
-  });
-  returnUrl: any;
-
-  get emailIsInvalid() {
-    return (
-      this.form.controls.email.touched &&
-      this.form.controls.email.dirty &&
-      this.form.controls.email.invalid
-    );
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
+    // snapshot - latest value
   }
-
-  get passwordIsInvalid() {
-    return (
-      this.form.controls.password.touched &&
-      this.form.controls.password.dirty &&
-      this.form.controls.password.invalid
-    );
-  }
-
-  ngOnInit() {
-    const savedForm = window.localStorage.getItem('saved-login-form');
-
-    if (savedForm) {
-      const loadedForm = JSON.parse(savedForm);
-      this.form.patchValue({
-        email: loadedForm.email,
-      });
-    }
-
-    const subscription = this.form.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe({
-        next: (value) => {
-          window.localStorage.setItem(
-            'saved-login-form',
-            JSON.stringify({ email: value.email })
-          );
-        },
-      });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  // loginForm.controls.email
+  // fc.mail
+  get fc() {
+    return this.loginForm.controls;
   }
 
   onSubmit() {
-    const enteredEmail = this.form.value.email;
-    const enteredPassword = this.form.value.password;
-    console.log(enteredEmail, enteredPassword);
+    this.isSubmitted = true;
+    if (this.loginForm.invalid) return;
+
+    this.authService
+      .login({
+        email: this.fc.email.value,
+        password: this.fc.password.value,
+      })
+      .subscribe(() => {
+        this.router.navigateByUrl(this.returnUrl);
+      });
+    console.log(this.fc.email.value, this.fc.password.value);
   }
 }

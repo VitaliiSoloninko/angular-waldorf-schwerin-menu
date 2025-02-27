@@ -33,7 +33,7 @@
 					'calendar-grid-cell-active':
 						activeDay()?.toISODate() === dayOfWeek.toISODate(),
 				}"
-      (click)="activeDay.set(dayOfWeek)"
+      (click)="activeDay()"
     >
       {{ dayOfWeek.day }}
     </div>

@@ -31,9 +31,7 @@ export class MenuPageComponent implements OnInit {
 
   addToCart() {
     for (let i = 0; i < this.foodItems.length; i++) {
-      if (this.foodItems[i].isChecked === true) {
-        this.cartService.addToCart(this.foodItems[i]);
-      }
+      this.cartService.addToCart(this.foodItems[i]);
     }
     console.log(this.foodItems[0]);
     this.router.navigateByUrl('/cart-page');

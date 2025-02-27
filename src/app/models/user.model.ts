@@ -1,4 +1,4 @@
-export interface User {
+export class User {
   email: string;
   password: string;
   firstName: string;
@@ -12,4 +12,7 @@ export interface User {
   school: string;
   class: string;
   letter: string;
+  token: string;
+  isAdmin: boolean;
+  name: any;
 }

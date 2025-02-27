@@ -5,28 +5,27 @@
     <a routerLink="/registration" class="registration">Hier registrieren</a>
   </div>
 
-  <form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="control">
       <label for="email">E-Mail</label>
-      <input id="email" type="email" [formControl]="form.controls.email" />
+      <app-text-input
+        [control]="fc.email"
+        [showErrorsWhen]="isSubmitted"
+        type="email"
+        label="Email"
+      />
     </div>
 
     <div class="control">
       <label for="password">Passwort</label>
-      <input id="password" type="password" formControlName="password" />
+      <app-text-input
+        [control]="fc.password"
+        [showErrorsWhen]="isSubmitted"
+        type="password"
+        label="Password"
+      />
     </div>
 
     <button class="btn mt16 login">Login</button>
-
-    @if (emailIsInvalid) {
-    <p class="control-error">
-      Bitte geben Sie eine gültige E-Mail-Adresse ein.
-    </p>
-    } @if (passwordIsInvalid) {
-    <p class="control-error">
-      Bitte geben Sie ein gültiges Passwort ein. Es muss mindestens 6 Zeichen
-      lang sein und ein Fragezeichen enthalten.
-    </p>
-    }
   </form>
 </div>
