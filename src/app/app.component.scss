@@ -1,2 +1,15 @@
+.content {
+  position: relative;
+}
 
+.background {
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
 
+@media (max-width: 1150px) {
+  .background {
+    display: none;
+  }
+}
