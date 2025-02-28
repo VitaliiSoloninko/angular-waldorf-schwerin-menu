@@ -1,15 +1,12 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { BurgerComponent } from './burger/burger.component';
 
 @Component({
-  selector: 'app-header',
-  imports: [RouterLink, NgFor, BurgerComponent],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  selector: 'app-burger',
+  imports: [],
+  templateUrl: './burger.component.html',
+  styleUrl: './burger.component.scss',
 })
-export class HeaderComponent {
+export class BurgerComponent {
   openMenu = false;
 
   menuItems = [

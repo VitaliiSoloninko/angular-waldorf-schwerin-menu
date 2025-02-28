@@ -75,11 +75,6 @@ $mobileSmall: 479.98px;
   }
 }
 
-.client-name {
-  color: var(--white-color);
-  line-height: 20px;
-}
-
 .menu {
   // .menu__icon
   &__icon {
@@ -160,6 +155,43 @@ $mobileSmall: 479.98px;
       text-decoration: underline;
     }
   }
+}
+
+.menu-container-user {
+  color: var(--white-color);
+  line-height: 20px;
+  position: relative;
+}
+
+.menu-user {
+  position: absolute;
+  z-index: 1;
+  background-color: var(--dark-color);
+  display: none;
+}
+
+.menu-container-user:hover .menu-user {
+  display: block;
+}
+
+.client-date a {
+  background: var(--dark-color);
+  transition: all 0.3s ease 0s;
+}
+
+.client-date a:hover {
+  background: var(--main-hover-color);
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+}
+
+.client-date a {
+  padding: 1rem;
+  display: block;
 }
 
 // Burger

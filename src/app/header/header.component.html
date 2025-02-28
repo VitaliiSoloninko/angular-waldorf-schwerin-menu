@@ -16,11 +16,21 @@
       </nav>
     </div>
     <div class="header__actions">
-      <div class="client-name">
-        Vorname <br />
-        Nachname
-      </div>
       <a routerLink="/login" class="header__button">Login</a>
+      <nav>
+        <ul class="client-date">
+          <li class="menu-container-user">
+            <a routerLink="/dashboard">John</a>
+            <div class="menu-user">
+              <a routerLink="/profile">Profile</a>
+              <a routerLink="/cart-page">Cart</a>
+              <a routerLink="/history">History</a>
+              <a>Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- <app-burger></app-burger> -->
       <button
         type="button"
         class="menu__icon icon-menu"
