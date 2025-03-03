@@ -10,10 +10,6 @@ import { USERS_REGISTER_URL, USERS_URL } from '../urls';
 })
 export class UserService {
   constructor(private httpClient: HttpClient) {}
-  // baseApiUrl = 'http://localhost:3000/api/users';
-
-  baseApiUrl =
-    'https://nestjs-postgresql-waldorf-menu-production.up.railway.app/api/users';
 
   getAll() {
     return this.httpClient.get<User[]>(USERS_URL);

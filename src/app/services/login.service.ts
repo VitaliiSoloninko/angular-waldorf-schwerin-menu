@@ -10,7 +10,7 @@ const USER_KEY = 'User';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class LoginService {
   private userSubject = new BehaviorSubject<User>(
     this.getUserFromLocalStorage()
   );

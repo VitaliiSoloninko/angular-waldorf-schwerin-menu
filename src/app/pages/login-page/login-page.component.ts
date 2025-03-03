@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { LoginService } from '../../services/login.service';
 import { TextInputComponent } from '../../ui/text-input/text-input.component';
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -44,7 +44,7 @@ export class LoginPageComponent implements OnInit {
     this.isSubmitted = true;
     if (this.loginForm.invalid) return;
 
-    this.authService
+    this.loginService
       .login({
         email: this.fc.email.value,
         password: this.fc.password.value,

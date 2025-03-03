@@ -2,7 +2,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
-import { AuthService } from '../services/auth.service';
+import { LoginService } from '../services/login.service';
 import { BurgerComponent } from './burger/burger.component';
 
 @Component({
@@ -34,14 +34,14 @@ export class HeaderComponent {
     },
   ];
 
-  constructor(private authService: AuthService) {
-    authService.userObservable.subscribe((newUser) => {
+  constructor(private loginService: LoginService) {
+    loginService.userObservable.subscribe((newUser) => {
       this.user = newUser;
       console.log(newUser);
     });
   }
 
   logout() {
-    this.authService.logout();
+    this.loginService.logout();
   }
 }
