@@ -13,6 +13,5 @@ export class User {
   class: string;
   letter: string;
   token: string;
-  isAdmin: boolean;
-  name: any;
+  roles: string[];
 }

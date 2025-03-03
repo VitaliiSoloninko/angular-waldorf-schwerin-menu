@@ -16,16 +16,18 @@
       </nav>
     </div>
     <div class="header__actions">
-      <a routerLink="/login" class="header__button">Login</a>
+      <div *ngIf="!user.token">
+        <a routerLink="/login" class="header__button">Login</a>
+      </div>
       <nav>
         <ul class="client-date">
-          <li class="menu-container-user">
-            <a routerLink="/dashboard">John</a>
+          <li *ngIf="user.token" class="menu-container-user">
+            <a routerLink="/dashboard">{{ user.firstName }}</a>
             <div class="menu-user">
-              <a routerLink="/profile">Profile</a>
-              <a routerLink="/cart-page">Cart</a>
-              <a routerLink="/history">History</a>
-              <a>Logout</a>
+              <a routerLink="/profile">Profil</a>
+              <a routerLink="/cart-page">Warenkorb</a>
+              <a routerLink="/history">Geschichte</a>
+              <a (click)="logout()">Ausloggen</a>
             </div>
           </li>
         </ul>

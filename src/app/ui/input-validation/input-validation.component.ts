@@ -1,3 +1,4 @@
+import { NgFor, NgIf } from '@angular/common';
 import {
   Component,
   Input,
@@ -16,7 +17,7 @@ const VALIDATORS_MESSAGES: any = {
 
 @Component({
   selector: 'app-input-validation',
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './input-validation.component.html',
   styleUrl: './input-validation.component.scss',
 })
