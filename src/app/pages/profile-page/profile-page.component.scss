@@ -6,6 +6,20 @@ span {
   color: var(--main-color);
 }
 
+.control .input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem;
+  height: 56px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--dark-color);
+  @media (max-width: $mobileSmall) {
+    min-width: 100%;
+  }
+}
+
 .link {
   font-size: 1.1rem;
 }

@@ -3,3 +3,4 @@ const BASE_URL =
 
 export const USERS_URL = BASE_URL + '/api/users';
 export const USERS_LOGIN_URL = BASE_URL + '/api/auth/login';
+export const USERS_REGISTER_URL = BASE_URL + '/api/auth/registration';

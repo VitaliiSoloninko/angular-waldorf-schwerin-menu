@@ -22,16 +22,20 @@
       <nav>
         <ul class="client-date">
           <li *ngIf="user.token" class="menu-container-user">
-            <a routerLink="/dashboard">{{ user.firstName }}</a>
+            <a>{{ user.firstName }}</a>
             <div class="menu-user">
-              <a routerLink="/profile">Profil</a>
-              <a routerLink="/cart-page">Warenkorb</a>
+              <a routerLink="/profile-page">Profil</a>
               <a routerLink="/history">Geschichte</a>
               <a (click)="logout()">Ausloggen</a>
             </div>
           </li>
         </ul>
       </nav>
+      <div class="cart">
+        <a routerLink="/cart-page">
+          <img src="/svg/cart.svg" alt="Cart" />
+        </a>
+      </div>
       <!-- <app-burger></app-burger> -->
       <button
         type="button"
