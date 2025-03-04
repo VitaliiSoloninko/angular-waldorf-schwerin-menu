@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
 import { LuxonDateService } from '../../services/luxon-date.service';
-import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
 import { FoodItemComponent } from '../food-item/food-item.component';
 
 @Component({
@@ -14,7 +13,6 @@ import { FoodItemComponent } from '../food-item/food-item.component';
     RouterLink,
     NgFor,
     LucideAngularModule,
-    CheckBoxComponent,
     FoodItemComponent,
   ],
   templateUrl: './week-calendar.component.html',

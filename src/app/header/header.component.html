@@ -32,11 +32,13 @@
         </ul>
       </nav>
       <div class="cart">
-        <a routerLink="/cart-page">
-          <img src="/svg/cart.svg" alt="Cart" />
-        </a>
+        <div class="cart__icon">
+          <a routerLink="/cart-page">
+            <img src="/svg/cart.svg" alt="Cart" />
+          </a>
+        </div>
+        <div *ngIf="totalCount > 0" class="cart_quantity">{{ totalCount }}</div>
       </div>
-      <!-- <app-burger></app-burger> -->
       <button
         type="button"
         class="menu__icon icon-menu"
