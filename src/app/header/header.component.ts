@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
 import { CartService } from '../services/cart.service';
@@ -11,7 +11,7 @@ import { LoginService } from '../services/login.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   totalCount: number = 0;
   openMenu = false;
   user: User;

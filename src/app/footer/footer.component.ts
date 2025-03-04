@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   Calendar,
@@ -7,16 +8,26 @@ import {
   User,
   Utensils,
 } from 'lucide-angular';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-footer',
-  imports: [LucideAngularModule, RouterLink],
+  imports: [LucideAngularModule, RouterLink, NgIf],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   utensils: any = Utensils;
   shoppingCart: any = ShoppingCart;
   calendar = Calendar;
   user: any = User;
+  totalCount: number = 0;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartService.getCartObservable().subscribe((cart) => {
+      this.totalCount = cart.totalCount;
+    });
+  }
 }

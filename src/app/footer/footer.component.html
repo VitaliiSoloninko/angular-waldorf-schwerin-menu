@@ -8,9 +8,16 @@
           </a>
         </li>
         <li class="menu__item">
-          <a routerLink="cart-page" class="menu__link">
-            <lucide-icon [img]="shoppingCart" class="my-icon"></lucide-icon>
-          </a>
+          <div class="cart">
+            <div class="cart__icon">
+              <a routerLink="/cart-page">
+                <img src="/svg/cart.svg" alt="Cart" />
+              </a>
+            </div>
+            <div *ngIf="totalCount > 0" class="cart_quantity">
+              {{ totalCount }}
+            </div>
+          </div>
         </li>
         <li class="menu__item">
           <a routerLink="history" class="menu__link">
