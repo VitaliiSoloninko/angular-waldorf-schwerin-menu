@@ -32,16 +32,18 @@
       </div>
     </div>
     <div class="food-item-bottom">
-      <div class="food-order">
-        <app-check-box />
-
-        <!-- <div>
-          <input type="checkbox" id="food-checkbox" />
-        </div> -->
-
-        <div class="check-text">
-          <label>Wählen</label>
-        </div>
+      <div>
+        <label class="checkbox-block">
+          <input
+            type="checkbox"
+            [(ngModel)]="food.checked"
+            (change)="onCheckboxChange()"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="check-text">
+        <label>Wählen</label>
       </div>
     </div>
   </div>

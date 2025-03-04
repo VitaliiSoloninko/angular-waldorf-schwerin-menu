@@ -1,5 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
@@ -8,24 +8,17 @@ import { Date } from '../../models/date.model';
 import { Food } from '../../models/food.model';
 import { FoodService } from '../../services/food.service';
 import { LuxonDateService } from '../../services/luxon-date.service';
-import { CheckBoxComponent } from '../../ui/check-box/check-box.component';
 
 @Component({
   selector: 'app-food-item',
-  imports: [
-    CommonModule,
-    RouterLink,
-    NgFor,
-    LucideAngularModule,
-    CheckBoxComponent,
-    FormsModule,
-  ],
+  imports: [CommonModule, RouterLink, NgFor, LucideAngularModule, FormsModule],
   templateUrl: './food-item.component.html',
   styleUrl: './food-item.component.scss',
 })
 export class FoodItemComponent {
   @Input() food: Food;
   @Input() date: Date;
+  @Output() foodChecked = new EventEmitter<Food>();
 
   chevronDown: any = ChevronDown;
   vegan: any = Vegan;
@@ -43,13 +36,21 @@ export class FoodItemComponent {
   }
 
   ngOnInit(): void {
+    const calculatedDate = this.firstDayOfActiveWeek()
+      .plus({ days: this.food.day - 1 })
+      .toLocaleString(this.DATE_MED);
+
     this.date = {
-      day: this.firstDayOfActiveWeek()
-        .plus({ days: this.food.day - 1 })
-        .toLocaleString(this.DATE_MED),
+      day: calculatedDate,
       dayOfTheWeek:
         this.firstDayOfActiveWeek().plus({ days: this.food.day - 1 })
           .weekdayLong || '',
     };
+
+    this.food.date = calculatedDate;
+  }
+
+  onCheckboxChange(): void {
+    this.foodChecked.emit(this.food);
   }
 }

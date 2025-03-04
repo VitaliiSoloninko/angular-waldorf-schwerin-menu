@@ -1,10 +1,11 @@
 export interface Food {
   id: number;
   day: number;
-  name: string;
   week: number;
+  name: string;
   price: number;
   description: string;
   image: string;
-  isChecked: boolean;
+  checked: boolean;
+  date: string;
 }

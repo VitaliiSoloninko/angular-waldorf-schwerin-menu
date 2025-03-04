@@ -1,43 +1,38 @@
 <div class="container">
   <h1 class="h2 mb16 title"><span>Waren</span>korb</h1>
 
-  <p class="mb48 subtitle">
+  <p class="mb16 subtitle">
     Das gesamte Essen, das Sie bestellt haben, ist hier.
   </p>
 
   <div class="items mb16">
     <div class="item" *ngFor="let cartItem of cart.items">
-      <div class="item-title">
-        <div class="date">
-          <div>{{ cartItem.food.day }}</div>
-          <div></div>
-        </div>
-        <div class="item-right">
-          <div class="food-name">{{ cartItem.food.name }}</div>
-          <div class="food-price">
-            {{ cartItem.food.price | currency : "EUR" }}
-          </div>
-          <button class="icon" (click)="removeFromCart(cartItem)">
-            <lucide-icon
-              [img]="trash2"
-              color="var(--red-color)"
-              [size]="18"
-              class="my-icon"
-            ></lucide-icon>
-          </button>
-        </div>
+      <div>{{ cartItem.food.date }}</div>
+      <div class="food-name">{{ cartItem.food.name }}</div>
+      <div class="food-price">
+        {{ cartItem.food.price | currency : "EUR" }}
+      </div>
+      <div>
+        <button class="icon" (click)="removeFromCart(cartItem)">
+          <lucide-icon
+            [img]="trash2"
+            color="var(--red-color)"
+            [size]="18"
+            class="my-icon"
+          ></lucide-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <p class="mb16">
-    Bestellpreis ist
-    <span>{{ cart.totalPrice | currency : "EUR" }}</span>
-  </p>
-
-  <p class="mb16">
+  <p class="mb16 text">
     Bestellungen
     <span>{{ cart.totalCount }}</span>
+  </p>
+
+  <p class="mb16 text">
+    Bestellpreis ist
+    <span>{{ cart.totalPrice | currency : "EUR" }}</span>
   </p>
 
   <div class="two-buttons mb72">

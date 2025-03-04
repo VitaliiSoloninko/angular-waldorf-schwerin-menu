@@ -8,10 +8,11 @@
     <app-food-item
       *ngFor="let foodItem of foodItems"
       [food]="foodItem"
+      (foodChecked)="onFoodChecked($event)"
     ></app-food-item>
   </div>
 
   <div class="mb72">
-    <button class="btn" (click)="addToCart()">In den Warenkorb</button>
+    <button class="btn" (click)="goToCart()">In den Warenkorb</button>
   </div>
 </div>
