@@ -1,5 +1,12 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  signal,
+  Signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
@@ -32,6 +39,13 @@ export class FoodItemComponent {
     private luxonDateService: LuxonDateService
   ) {}
 
+  today: Signal<DateTime> = signal(
+    DateTime.local({
+      zone: 'Europe/Berlin',
+      locale: 'de',
+    })
+  );
+
   firstDayOfActiveWeek(): DateTime {
     return this.luxonDateService.firstDayOfActiveWeek();
   }
@@ -50,19 +64,17 @@ export class FoodItemComponent {
 
     this.food.date = calculatedDate;
     this.checkIfCheckboxShouldBeDisabled();
-    // console.log(this.food.date);
   }
 
   checkIfCheckboxShouldBeDisabled(): void {
-    const nowDay = DateTime.now().toLocaleString(DateTime.DATE_MED);
+    const now = DateTime.local({ zone: 'Europe/Berlin', locale: 'de' });
+    const presentDay = now.toLocaleString(DateTime.DATE_MED);
     const foodDate = this.food.date;
-    const now = DateTime.local();
-    // const isTodayBefore8AM = now.hasSame(foodDate, 'day') && now.hour < 8;
+    let isToday8AM = now.hasSame(now, 'day') && now.hour > 8;
 
-    if (foodDate < nowDay) {
+    if (foodDate < presentDay || (foodDate == presentDay && isToday8AM)) {
       this.isCheckboxDisabled = true;
     }
-    console.log(DateTime.now());
   }
 
   onCheckboxChange(): void {
