@@ -48,9 +48,21 @@ export class FoodItemComponent {
     };
 
     this.food.date = calculatedDate;
+    // Retrieve checkbox state from Local Storage
+    const storedCheckedState = localStorage.getItem(
+      `food-checked-${this.food.id}`
+    );
+    if (storedCheckedState !== null) {
+      this.food.checked = JSON.parse(storedCheckedState);
+    }
   }
 
   onCheckboxChange(): void {
+    // Save checkbox state to Local Storage
+    localStorage.setItem(
+      `food-checked-${this.food.id}`,
+      JSON.stringify(this.food.checked)
+    );
     this.foodChecked.emit(this.food);
   }
 }
