@@ -25,6 +25,7 @@ export class FoodItemComponent {
 
   showDetails: boolean = true;
   DATE_MED = DateTime.DATE_MED;
+  isCheckboxDisabled: boolean = false;
 
   constructor(
     private foodService: FoodService,
@@ -48,21 +49,23 @@ export class FoodItemComponent {
     };
 
     this.food.date = calculatedDate;
-    // Retrieve checkbox state from Local Storage
-    const storedCheckedState = localStorage.getItem(
-      `food-checked-${this.food.id}`
-    );
-    if (storedCheckedState !== null) {
-      this.food.checked = JSON.parse(storedCheckedState);
+    this.checkIfCheckboxShouldBeDisabled();
+    // console.log(this.food.date);
+  }
+
+  checkIfCheckboxShouldBeDisabled(): void {
+    const nowDay = DateTime.now().toLocaleString(DateTime.DATE_MED);
+    const foodDate = this.food.date;
+    const now = DateTime.local();
+    // const isTodayBefore8AM = now.hasSame(foodDate, 'day') && now.hour < 8;
+
+    if (foodDate < nowDay) {
+      this.isCheckboxDisabled = true;
     }
+    console.log(DateTime.now());
   }
 
   onCheckboxChange(): void {
-    // Save checkbox state to Local Storage
-    localStorage.setItem(
-      `food-checked-${this.food.id}`,
-      JSON.stringify(this.food.checked)
-    );
     this.foodChecked.emit(this.food);
   }
 }

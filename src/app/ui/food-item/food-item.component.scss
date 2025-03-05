@@ -166,3 +166,7 @@ $mobileSmall: 479.98px;
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.checkbox-block input:disabled ~ .checkmark {
+  background-color: #e8e8e8;
+}

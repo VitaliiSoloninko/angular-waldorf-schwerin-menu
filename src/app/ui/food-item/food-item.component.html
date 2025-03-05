@@ -38,6 +38,7 @@
             type="checkbox"
             [(ngModel)]="food.checked"
             (change)="onCheckboxChange()"
+            [disabled]="isCheckboxDisabled"
           />
           <span class="checkmark"></span>
         </label>
