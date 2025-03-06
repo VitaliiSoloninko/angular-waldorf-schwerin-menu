@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
+import { DateTime } from 'luxon';
 import { Food } from '../../models/food.model';
 import { CartService } from '../../services/cart.service';
 import { FoodService } from '../../services/food.service';
@@ -17,6 +18,8 @@ import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.comp
 })
 export class MenuPageComponent implements OnInit {
   foodItems: Food[] = [];
+  currentWeekFoodItems: Food[] = [];
+  currentWeekNumber: number = 1;
 
   constructor(
     private foodService: FoodService,
@@ -37,7 +40,36 @@ export class MenuPageComponent implements OnInit {
         foodItemComponent.ngOnInit();
         return foodItemComponent.food;
       });
+      this.foodItems = foods;
+      this.updateCurrentWeekFoodItems();
     });
+  }
+
+  updateCurrentWeekFoodItems(): void {
+    const firstWeekOfYear = DateTime.local().startOf('year').startOf('week');
+    const weekStartDate = firstWeekOfYear.plus({
+      weeks: this.currentWeekNumber - 1,
+    });
+
+    this.currentWeekFoodItems = this.foodItems
+      .filter((food, index) => {
+        const weekNumber = Math.floor(index / 5) + 1;
+        return (
+          (weekNumber % 2 === 0 && this.currentWeekNumber % 2 === 0) ||
+          (weekNumber % 2 !== 0 && this.currentWeekNumber % 2 !== 0)
+        );
+      })
+      .map((food, index) => {
+        food.date = weekStartDate
+          .plus({ days: index % 5 })
+          .toFormat('dd.MM.yyyy');
+        return food;
+      });
+  }
+
+  onWeekChanged(weekNumber: number): void {
+    this.currentWeekNumber = weekNumber;
+    this.updateCurrentWeekFoodItems();
   }
 
   onFoodChecked(food: Food): void {

@@ -1,12 +1,14 @@
 <div class="container">
   <div class="calender-container-header">
     <h1 class="h2"><span>Speise</span>plan</h1>
-    <app-week-calendar></app-week-calendar>
+    <app-week-calendar
+      (weekChanged)="onWeekChanged($event)"
+    ></app-week-calendar>
   </div>
 
   <div class="items mt16 mb16">
     <app-food-item
-      *ngFor="let foodItem of foodItems"
+      *ngFor="let foodItem of currentWeekFoodItems"
       [food]="foodItem"
       (foodChecked)="onFoodChecked($event)"
     ></app-food-item>

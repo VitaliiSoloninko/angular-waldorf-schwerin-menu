@@ -1,5 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
@@ -20,6 +20,7 @@ import { FoodItemComponent } from '../food-item/food-item.component';
   exportAs: 'weekCalendar',
 })
 export class WeekCalendarComponent {
+  @Output() weekChanged = new EventEmitter<number>();
   constructor(private luxonDateService: LuxonDateService) {}
 
   activeDay() {
@@ -40,11 +41,20 @@ export class WeekCalendarComponent {
 
   goToPreviousWeek() {
     this.luxonDateService.goToPreviousWeek();
+    this.weekChanged.emit(
+      this.luxonDateService.firstDayOfActiveWeek().weekNumber
+    );
   }
   goToNextWeek() {
     this.luxonDateService.goToNextWeek();
+    this.weekChanged.emit(
+      this.luxonDateService.firstDayOfActiveWeek().weekNumber
+    );
   }
   goToActiveWeek() {
     this.luxonDateService.goToActiveWeek();
+    this.weekChanged.emit(
+      this.luxonDateService.firstDayOfActiveWeek().weekNumber
+    );
   }
 }
