@@ -1,16 +1,10 @@
 import { CommonModule, NgFor } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  signal,
-  Signal,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
 import { DateTime } from 'luxon';
+import { Subscription } from 'rxjs';
 import { Date } from '../../models/date.model';
 import { Food } from '../../models/food.model';
 import { FoodService } from '../../services/food.service';
@@ -30,36 +24,38 @@ export class FoodItemComponent {
   chevronDown: any = ChevronDown;
   vegan: any = Vegan;
 
-  showDetails: boolean = true;
   DATE_MED = DateTime.DATE_MED;
+  showDetails: boolean = true;
   isCheckboxDisabled: boolean = false;
+  private weekSubscription: Subscription;
 
   constructor(
     private foodService: FoodService,
     private luxonDateService: LuxonDateService
   ) {}
 
-  today: Signal<DateTime> = signal(
-    DateTime.local({
-      zone: 'Europe/Berlin',
-      locale: 'de',
-    })
-  );
-
-  firstDayOfActiveWeek(): DateTime {
-    return this.luxonDateService.firstDayOfActiveWeek();
+  ngOnInit(): void {
+    this.weekSubscription = this.luxonDateService.currentWeek$.subscribe(() => {
+      this.updateDate();
+    });
   }
 
-  ngOnInit(): void {
-    const calculatedDate = this.firstDayOfActiveWeek()
+  ngOnDestroy(): void {
+    if (this.weekSubscription) {
+      this.weekSubscription.unsubscribe();
+    }
+  }
+
+  updateDate(): void {
+    const currentWeek = this.luxonDateService.firstDayOfActiveWeek();
+    const calculatedDate = currentWeek
       .plus({ days: this.food.day - 1 })
-      .toLocaleString(this.DATE_MED);
+      .toFormat('dd.MM.yyyy');
 
     this.date = {
       day: calculatedDate,
       dayOfTheWeek:
-        this.firstDayOfActiveWeek().plus({ days: this.food.day - 1 })
-          .weekdayLong || '',
+        currentWeek.plus({ days: this.food.day - 1 }).weekdayLong || '',
     };
 
     this.food.date = calculatedDate;
@@ -68,12 +64,13 @@ export class FoodItemComponent {
 
   checkIfCheckboxShouldBeDisabled(): void {
     const now = DateTime.local({ zone: 'Europe/Berlin', locale: 'de' });
-    const presentDay = now.toLocaleString(DateTime.DATE_MED);
-    const foodDate = this.food.date;
-    let isToday8AM = now.hasSame(now, 'day') && now.hour > 8;
+    const foodDate = DateTime.fromFormat(this.food.date, 'dd.MM.yyyy');
+    const isToday8AM = now.hasSame(foodDate, 'day') && now.hour > 8;
 
-    if (foodDate < presentDay || (foodDate == presentDay && isToday8AM)) {
+    if (foodDate < now.startOf('day') || isToday8AM) {
       this.isCheckboxDisabled = true;
+    } else {
+      this.isCheckboxDisabled = false;
     }
   }
 

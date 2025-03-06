@@ -6,11 +6,16 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { DateTime, Info, Interval } from 'luxon';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LuxonDateService {
+  private currentWeekSubject = new BehaviorSubject<DateTime>(
+    DateTime.local().startOf('week')
+  );
+  currentWeek$ = this.currentWeekSubject.asObservable();
   today: Signal<DateTime> = signal(
     DateTime.local({
       zone: 'Europe/Berlin',
@@ -44,16 +49,20 @@ export class LuxonDateService {
   constructor() {}
 
   goToPreviousWeek() {
-    this.firstDayOfActiveWeek.set(
-      this.firstDayOfActiveWeek().minus({ weeks: 1 })
-    );
+    const previousWeek = this.firstDayOfActiveWeek().minus({ weeks: 1 });
+    this.firstDayOfActiveWeek.set(previousWeek);
+    this.currentWeekSubject.next(previousWeek);
+    // this.firstDayOfActiveWeek.set(
+    //   this.firstDayOfActiveWeek().minus({ weeks: 1 })
+    // );
   }
   goToNextWeek() {
-    this.firstDayOfActiveWeek.set(
-      this.firstDayOfActiveWeek().plus({ weeks: 1 })
-    );
+    const previousWeek = this.firstDayOfActiveWeek().plus({ weeks: 1 });
+    this.firstDayOfActiveWeek.set(previousWeek);
+    this.currentWeekSubject.next(previousWeek);
   }
   goToActiveWeek() {
     this.firstDayOfActiveWeek.set(this.today().startOf('week'));
+    this.currentWeekSubject.next(this.today().startOf('week'));
   }
 }
