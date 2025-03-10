@@ -3,28 +3,27 @@ import { Injectable } from '@angular/core';
 
 import { CreateFood } from '../models/create-food.model';
 import { Food } from '../models/food.model';
+import { USERS_FOODS } from '../urls';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FoodService {
   constructor(private httpClient: HttpClient) {}
-  baseApiUrl =
-    'https://nestjs-postgresql-waldorf-menu-production.up.railway.app/api/foods';
 
   getAllFoods() {
-    return this.httpClient.get<Food[]>(this.baseApiUrl);
+    return this.httpClient.get<Food[]>(USERS_FOODS);
   }
 
   getFoodById(id: number) {
-    return this.httpClient.get<Food>(this.baseApiUrl + `/${id}`);
+    return this.httpClient.get<Food>(USERS_FOODS + `/${id}`);
   }
 
   createFood(val: CreateFood) {
-    return this.httpClient.post(this.baseApiUrl, val);
+    return this.httpClient.post(USERS_FOODS, val);
   }
 
   removeFood(id: number) {
-    return this.httpClient.delete<Food>(this.baseApiUrl + `/${id}`);
+    return this.httpClient.delete<Food>(USERS_FOODS + `/${id}`);
   }
 }
