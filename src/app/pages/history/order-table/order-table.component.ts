@@ -13,6 +13,7 @@ import { OrderService } from '../../../services/order.service';
 })
 export class OrderTableComponent implements OnInit {
   orders: Order[] = [];
+  totalPrice: number = 0;
 
   constructor(
     private loginService: LoginService,
@@ -31,6 +32,11 @@ export class OrderTableComponent implements OnInit {
             DateTime.fromFormat(a.date, 'dd.MM.yyyy').toMillis() -
             DateTime.fromFormat(b.date, 'dd.MM.yyyy').toMillis()
         );
+      this.totalPrice = this.calculateTotalPrice();
     });
+  }
+
+  calculateTotalPrice(): number {
+    return this.orders.reduce((total, order) => total + order.price, 0);
   }
 }
