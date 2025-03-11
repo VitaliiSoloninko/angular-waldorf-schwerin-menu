@@ -12,8 +12,8 @@ import { LucideAngularModule, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Cart } from '../../models/cart.model';
 import { CartItem } from '../../models/cartItem.model';
-import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -34,11 +34,11 @@ export class CartPageComponent implements OnInit {
 
   trash2: any = Trash2;
   cart!: Cart;
-  userId: string | null = null;
+  userId: number | null = null;
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService,
+    private loginService: LoginService,
     private http: HttpClient,
     private router: Router
   ) {}
@@ -48,15 +48,9 @@ export class CartPageComponent implements OnInit {
       this.cart = newCart;
     });
 
-    // Extract user ID from the token
-    const token = this.authService.getToken(); // Assuming getToken() returns the token
-    console.log('Token:', token); // Debugging statement to verify the token
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      console.log('Decoded Token:', decodedToken); // Debugging statement to verify the decoded token
-      this.userId = decodedToken?.userId || null;
-      console.log('User ID:', this.userId); // Debugging statement to verify the extracted user ID
-    }
+    // Retrieve userId from LoginService
+    this.userId = this.loginService.getUserId();
+    console.log('User ID:', this.userId);
   }
 
   removeFromCart(cartItem: CartItem) {
@@ -72,18 +66,19 @@ export class CartPageComponent implements OnInit {
       foodId: item.food.id,
       name: item.food.name,
       price: Number(item.food.price),
-      date: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy'),
+      date: String(DateTime.fromFormat(item.food.date, 'dd.MM.yyyy')),
       userId: this.userId,
       day: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').day,
       month: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').month,
       year: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').year,
+      ordered: true,
     }));
 
     const order = {
       items: orderItems,
     };
 
-    console.log(order); // Debugging statement to verify the order
+    console.log(JSON.stringify(orderItems, null, 2));
 
     // Send the order to the server
     this.http.post('/api/orders', order).subscribe(
