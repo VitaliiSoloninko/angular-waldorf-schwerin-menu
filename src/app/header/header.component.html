@@ -16,12 +16,12 @@
       </nav>
     </div>
     <div class="header__actions">
-      <div *ngIf="!user.token">
+      <div *ngIf="!user.firstName">
         <a routerLink="/login" class="header__button">Login</a>
       </div>
       <nav>
         <ul class="client-date">
-          <li *ngIf="user.token" class="menu-container-user">
+          <li *ngIf="user.firstName" class="menu-container-user">
             <a>{{ user.firstName }}</a>
             <div class="menu-user">
               <a routerLink="/profile-page">Profil</a>

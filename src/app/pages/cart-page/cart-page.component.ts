@@ -47,10 +47,7 @@ export class CartPageComponent implements OnInit {
     this.cartService.getCartObservable().subscribe((newCart) => {
       this.cart = newCart;
     });
-
-    // Retrieve userId from LoginService
     this.userId = this.loginService.getUserId();
-    console.log('User ID:', this.userId);
   }
 
   removeFromCart(cartItem: CartItem) {
