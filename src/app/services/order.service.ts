@@ -18,6 +18,10 @@ export class OrderService {
     return this.httpClient.get<Order[]>(USERS_ORDERS);
   }
 
+  getByUserId(id: number) {
+    return this.httpClient.get<Order[]>(USERS_ORDERS + `/user/${id}`);
+  }
+
   getById(id: number) {
     return this.httpClient.get<Order>(USERS_ORDERS + `/${id}`);
   }

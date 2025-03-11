@@ -1,4 +1,4 @@
-@if(!results){
+@if(!orders.length) {
 <p class="center">Sie haben diesen Monat nichts bestellt.</p>
 
 } @else {
@@ -14,13 +14,13 @@
   </thead>
 
   <tbody>
-    @for(result of results; track result.number) {
+    @for(order of orders; let i = $index; track order.id) {
     <tr>
-      <td>{{ result.number }}</td>
-      <td>{{ result.data }}</td>
-      <td>{{ result.day }}</td>
-      <td>{{ result.menu }}</td>
-      <td>{{ result.price | currency : "EUR" }}</td>
+      <td>{{ i + 1 }}</td>
+      <td>{{ order.date }}</td>
+      <td>{{ order.day }}</td>
+      <td>{{ order.name }}</td>
+      <td>{{ order.price | currency : "EUR" }}</td>
     </tr>
     }
   </tbody>
