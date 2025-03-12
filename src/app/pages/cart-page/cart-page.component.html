@@ -1,3 +1,7 @@
+<app-modal title="Bestellung" *ngIf="modalService.isVisible$ | async">
+  <app-notification></app-notification>
+</app-modal>
+
 <div class="container">
   <h1 class="h2 mb16 title"><span>Waren</span>korb</h1>
 
@@ -38,5 +42,6 @@
   <div class="two-buttons mb72">
     <button class="btn cancel-btn" (click)="clearCart()">Absagen</button>
     <button class="btn" (click)="placeOrder()">Bestellen</button>
+    <button (click)="modalService.open()">+</button>
   </div>
 </div>

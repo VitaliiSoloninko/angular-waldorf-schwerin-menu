@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgFor } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
@@ -6,11 +6,22 @@ import { Cart } from '../../models/cart.model';
 import { CartItem } from '../../models/cartItem.model';
 import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
+import { ModalService } from '../../services/modal.service';
 import { OrderService } from '../../services/order.service';
+import { ModalComponent } from '../../ui/modal/modal.component';
+import { NotificationComponent } from '../../ui/notification/notification.component';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [NgFor, LucideAngularModule, CurrencyPipe],
+  imports: [
+    NgIf,
+    NgFor,
+    LucideAngularModule,
+    CurrencyPipe,
+    ModalComponent,
+    AsyncPipe,
+    NotificationComponent,
+  ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
@@ -22,7 +33,8 @@ export class CartPageComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private loginService: LoginService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public modalService: ModalService
   ) {}
 
   ngOnInit(): void {
