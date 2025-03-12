@@ -7,7 +7,6 @@
     <tr>
       <th>№</th>
       <th>Datum</th>
-      <th>Tag</th>
       <th>Menu</th>
       <th>Preis</th>
     </tr>
@@ -18,7 +17,6 @@
     <tr>
       <td>{{ i + 1 }}</td>
       <td>{{ order.date }}</td>
-      <td>{{ order.day }}</td>
       <td>{{ order.name }}</td>
       <td>{{ order.price | currency : "EUR" }}</td>
     </tr>
@@ -29,5 +27,5 @@
 
 <p class="center mb72">
   Preis aller Bestellungen in diesem Monat
-  <span>{{ totalPrice | currency : "EUR" }}</span>
+  <span class="bold">{{ totalPrice | currency : "EUR" }}</span>
 </p>

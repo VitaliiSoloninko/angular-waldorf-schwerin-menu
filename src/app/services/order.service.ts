@@ -10,11 +10,11 @@ import { USERS_ORDERS } from '../urls';
 export class OrderService {
   constructor(private httpClient: HttpClient) {}
 
-  create(val: CreateOrder[]) {
-    return this.httpClient.post(USERS_ORDERS, val);
+  createOrders(orders: CreateOrder[]) {
+    return this.httpClient.post(USERS_ORDERS, orders);
   }
 
-  getAll() {
+  getAllOrders() {
     return this.httpClient.get<Order[]>(USERS_ORDERS);
   }
 
@@ -22,11 +22,11 @@ export class OrderService {
     return this.httpClient.get<Order[]>(USERS_ORDERS + `/user/${id}`);
   }
 
-  getById(id: number) {
+  getByOrderId(id: number) {
     return this.httpClient.get<Order>(USERS_ORDERS + `/${id}`);
   }
 
-  remove(id: number) {
+  removeOrder(id: number) {
     return this.httpClient.delete<Order>(USERS_ORDERS + `/${id}`);
   }
 }

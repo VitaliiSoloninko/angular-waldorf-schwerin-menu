@@ -21,7 +21,7 @@ export class OrderTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.orderService.getAll().subscribe((orders) => {
+    this.orderService.getAllOrders().subscribe((orders) => {
       this.orders = orders
         .map((order) => ({
           ...order,
