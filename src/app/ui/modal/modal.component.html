@@ -1,8 +1,19 @@
 <div class="background" (click)="modalService.close()">
   <div class="modal">
-    <div class="modal-header">
-      <h2 class="title">{{ title | titlecase }}</h2>
+    <div class="modal-body">
+      <div class="close">
+        <img src="/svg/x.svg" alt="X" (click)="modalService.close()" />
+      </div>
+
+      <div class="modal-header">
+        <h2 class="title">{{ title }}</h2>
+      </div>
+
+      <ng-content></ng-content>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary">Ok</button>
+      </div>
     </div>
-    <ng-content></ng-content>
   </div>
 </div>

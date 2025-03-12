@@ -67,11 +67,12 @@ export class CartPageComponent implements OnInit {
 
     this.orderService.createOrders(orderItems).subscribe(
       (response) => {
-        console.log('Order placed successfully:', response);
         this.clearCart();
+        this.modalService.open();
       },
       (error) => {
         console.error('Failed to place order:', error);
+        this.modalService.open();
       }
     );
   }

@@ -5,7 +5,7 @@ import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-modal',
-  imports: [NotificationComponent, TitleCasePipe],
+  imports: [NotificationComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })

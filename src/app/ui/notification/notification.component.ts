@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-notification',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss',
 })
-export class NotificationComponent {}
+export class NotificationComponent {
+  @Input() message: string = '';
+  @Input() type: 'success' | 'error' = 'success';
+}

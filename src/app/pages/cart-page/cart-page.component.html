@@ -1,5 +1,7 @@
-<app-modal title="Bestellung" *ngIf="modalService.isVisible$ | async">
-  <app-notification></app-notification>
+<app-modal
+  title="Bestellung aufgegeben"
+  *ngIf="modalService.isVisible$ | async"
+>
 </app-modal>
 
 <div class="container">
@@ -42,6 +44,5 @@
   <div class="two-buttons mb72">
     <button class="btn cancel-btn" (click)="clearCart()">Absagen</button>
     <button class="btn" (click)="placeOrder()">Bestellen</button>
-    <button (click)="modalService.open()">+</button>
   </div>
 </div>
