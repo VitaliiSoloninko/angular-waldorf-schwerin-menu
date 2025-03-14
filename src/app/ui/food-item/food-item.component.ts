@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 import { Date } from '../../models/date.model';
@@ -18,7 +17,7 @@ import { LuxonDateService } from '../../services/luxon-date.service';
 
 @Component({
   selector: 'app-food-item',
-  imports: [CommonModule, RouterLink, NgFor, LucideAngularModule, FormsModule],
+  imports: [CommonModule, RouterLink, NgFor, FormsModule],
   templateUrl: './food-item.component.html',
   styleUrl: './food-item.component.scss',
 })
@@ -27,10 +26,6 @@ export class FoodItemComponent {
   @Input() date: Date;
   @Output() foodChecked = new EventEmitter<Food>();
 
-  chevronDown: any = ChevronDown;
-  vegan: any = Vegan;
-
-  DATE_MED = DateTime.DATE_MED;
   showDetails: boolean = true;
   isCheckboxDisabled: boolean = false;
   isCheckboxChecked: boolean = false;
@@ -101,6 +96,8 @@ export class FoodItemComponent {
 
     if (this.food.checked === true) {
       this.isCheckboxChecked = true;
+    } else {
+      this.isCheckboxChecked = false;
     }
   }
 }

@@ -12,7 +12,7 @@
       <div *ngIf="isCheckboxChecked" class="check">
         <img src="/assets/svg/check.svg" alt=">" />
       </div>
-      <div class="arrow-down">
+      <div class="arrow-down" [class.rotated]="!showDetails">
         <img src="/assets/svg/arrow-down.svg" alt=">" />
       </div>
     </div>

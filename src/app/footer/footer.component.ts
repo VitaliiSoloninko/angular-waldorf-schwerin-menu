@@ -9,6 +9,7 @@ import {
   Utensils,
 } from 'lucide-angular';
 import { CartService } from '../services/cart.service';
+import { SvgIconComponent } from '../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-footer',

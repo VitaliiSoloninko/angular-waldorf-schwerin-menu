@@ -52,6 +52,13 @@ $mobileSmall: 479.98px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
 }
 
 .food-item {

@@ -8,11 +8,12 @@ import { CartService } from '../../services/cart.service';
 import { FoodService } from '../../services/food.service';
 import { LuxonDateService } from '../../services/luxon-date.service';
 import { FoodItemComponent } from '../../ui/food-item/food-item.component';
+import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
 
 @Component({
   selector: 'app-menu-page',
-  imports: [WeekCalendarComponent, FoodItemComponent, NgFor],
+  imports: [WeekCalendarComponent, FoodItemComponent, NgFor, SvgIconComponent],
   templateUrl: './menu-page.component.html',
   styleUrl: './menu-page.component.scss',
 })

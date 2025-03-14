@@ -1,3 +1,7 @@
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
 .background {
   position: fixed;
   background-color: #00000082;
@@ -28,6 +32,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -35,4 +40,10 @@
   font-size: 1.1rem;
   font-weight: bold;
   text-align: center;
+}
+
+.image {
+  width: 48px;
+  height: 48px;
+  color: var(--main-color);
 }
