@@ -30,6 +30,15 @@ span {
   flex-wrap: wrap;
 }
 
+@media (max-width: $mobileSmall) {
+  .items {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
 p {
   text-align: center;
 }

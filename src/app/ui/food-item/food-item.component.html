@@ -8,8 +8,13 @@
         {{ date.dayOfTheWeek }}
       </div>
     </div>
-    <div class="arrow-down">
-      <lucide-icon [img]="chevronDown" class="my-icon"></lucide-icon>
+    <div class="item-right">
+      <div *ngIf="isCheckboxChecked" class="check">
+        <img src="/assets/svg/check.svg" alt=">" />
+      </div>
+      <div class="arrow-down">
+        <img src="/assets/svg/arrow-down.svg" alt=">" />
+      </div>
     </div>
   </div>
 
@@ -17,14 +22,7 @@
     <div class="food-item-top">
       <div class="food-item__title">
         <div class="food-name">{{ food.name }}</div>
-        <div class="food-image">
-          <lucide-icon
-            [img]="vegan"
-            [size]="24"
-            color="green"
-            class="my-icon"
-          ></lucide-icon>
-        </div>
+
         <div class="food-price">{{ food.price }} €</div>
       </div>
       <div class="food-description text">

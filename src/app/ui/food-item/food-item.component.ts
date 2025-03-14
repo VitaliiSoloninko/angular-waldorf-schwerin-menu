@@ -1,5 +1,11 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ChevronDown, LucideAngularModule, Vegan } from 'lucide-angular';
@@ -27,6 +33,8 @@ export class FoodItemComponent {
   DATE_MED = DateTime.DATE_MED;
   showDetails: boolean = true;
   isCheckboxDisabled: boolean = false;
+  isCheckboxChecked: boolean = false;
+
   private weekSubscription: Subscription;
 
   constructor(
@@ -38,6 +46,20 @@ export class FoodItemComponent {
     this.weekSubscription = this.luxonDateService.currentWeek$.subscribe(() => {
       this.updateDate();
     });
+    this.checkScreenResolution();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenResolution();
+  }
+
+  checkScreenResolution(): void {
+    if (window.innerWidth < 480) {
+      this.showDetails = false;
+    } else {
+      this.showDetails = true;
+    }
   }
 
   ngOnDestroy(): void {
@@ -76,5 +98,9 @@ export class FoodItemComponent {
 
   onCheckboxChange(): void {
     this.foodChecked.emit(this.food);
+
+    if (this.food.checked === true) {
+      this.isCheckboxChecked = true;
+    }
   }
 }
