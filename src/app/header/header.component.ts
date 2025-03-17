@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   ) {
     loginService.userObservable.subscribe((newUser) => {
       this.user = newUser;
-      console.log(newUser);
+      // console.log(newUser);
     });
   }
 

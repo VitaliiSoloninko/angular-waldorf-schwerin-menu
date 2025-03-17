@@ -14,6 +14,7 @@ import { OrderService } from '../../../services/order.service';
 export class OrderTableComponent implements OnInit {
   orders: Order[] = [];
   totalPrice: number = 0;
+  userId: number = 0;
 
   constructor(
     private loginService: LoginService,
@@ -21,19 +22,43 @@ export class OrderTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.orderService.getAllOrders().subscribe((orders) => {
-      this.orders = orders
-        .map((order) => ({
-          ...order,
-          date: DateTime.fromISO(order.date).toFormat('dd.MM.yyyy'),
-        }))
-        .sort(
-          (a, b) =>
-            DateTime.fromFormat(a.date, 'dd.MM.yyyy').toMillis() -
-            DateTime.fromFormat(b.date, 'dd.MM.yyyy').toMillis()
-        );
-      this.totalPrice = this.calculateTotalPrice();
-    });
+    // this.orderService.getAllOrders().subscribe((orders) => {
+    //   this.orders = orders
+    //     .map((order) => ({
+    //       ...order,
+    //       date: DateTime.fromISO(order.date).toFormat('dd.MM.yyyy'),
+    //     }))
+    //     .sort(
+    //       (a, b) =>
+    //         DateTime.fromFormat(a.date, 'dd.MM.yyyy').toMillis() -
+    //         DateTime.fromFormat(b.date, 'dd.MM.yyyy').toMillis()
+    //     );
+    //   this.totalPrice = this.calculateTotalPrice();
+    // });
+
+    const userId = this.loginService.getUserId();
+    if (userId === null) {
+      return;
+    }
+    const currentDate = DateTime.now();
+    const month = currentDate.month;
+    const year = currentDate.year;
+    this.orderService
+      .getOrdersByUserIdAndCurrentMonthAndYear(userId)
+      .subscribe((orders) => {
+        this.orders = orders
+          .map((order) => ({
+            ...order,
+            date: DateTime.fromISO(order.date).toFormat('dd.MM.yyyy'),
+          }))
+          .sort(
+            (a, b) =>
+              DateTime.fromFormat(a.date, 'dd.MM.yyyy').toMillis() -
+              DateTime.fromFormat(b.date, 'dd.MM.yyyy').toMillis()
+          );
+        this.totalPrice = this.calculateTotalPrice();
+      });
+    console.log(userId);
   }
 
   calculateTotalPrice(): number {

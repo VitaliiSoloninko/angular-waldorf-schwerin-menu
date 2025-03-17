@@ -65,7 +65,7 @@ export class CartPageComponent implements OnInit {
       year: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').year,
       ordered: true,
     }));
-    console.log(orderItems);
+    // console.log(orderItems);
 
     this.orderService.createOrders(orderItems).subscribe(
       (response) => {
