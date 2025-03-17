@@ -54,16 +54,18 @@ export class CartPageComponent implements OnInit {
 
   placeOrder(): void {
     const orderItems = this.cart.items.map((item) => ({
+      userId: this.userId ?? 0,
       foodId: item.food.id,
       name: item.food.name,
       price: Number(item.food.price),
       date: String(DateTime.fromFormat(item.food.date, 'dd.MM.yyyy')),
-      userId: this.userId ?? 0,
       day: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').day,
+      week: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').weekNumber,
       month: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').month,
       year: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').year,
       ordered: true,
     }));
+    console.log(orderItems);
 
     this.orderService.createOrders(orderItems).subscribe(
       (response) => {
