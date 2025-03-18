@@ -21,6 +21,22 @@ export class MenuPageComponent implements OnInit {
   foodItems: Food[] = [];
   currentWeekFoodItems: Food[] = [];
   currentWeekNumber: number = 1;
+  colorPalette: string[] = [
+    '#16869554',
+    '#23b12344',
+    '#a1ba0246',
+    '#f296013e',
+    '#e751113c',
+  ];
+
+  colorGreen: string[] = [
+    '#23b12321',
+    '#23b12321',
+    '#23b12321',
+    '#23b12321',
+    '#23b12321',
+  ];
+  currentColorScheme: string[] = this.colorPalette;
 
   constructor(
     private foodService: FoodService,
@@ -30,6 +46,11 @@ export class MenuPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const savedColorScheme = localStorage.getItem('colorScheme');
+    if (savedColorScheme) {
+      this.currentColorScheme = JSON.parse(savedColorScheme);
+    }
+
     this.foodService.getAllFoods().subscribe((foods) => {
       this.foodItems = foods.map((food) => {
         // Create a new instance of FoodItemComponent to set the date
@@ -83,5 +104,21 @@ export class MenuPageComponent implements OnInit {
 
   goToCart() {
     this.router.navigateByUrl('/cart-page');
+  }
+
+  getColor(index: number): string {
+    return this.currentColorScheme[index % this.currentColorScheme.length];
+  }
+
+  toggleColorScheme(): void {
+    if (this.currentColorScheme === this.colorPalette) {
+      this.currentColorScheme = this.colorGreen;
+    } else {
+      this.currentColorScheme = this.colorPalette;
+    }
+    localStorage.setItem(
+      'colorScheme',
+      JSON.stringify(this.currentColorScheme)
+    );
   }
 }

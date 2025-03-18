@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
 import { CartService } from '../services/cart.service';
 import { LoginService } from '../services/login.service';
+import { SvgIconComponent } from '../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, NgFor, NgIf],
+  imports: [RouterLink, NgFor, NgIf, SvgIconComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

@@ -1,8 +1,10 @@
 <header class="header" [class.menu-open]="openMenu">
   <div class="header__container">
     <a routerLink="" class="header__logo">
-      <img src="/logo.svg" alt="Logo" />
-      <div>Waldorf Menu</div>
+      <div class="header__logo-icon">
+        <svg icon="logo"></svg>
+      </div>
+      <div class="header__logo-text">Waldorf Menu</div>
     </a>
     <div class="header__menu menu">
       <nav class="menu__body">
@@ -32,9 +34,9 @@
         </ul>
       </nav>
       <div class="cart">
-        <div class="cart__icon">
+        <div class="header-icon">
           <a routerLink="/cart-page">
-            <img src="/svg/cart.svg" alt="Cart" />
+            <svg icon="cart"></svg>
           </a>
         </div>
         <div *ngIf="totalCount > 0" class="cart_quantity">{{ totalCount }}</div>

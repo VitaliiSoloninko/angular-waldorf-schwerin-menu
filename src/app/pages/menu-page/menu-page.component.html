@@ -1,6 +1,15 @@
 <div class="container">
   <div class="calender-container-header">
-    <h1 class="h2"><span>Speise</span>plan</h1>
+    <div class="calender-container__title">
+      <h1 class="h2 mb16"><span>Speise</span>plan</h1>
+      <div class="color-scheme" (click)="toggleColorScheme()">
+        <div class="color-scheme__button">
+          <svg icon="palette"></svg>
+        </div>
+        <div class="color-scheme__text">Farbe ändern</div>
+      </div>
+    </div>
+
     <app-week-calendar
       (weekChanged)="onWeekChanged($event)"
     ></app-week-calendar>
@@ -8,13 +17,15 @@
 
   <div class="items mt16 mb16">
     <app-food-item
-      *ngFor="let foodItem of currentWeekFoodItems"
+      class="food-item"
+      *ngFor="let foodItem of currentWeekFoodItems; let i = index"
+      [style.background-color]="getColor(i)"
       [food]="foodItem"
       (foodChecked)="onFoodChecked($event)"
     ></app-food-item>
   </div>
 
   <div class="mb72">
-    <button class="btn" (click)="goToCart()">In den Warenkorb</button>
+    <button class="btn" (click)="goToCart()">Zum Warenkorb</button>
   </div>
 </div>
