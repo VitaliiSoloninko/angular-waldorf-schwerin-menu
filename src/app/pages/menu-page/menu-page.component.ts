@@ -4,9 +4,12 @@ import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import { Food } from '../../models/food.model';
+import { Order } from '../../models/order.model';
 import { CartService } from '../../services/cart.service';
 import { FoodService } from '../../services/food.service';
+import { LoginService } from '../../services/login.service';
 import { LuxonDateService } from '../../services/luxon-date.service';
+import { UserOrderService } from '../../services/user-order.service';
 import { FoodItemComponent } from '../../ui/food-item/food-item.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
@@ -18,6 +21,8 @@ import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.comp
   styleUrl: './menu-page.component.scss',
 })
 export class MenuPageComponent implements OnInit {
+  orders: Order[] = [];
+  userId: number = 0;
   foodItems: Food[] = [];
   currentWeekFoodItems: Food[] = [];
   currentWeekNumber: number = 1;
@@ -41,11 +46,19 @@ export class MenuPageComponent implements OnInit {
   constructor(
     private foodService: FoodService,
     private cartService: CartService,
+    private loginService: LoginService,
     private luxonDateService: LuxonDateService,
-    private router: Router
+    private router: Router,
+    private userOrderService: UserOrderService
   ) {}
 
   ngOnInit(): void {
+    const userId = this.loginService.getUserId();
+    const week = DateTime.now().weekNumber;
+    if (userId === null) {
+      return;
+    }
+
     const savedColorScheme = localStorage.getItem('colorScheme');
     if (savedColorScheme) {
       this.currentColorScheme = JSON.parse(savedColorScheme);
@@ -53,7 +66,6 @@ export class MenuPageComponent implements OnInit {
 
     this.foodService.getAllFoods().subscribe((foods) => {
       this.foodItems = foods.map((food) => {
-        // Create a new instance of FoodItemComponent to set the date
         const foodItemComponent = new FoodItemComponent(
           this.foodService,
           this.luxonDateService
@@ -65,6 +77,13 @@ export class MenuPageComponent implements OnInit {
       this.foodItems = foods;
       this.updateCurrentWeekFoodItems();
     });
+
+    this.userOrderService
+      .getOrdersByUserIdAndWeek(userId, week)
+      .subscribe((orders) => {
+        this.orders = orders;
+        console.log(this.orders);
+      });
   }
 
   updateCurrentWeekFoodItems(): void {
