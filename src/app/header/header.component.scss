@@ -38,20 +38,6 @@ $mobileSmall: 479.98px;
     color: var(--white-color);
     align-items: center;
     justify-content: center;
-    &:hover,
-    &:focus-visible {
-      color: var(--main-color);
-    }
-    transition: color 0.3s ease 0s;
-  }
-
-  &__logo-icon {
-    width: 36px;
-    height: 36px;
-    &:hover,
-    &:focus-visible {
-      color: var(--main-color);
-    }
   }
 
   // .header__menu
@@ -88,21 +74,6 @@ $mobileSmall: 479.98px;
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-}
-
-.header-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--white-color);
-  transition: color 0.3s ease 0s;
-  cursor: pointer;
-}
-
-.header-icon {
-  &:hover,
-  &:focus-visible {
-    color: var(--main-color);
   }
 }
 

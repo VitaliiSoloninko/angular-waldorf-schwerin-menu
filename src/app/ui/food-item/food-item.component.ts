@@ -1,11 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { DateTime } from 'luxon';
@@ -29,7 +23,6 @@ export class FoodItemComponent {
   showDetails: boolean = true;
   isCheckboxDisabled: boolean = false;
   isCheckboxChecked: boolean = false;
-
   private weekSubscription: Subscription;
 
   constructor(
@@ -41,12 +34,6 @@ export class FoodItemComponent {
     this.weekSubscription = this.luxonDateService.currentWeek$.subscribe(() => {
       this.updateDate();
     });
-    this.checkScreenResolution();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.checkScreenResolution();
   }
 
   checkScreenResolution(): void {

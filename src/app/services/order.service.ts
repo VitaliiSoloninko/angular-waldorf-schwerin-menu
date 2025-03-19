@@ -22,10 +22,6 @@ export class OrderService {
     return this.httpClient.get<Order[]>(USERS_ORDERS + `/user/${id}`);
   }
 
-  getOrdersByUserIdAndCurrentMonthAndYear(id: number) {
-    return this.httpClient.get<Order[]>(USERS_ORDERS + `/user/${id}/current`);
-  }
-
   getByOrderId(id: number) {
     return this.httpClient.get<Order>(USERS_ORDERS + `/${id}`);
   }

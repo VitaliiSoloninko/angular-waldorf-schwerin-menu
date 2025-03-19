@@ -8,7 +8,7 @@ import { SvgIconComponent } from '../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, NgFor, NgIf, SvgIconComponent],
+  imports: [RouterLink, NgFor, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
