@@ -1,0 +1,25 @@
+.color-scheme {
+  display: flex;
+  font-family: inherit;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease 0s;
+  cursor: pointer;
+  background-color: #23b12324;
+  color: #666;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.color-scheme {
+  &:hover,
+  &:focus-visible {
+    background-color: #23b12339;
+  }
+}
+
+.color-scheme__button {
+  width: 24px;
+  height: 24px;
+}
