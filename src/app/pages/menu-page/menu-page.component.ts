@@ -125,7 +125,13 @@ export class MenuPageComponent implements OnInit {
       this.cartService.addToCart(food);
     } else {
       this.cartService.removeFromCart(food);
+      this.sendEmptyFoodToCart(food);
     }
+  }
+
+  sendEmptyFoodToCart(food: Food): void {
+    const emptyFood: Food = { ...food, checked: false, price: -food.price };
+    this.cartService.addToCart(emptyFood);
   }
 
   goToCart() {

@@ -63,7 +63,7 @@ export class CartPageComponent implements OnInit {
       week: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').weekNumber,
       month: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').month,
       year: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').year,
-      ordered: true,
+      ordered: item.food.checked,
     }));
 
     console.log(JSON.stringify(orderItems));
