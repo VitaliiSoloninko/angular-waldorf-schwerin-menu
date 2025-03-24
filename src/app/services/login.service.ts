@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { TokenResponse } from '../models/auth.interface';
 import { IUserLogin } from '../models/IUserLogin';
 import { User } from '../models/user.model';
@@ -18,8 +19,15 @@ export class LoginService {
   );
   public userObservable: Observable<User>;
   private userId: number | null = null;
+  private logoutSubject = new Subject<void>();
 
-  constructor(private http: HttpClient, private toastService: ToastrService) {
+  logout$ = this.logoutSubject.asObservable();
+
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private toastService: ToastrService
+  ) {
     this.userObservable = this.userSubject.asObservable();
   }
 
@@ -50,8 +58,10 @@ export class LoginService {
   }
 
   logout() {
-    this.userSubject.next(new User());
+    this.userId = null;
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(TOKEN_KEY);
+    this.logoutSubject.next();
     window.location.reload();
   }
 

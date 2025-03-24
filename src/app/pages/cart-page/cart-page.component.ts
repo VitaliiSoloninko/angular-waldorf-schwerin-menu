@@ -55,6 +55,11 @@ export class CartPageComponent implements OnInit {
   }
 
   placeOrder(): void {
+    if (this.userId === null || this.userId === 0) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     const orderItems = this.cart.items.map((item) => ({
       userId: this.userId ?? 0,
       foodId: item.food.id,

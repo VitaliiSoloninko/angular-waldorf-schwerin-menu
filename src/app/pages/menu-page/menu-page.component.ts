@@ -34,7 +34,13 @@ export class MenuPageComponent implements OnInit {
   foodItems: Food[] = [];
   currentWeekFoodItems: Food[] = [];
   currentWeekNumber: number = DateTime.now().weekNumber;
-  currentColorScheme: string[] = [];
+  currentColorScheme: string[] = [
+    '#16869554',
+    '#23b12344',
+    '#a1ba0246',
+    '#f296013e',
+    '#e751113c',
+  ];
 
   constructor(
     private foodService: FoodService,
@@ -46,8 +52,7 @@ export class MenuPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.loginService.getUserId();
-
+    let userId = this.loginService.getUserId();
     const savedColorScheme = localStorage.getItem('colorScheme');
     if (savedColorScheme) {
       this.currentColorScheme = JSON.parse(savedColorScheme);
@@ -58,6 +63,11 @@ export class MenuPageComponent implements OnInit {
     } else {
       this.loadFoodItemsAndOrders(userId, this.currentWeekNumber);
     }
+
+    this.loginService.logout$.subscribe(() => {
+      userId = null;
+      this.loadFoodItemsWithoutChecked();
+    });
   }
 
   loadFoodItemsAndOrders(userId: number, week: number): void {
