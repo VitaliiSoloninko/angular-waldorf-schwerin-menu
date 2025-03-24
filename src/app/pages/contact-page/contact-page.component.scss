@@ -1,0 +1,18 @@
+p {
+  text-align: center;
+}
+
+span {
+  color: var(--main-color);
+}
+
+.h2 {
+  text-align: center;
+}
+
+.bg-logo {
+  position: absolute;
+  left: 0;
+  bottom: -15%;
+  z-index: -1;
+}

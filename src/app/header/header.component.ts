@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
 import { CartService } from '../services/cart.service';
 import { LoginService } from '../services/login.service';
-import { SvgIconComponent } from '../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-header',
@@ -29,6 +28,10 @@ export class HeaderComponent implements OnInit {
     {
       name: 'History',
       link: 'history',
+    },
+    {
+      name: 'Kontakte',
+      link: 'contact-page',
     },
     {
       name: 'Admin',

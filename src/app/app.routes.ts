@@ -6,6 +6,7 @@ import { OrdersPageComponent } from './pages/admin-page/orders-page/orders-page.
 import { SettingsPageComponent } from './pages/admin-page/settings-page/settings-page.component';
 import { UsersPageComponent } from './pages/admin-page/users-page/users-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'menu', component: MenuPageComponent },
   { path: 'cart-page', component: CartPageComponent },
   { path: 'history', component: HistoryComponent },
+  { path: 'contact-page', component: ContactPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
   { path: 'profile-page', component: ProfilePageComponent },
