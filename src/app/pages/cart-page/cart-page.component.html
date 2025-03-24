@@ -41,8 +41,6 @@
     <span>{{ cart.totalPrice | currency : "EUR" }}</span>
   </p>
 
-  <div class="two-buttons mb72">
-    <button class="btn cancel-btn" (click)="clearCart()">Absagen</button>
-    <button class="btn" (click)="placeOrder()">Bestellen</button>
-  </div>
+  <button class="btn cancel-btn mb16" (click)="clearCart()">Absagen</button>
+  <button class="btn mb72" (click)="placeOrder()">Bestellen</button>
 </div>

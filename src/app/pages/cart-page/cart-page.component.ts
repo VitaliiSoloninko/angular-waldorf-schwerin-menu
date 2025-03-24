@@ -1,5 +1,6 @@
 import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Cart } from '../../models/cart.model';
@@ -34,7 +35,8 @@ export class CartPageComponent implements OnInit {
     private cartService: CartService,
     private loginService: LoginService,
     private orderService: OrderService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

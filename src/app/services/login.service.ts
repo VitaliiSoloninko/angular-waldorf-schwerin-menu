@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { TokenResponse } from '../models/auth.interface';
 import { IUserLogin } from '../models/IUserLogin';
 import { User } from '../models/user.model';
 import { USERS_LOGIN_URL } from '../urls';
-import { TokenResponse } from '../models/auth.interface';
 
 const USER_KEY = 'User';
 const TOKEN_KEY = 'token';

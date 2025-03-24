@@ -47,16 +47,17 @@ export class MenuPageComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.loginService.getUserId();
-    if (userId === null) {
-      return;
-    }
 
     const savedColorScheme = localStorage.getItem('colorScheme');
     if (savedColorScheme) {
       this.currentColorScheme = JSON.parse(savedColorScheme);
     }
 
-    this.loadFoodItemsAndOrders(userId, this.currentWeekNumber);
+    if (userId === null) {
+      this.loadFoodItemsWithoutChecked();
+    } else {
+      this.loadFoodItemsAndOrders(userId, this.currentWeekNumber);
+    }
   }
 
   loadFoodItemsAndOrders(userId: number, week: number): void {
@@ -90,6 +91,16 @@ export class MenuPageComponent implements OnInit {
     });
   }
 
+  loadFoodItemsWithoutChecked(): void {
+    this.foodService.getAllFoods().subscribe((foods) => {
+      this.foodItems = foods.map((food) => {
+        food.checked = false;
+        return food;
+      });
+      this.updateCurrentWeekFoodItems();
+    });
+  }
+
   updateCurrentWeekFoodItems(): void {
     const firstWeekOfYear = DateTime.local().startOf('year').startOf('week');
     const weekStartDate = firstWeekOfYear.plus({
@@ -115,8 +126,10 @@ export class MenuPageComponent implements OnInit {
   onWeekChanged(weekNumber: number): void {
     this.currentWeekNumber = weekNumber;
     const userId = this.loginService.getUserId();
-    if (userId !== null) {
-      this.loadFoodItemsAndOrders(userId, weekNumber);
+    if (this.userId !== null) {
+      this.loadFoodItemsAndOrders(this.userId, weekNumber);
+    } else {
+      this.loadFoodItemsWithoutChecked();
     }
   }
 
