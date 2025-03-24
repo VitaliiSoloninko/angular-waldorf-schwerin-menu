@@ -2,6 +2,17 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
+:host {
+  position: relative;
+}
+
+.bg-logo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
 span {
   color: var(--main-color);
 }
