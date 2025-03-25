@@ -23,15 +23,15 @@ export class HeaderComponent implements OnInit {
     },
     {
       name: 'Warenkorb',
-      link: 'cart-page',
+      link: 'cart',
     },
     {
-      name: 'History',
+      name: 'Bestellungen',
       link: 'history',
     },
     {
       name: 'Kontakte',
-      link: 'contact-page',
+      link: 'contact',
     },
     {
       name: 'Admin',
@@ -45,7 +45,6 @@ export class HeaderComponent implements OnInit {
   ) {
     loginService.userObservable.subscribe((newUser) => {
       this.user = newUser;
-      // console.log(newUser);
     });
   }
 

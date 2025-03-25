@@ -7,7 +7,7 @@ import { SettingsPageComponent } from './pages/admin-page/settings-page/settings
 import { UsersPageComponent } from './pages/admin-page/users-page/users-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
-import { HistoryComponent } from './pages/history/history.component';
+import { HistoryPageComponent } from './pages/history-page/history-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
@@ -16,12 +16,12 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
   { path: 'menu', component: MenuPageComponent },
-  { path: 'cart-page', component: CartPageComponent },
-  { path: 'history', component: HistoryComponent },
-  { path: 'contact-page', component: ContactPageComponent },
+  { path: 'cart', component: CartPageComponent },
+  { path: 'history', component: HistoryPageComponent },
+  { path: 'contact', component: ContactPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
-  { path: 'profile-page', component: ProfilePageComponent },
+  { path: 'profile', component: ProfilePageComponent },
   {
     path: 'admin',
     component: AdminPageComponent,

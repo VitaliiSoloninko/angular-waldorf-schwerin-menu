@@ -12,6 +12,7 @@ import { OrderService } from '../../services/order.service';
 import { ModalComponent } from '../../ui/modal/modal.component';
 import { NotificationComponent } from '../../ui/notification/notification.component';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
+import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
   selector: 'app-cart-page',
@@ -24,6 +25,7 @@ import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
     AsyncPipe,
     NotificationComponent,
     BgLogoComponent,
+    TitleComponent,
   ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',

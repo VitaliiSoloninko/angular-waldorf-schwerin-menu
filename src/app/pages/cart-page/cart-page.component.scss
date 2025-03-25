@@ -2,16 +2,6 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
-span {
-  color: var(--main-color);
-}
-
-.title {
-  @media (max-width: $mobile) {
-    display: none;
-  }
-}
-
 .text {
   font-size: 20px;
 }

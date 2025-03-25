@@ -16,6 +16,7 @@ import { FoodItemComponent } from '../../ui/food-item/food-item.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
+import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
   selector: 'app-menu-page',
@@ -26,6 +27,7 @@ import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
     SvgIconComponent,
     ColorPaletteComponent,
     BgLogoComponent,
+    TitleComponent,
   ],
   templateUrl: './menu-page.component.html',
   styleUrl: './menu-page.component.scss',

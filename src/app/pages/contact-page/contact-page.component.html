@@ -1,11 +1,27 @@
 <div class="container">
-  <h1 class="h2 mb16"><span>Unsere</span> Kontakte</h1>
+  <app-title [prefix]="'Unsere'" [name]="' Kontakte'" class="mb16" />
 
-  <p>Email</p>
-  <p>Adresse</p>
-  <p>Telefon</p>
+  <div class="contacts">
+    <div class="contact-item">
+      <div>
+        <img src="/assets/svg/mail.svg" alt="Mail" />
+      </div>
+      <span>Email: waldorf-schwerin&#64;gmail.com</span>
+    </div>
+    <div class="contact-item">
+      <div>
+        <img src="/assets/svg/map.svg" alt="Adresse" />
+      </div>
+
+      <span>Adresse: Mecklenburgstraße 9, 19053 Schwerin</span>
+    </div>
+    <div class="contact-item">
+      <div>
+        <img src="/assets/svg/phone.svg" alt="Telefon" />
+      </div>
+      <span>Telefon: 0152 1234567</span>
+    </div>
+  </div>
 </div>
 
-<div class="bg-logo">
-  <img src="/assets/bg-logos/bg-logo-yellow.svg" alt="." />
-</div>
+<app-bg-logo [logoName]="'Yellow'" />
