@@ -23,12 +23,12 @@ function equalValues(controlName1: string, controlName2: string) {
 }
 
 @Component({
-  selector: 'app-registration-page',
+  selector: 'app-registration-teacher-page',
   imports: [ReactiveFormsModule, RouterLink, BgLogoComponent],
-  templateUrl: './registration-page.component.html',
-  styleUrl: './registration-page.component.scss',
+  templateUrl: './registration-teacher-page.component.html',
+  styleUrl: './registration-teacher-page.component.scss',
 })
-export class RegistrationPageComponent {
+export class RegistrationTeacherPageComponent {
   constructor(private router: Router, private userService: UserService) {}
 
   form = new FormGroup({
@@ -44,12 +44,8 @@ export class RegistrationPageComponent {
     lastName: new FormControl('', {
       validators: [Validators.required],
     }),
-    firstNameChild: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    lastNameChild: new FormControl('', {
-      validators: [Validators.required],
-    }),
+    firstNameChild: new FormControl('', {}),
+    lastNameChild: new FormControl('', {}),
     street: new FormControl('', {
       validators: [Validators.required],
     }),
@@ -65,12 +61,8 @@ export class RegistrationPageComponent {
     school: new FormControl<'Waldorf'>('Waldorf', {
       validators: [Validators.required],
     }),
-    class: new FormControl<'1' | '2' | '3' | '4'>('1', {
-      validators: [Validators.required],
-    }),
-    letter: new FormControl<'A' | 'B' | 'C'>('A', {
-      validators: [Validators.required],
-    }),
+    class: new FormControl('', {}),
+    letter: new FormControl('', {}),
   });
 
   get emailIsInvalid() {

@@ -12,6 +12,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { RegistrationTeacherPageComponent } from './pages/registration-teacher-page/registration-teacher-page.component';
 
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
@@ -21,6 +22,8 @@ export const routes: Routes = [
   { path: 'contact', component: ContactPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
+  { path: 'registration-teacher', component: RegistrationTeacherPageComponent },
+
   { path: 'profile', component: ProfilePageComponent },
   {
     path: 'admin',

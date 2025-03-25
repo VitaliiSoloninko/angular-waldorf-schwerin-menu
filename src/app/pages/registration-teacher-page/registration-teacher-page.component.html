@@ -5,12 +5,10 @@
     <a routerLink="/login" class="login">Hier anmelden</a>
   </div>
   <div class="center two-buttons">
-    <a routerLink="/registration" class="btn btn-small btn-secondary"
+    <a routerLink="/registration" class="btn btn-small btn-secondary btn-border"
       >Für Eltern</a
     >
-    <a
-      routerLink="/registration-teacher"
-      class="btn btn-small btn-secondary btn-border"
+    <a routerLink="/registration-teacher" class="btn btn-small btn-secondary"
       >Für Lehrer/in</a
     >
   </div>
@@ -64,9 +62,8 @@
             />
           </div>
         </div>
-        <div class="form-two-column user-names-child">
+        <div class="form-two-column user-names-child display-none">
           <div class="control">
-            <label for="first-name">Vorname des Kindes</label>
             <input
               type="text"
               id="first-name-child"
@@ -126,30 +123,21 @@
             </div>
           </div>
         </div>
-        <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
-        <div class="drop-down-list">
-          <div class="form-three-column">
-            <div class="control school">
-              <select id="school" name="school" formControlName="school">
-                <option value="Waldorf">Waldorf</option>
-              </select>
-            </div>
-            <div class="control class">
-              <select id="class" name="class" formControlName="class">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-            <div class="control letter">
-              <select id="letter" name="letter" formControlName="letter">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-              </select>
-            </div>
-          </div>
+        <div class="control school">
+          <label for="city">Schule</label>
+          <select id="school" name="school" formControlName="school">
+            <option value="Waldorf">Waldorf</option>
+          </select>
+        </div>
+        <div class="control class display-none">
+          <select id="class" name="class" formControlName="class">
+            <option value=""></option>
+          </select>
+        </div>
+        <div class="control letter display-none">
+          <select id="letter" name="letter" formControlName="letter">
+            <option value=""></option>
+          </select>
         </div>
       </div>
     </div>

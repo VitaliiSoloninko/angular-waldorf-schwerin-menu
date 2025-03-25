@@ -90,6 +90,28 @@ body {
   }
 }
 
+.btn-secondary {
+  background-color: var(--main-color);
+  height: 36px;
+  padding: 10px 20px;
+  &:hover,
+  &:focus-visible {
+    background-color: var(--main-hover-color);
+  }
+}
+
+.btn-border {
+  background-color: transparent;
+  color: grey;
+  border: 1px solid grey;
+  &:hover,
+  &:focus-visible {
+    background-color: var(--main-hover-color);
+    color: white;
+    border: 1px solid var(--main-hover-color);
+  }
+}
+
 .h1 {
   font-size: 48px;
   font-weight: 800;
