@@ -8,10 +8,16 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { TextInputComponent } from '../../ui/text-input/text-input.component';
+import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, RouterLink, TextInputComponent],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    TextInputComponent,
+    BgLogoComponent,
+  ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })

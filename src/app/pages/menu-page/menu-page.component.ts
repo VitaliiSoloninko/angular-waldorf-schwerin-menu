@@ -15,6 +15,7 @@ import { ColorPaletteComponent } from '../../ui/color-palette/color-palette.comp
 import { FoodItemComponent } from '../../ui/food-item/food-item.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
+import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 
 @Component({
   selector: 'app-menu-page',
@@ -24,6 +25,7 @@ import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.comp
     NgFor,
     SvgIconComponent,
     ColorPaletteComponent,
+    BgLogoComponent,
   ],
   templateUrl: './menu-page.component.html',
   styleUrl: './menu-page.component.scss',
