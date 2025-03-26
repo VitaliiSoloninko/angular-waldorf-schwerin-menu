@@ -11,12 +11,12 @@ import { FoodService } from '../../services/food.service';
 import { LoginService } from '../../services/login.service';
 import { LuxonDateService } from '../../services/luxon-date.service';
 import { UserOrderService } from '../../services/user-order.service';
+import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { ColorPaletteComponent } from '../../ui/color-palette/color-palette.component';
 import { FoodItemComponent } from '../../ui/food-item/food-item.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
-import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
-import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { TitleComponent } from '../../ui/title/title.component';
+import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.component';
 
 @Component({
   selector: 'app-menu-page',
@@ -162,7 +162,7 @@ export class MenuPageComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigateByUrl('/cart-page');
+    this.router.navigateByUrl('/cart');
   }
 
   getColor(index: number): string {

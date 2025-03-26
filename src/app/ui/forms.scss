@@ -62,6 +62,21 @@ $mobileSmall: 479.98px;
   }
 }
 
+.control textarea {
+  display: flex;
+  width: 100%;
+  padding: 0.8rem;
+  height: 100px;
+  resize: none;
+  font-size: 1rem;
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid var(--dark-color);
+  @media (max-width: $mobileSmall) {
+    min-width: 100%;
+  }
+}
+
 .control select {
   display: flex;
   width: 100%;

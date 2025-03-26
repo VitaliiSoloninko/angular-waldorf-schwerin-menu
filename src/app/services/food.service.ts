@@ -25,7 +25,7 @@ export class FoodService {
   }
 
   updateFood(id: number, food: CreateFood): Observable<void> {
-    return this.httpClient.put<void>(USERS_FOODS + `/${id}`, food);
+    return this.httpClient.patch<void>(USERS_FOODS + `/${id}`, food);
   }
 
   removeFood(id: number) {

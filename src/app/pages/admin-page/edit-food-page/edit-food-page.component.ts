@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FoodService } from '../../../services/food.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateFood } from '../../../models/create-food.model';
+import { FoodService } from '../../../services/food.service';
 
 @Component({
   selector: 'app-edit-food-page',
@@ -52,5 +52,9 @@ export class EditFoodPageComponent implements OnInit {
         },
       });
     }
+  }
+
+  goToFoods() {
+    this.router.navigate(['/admin/foods']);
   }
 }

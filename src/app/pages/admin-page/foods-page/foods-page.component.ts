@@ -28,11 +28,6 @@ export class FoodsPageComponent implements OnInit {
   }
 
   editFood(id: number) {
-    // this.foodService.getFoodById(id).subscribe({
-    //   next: (val) => {
-    //     this.foods = this.foods.filter((_) => _.id != id);
-    //   },
-    // });
     this.router.navigate(['/admin/edit', id]);
   }
 
