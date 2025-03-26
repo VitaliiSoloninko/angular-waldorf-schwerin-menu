@@ -16,7 +16,6 @@
           <th scope="col" class="center">€</th>
           <th scope="col" class="center">Beschreibung</th>
           <th scope="col" class="center action">Aktion</th>
-          <th scope="col" class="center">PDF</th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +26,7 @@
           <td class="center">{{ food.price }}</td>
           <td>{{ food.description }}</td>
           <td class="buttons">
-            <button type="button">
+            <button type="button" (click)="editFood(food.id)">
               <lucide-icon
                 [img]="pencil"
                 color="var(--dark-color)"
@@ -39,16 +38,6 @@
               <lucide-icon
                 [img]="trash2"
                 color="var(--red-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
-            </button>
-          </td>
-          <td class="center">
-            <button type="button">
-              <lucide-icon
-                [img]="fileText"
-                color="var(--main-color)"
                 [size]="18"
                 class="my-icon"
               ></lucide-icon>

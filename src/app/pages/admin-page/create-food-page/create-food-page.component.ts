@@ -15,7 +15,7 @@ export class CreateFoodPageComponent {
   constructor(private foodService: FoodService, private router: Router) {}
 
   formData: CreateFood = {
-    name: 'Menu ...',
+    name: 'Menu ',
     day: 1,
     week: 1,
     price: 4,

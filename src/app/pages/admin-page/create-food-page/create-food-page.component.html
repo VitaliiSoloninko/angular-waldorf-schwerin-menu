@@ -1,47 +1,51 @@
 <div class="form-container">
   <h1 class="h2 mb16 center"><span>Neue</span> Lebensmittel</h1>
   <form class="form">
-    <div class="control">
-      <label for="txtName" class="form-label">Name</label>
-      <input
-        type="text"
-        name="name"
-        [(ngModel)]="formData.name"
-        class="form-control"
-        id="txtName"
-      />
+    <div class="column">
+      <div class="control">
+        <label for="txtName" class="form-label">Name</label>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="formData.name"
+          class="form-control"
+          id="txtName"
+        />
+      </div>
+      <div class="control">
+        <label for="txtDay" class="form-label">Day</label>
+        <input
+          type="text"
+          name="day"
+          [(ngModel)]="formData.day"
+          class="form-control"
+          id="txtDay"
+        />
+      </div>
+
+      <div class="control">
+        <label for="txtWeek" class="form-label">Week</label>
+        <input
+          type="text"
+          name="week"
+          [(ngModel)]="formData.week"
+          class="form-control"
+          id="txtWeek"
+        />
+      </div>
+      <div class="control">
+        <label for="txtPrice" class="form-label">Price</label>
+        <input
+          type="text"
+          name="price"
+          [(ngModel)]="formData.price"
+          class="form-control"
+          id="txtPrice"
+        />
+      </div>
     </div>
-    <div class="control">
-      <label for="txtDay" class="form-label">Day</label>
-      <input
-        type="text"
-        name="day"
-        [(ngModel)]="formData.day"
-        class="form-control"
-        id="txtDay"
-      />
-    </div>
-    <div class="control">
-      <label for="txtWeek" class="form-label">Week</label>
-      <input
-        type="text"
-        name="week"
-        [(ngModel)]="formData.week"
-        class="form-control"
-        id="txtWeek"
-      />
-    </div>
-    <div class="control">
-      <label for="txtPrice" class="form-label">Price</label>
-      <input
-        type="text"
-        name="price"
-        [(ngModel)]="formData.price"
-        class="form-control"
-        id="txtPrice"
-      />
-    </div>
-    <div class="control">
+
+    <div class="big-control control">
       <label for="txtDescription" class="form-label">Description</label>
       <input
         type="text"

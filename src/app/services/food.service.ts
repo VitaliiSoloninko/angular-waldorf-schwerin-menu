@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs';
 import { CreateFood } from '../models/create-food.model';
 import { Food } from '../models/food.model';
 import { USERS_FOODS } from '../urls';
@@ -21,6 +22,10 @@ export class FoodService {
 
   createFood(val: CreateFood) {
     return this.httpClient.post(USERS_FOODS, val);
+  }
+
+  updateFood(id: number, food: CreateFood): Observable<void> {
+    return this.httpClient.put<void>(USERS_FOODS + `/${id}`, food);
   }
 
   removeFood(id: number) {

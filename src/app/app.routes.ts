@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { CreateFoodPageComponent } from './pages/admin-page/create-food-page/create-food-page.component';
+import { EditFoodPageComponent } from './pages/admin-page/edit-food-page/edit-food-page.component';
 import { FoodsPageComponent } from './pages/admin-page/foods-page/foods-page.component';
 import { OrdersPageComponent } from './pages/admin-page/orders-page/orders-page.component';
 import { SettingsPageComponent } from './pages/admin-page/settings-page/settings-page.component';
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'orders', component: OrdersPageComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'foods', component: FoodsPageComponent },
+      { path: 'edit/:id', component: EditFoodPageComponent },
       { path: 'create', component: CreateFoodPageComponent },
       { path: 'settings', component: SettingsPageComponent },
     ],

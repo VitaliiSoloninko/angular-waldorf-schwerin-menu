@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 
 import { Food } from '../../../models/food.model';
@@ -17,7 +17,7 @@ export class FoodsPageComponent implements OnInit {
   trash2: any = Trash2;
   fileText: any = FileText;
 
-  constructor(private foodService: FoodService) {}
+  constructor(private foodService: FoodService, private router: Router) {}
 
   foods: Food[] = [];
 
@@ -25,6 +25,15 @@ export class FoodsPageComponent implements OnInit {
     this.foodService.getAllFoods().subscribe((data) => {
       this.foods = data;
     });
+  }
+
+  editFood(id: number) {
+    // this.foodService.getFoodById(id).subscribe({
+    //   next: (val) => {
+    //     this.foods = this.foods.filter((_) => _.id != id);
+    //   },
+    // });
+    this.router.navigate(['/admin/edit', id]);
   }
 
   removeFood(id: number) {
