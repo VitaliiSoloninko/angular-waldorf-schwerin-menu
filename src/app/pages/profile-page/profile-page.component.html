@@ -1,79 +1,156 @@
 <div class="container">
-  <div class="form">
-    <div class="form-main-column personal-data">
-      <h3 class="h3 center">Persönliche Daten</h3>
-      <div class="control user-email">
-        <label for="email">E-Mail</label>
-        <div class="input">vitaliy.pulupovuch&#64;gmail.com</div>
+  <form (ngSubmit)="save()" #foodForm="ngForm">
+    <div class="form">
+      <div class="form-main-column personal-data">
+        <h3 class="h3 center">Persönliche Daten</h3>
+        <div class="control user-email">
+          <label for="email">E-Mail</label>
+          <input
+            type="text"
+            name="email"
+            [(ngModel)]="formData.email"
+            class="form-control"
+            id="txtEmail"
+          />
+        </div>
+
+        <div class="control">
+          <label for="password">Passwort</label>
+          <div class="input">**************</div>
+        </div>
+
+        <div class="form-two-column user-names">
+          <div class="control first-name">
+            <label for="first-name">Vorname</label>
+            <input
+              type="text"
+              name="first-name"
+              [(ngModel)]="formData.firstName"
+              class="form-control"
+              id="txtFirstName"
+            />
+          </div>
+          <div class="control last-name">
+            <label for="last-name">Nachname</label>
+            <input
+              type="text"
+              name="last-name"
+              [(ngModel)]="formData.lastName"
+              class="form-control"
+              id="txtLastName"
+            />
+          </div>
+        </div>
+        <div class="form-two-column user-names-child">
+          <div class="control">
+            <label for="first-name">Vorname des Kindes</label>
+            <input
+              type="text"
+              name="first-name"
+              [(ngModel)]="formData.firstNameChild"
+              class="form-control"
+              id="txtFirstNameChild"
+            />
+          </div>
+          <div class="control">
+            <label for="last-name">Nachname des Kindes</label>
+            <input
+              type="text"
+              name="last-name"
+              [(ngModel)]="formData.lastNameChild"
+              class="form-control"
+              id="txtLastName"
+            />
+          </div>
+        </div>
       </div>
 
-      <div class="control">
-        <label for="password">Passwort</label>
-        <div class="input">**********</div>
-      </div>
+      <div class="form-main-column address-and-school">
+        <h3 class="h3 center">Adresse</h3>
+        <div class="address">
+          <div class="form-two-column">
+            <div class="control">
+              <label for="street">Straße</label>
+              <input
+                type="text"
+                name="street"
+                [(ngModel)]="formData.street"
+                class="form-control"
+                id="txtStreet"
+              />
+            </div>
 
-      <div class="form-two-column user-names">
-        <div class="control first-name">
-          <label for="first-name">Vorname</label>
-          <div class="input">Vitalii</div>
+            <div class="control">
+              <label for="number">Nummer</label>
+              <input
+                type="text"
+                name="number"
+                [(ngModel)]="formData.number"
+                class="form-control"
+                id="txtNumber"
+              />
+            </div>
+          </div>
+          <div class="form-two-column">
+            <div class="control">
+              <label for="postal-code">Postleitzahl</label>
+              <input
+                type="text"
+                name="postal-code"
+                [(ngModel)]="formData.postalCode"
+                class="form-control"
+                id="txtPostalCode"
+              />
+            </div>
+            <div class="control">
+              <label for="city">Stadt</label>
+              <input
+                type="text"
+                name="city"
+                [(ngModel)]="formData.city"
+                class="form-control"
+                id="txtCity"
+              />
+            </div>
+          </div>
         </div>
-        <div class="control last-name">
-          <label for="last-name">Nachname</label>
-          <div class="input">Soloninko</div>
-        </div>
-      </div>
-      <div class="form-two-column user-names-child">
-        <div class="control">
-          <label for="first-name">Vorname des Kindes</label>
-          <div class="input">Alsu</div>
-        </div>
-        <div class="control">
-          <label for="last-name">Nachname des Kindes</label>
-          <div class="input">Soloninko</div>
+        <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
+        <div class="drop-down-list">
+          <div class="form-three-column">
+            <div class="control school">
+              <input
+                type="text"
+                name="school"
+                [(ngModel)]="formData.school"
+                class="form-control"
+                id="txtSchool"
+              />
+            </div>
+            <div class="control class">
+              <input
+                type="text"
+                name="class"
+                [(ngModel)]="formData.class"
+                class="form-control"
+                id="txtClass"
+              />
+            </div>
+            <div class="control letter">
+              <input
+                type="text"
+                name="letter"
+                [(ngModel)]="formData.letter"
+                class="form-control"
+                id="txtLetter"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="form-main-column address-and-school">
-      <h3 class="h3 center">Adresse</h3>
-      <div class="address">
-        <div class="form-two-column">
-          <div class="control">
-            <label for="street">Straße</label>
-            <div class="input">Lubecker</div>
-          </div>
-
-          <div class="control">
-            <label for="number">Nummer</label>
-            <div class="input">88</div>
-          </div>
-        </div>
-        <div class="form-two-column">
-          <div class="control">
-            <label for="postal-code">Postleitzahl</label>
-            <div class="input">19053</div>
-          </div>
-          <div class="control">
-            <label for="city">Stadt</label>
-            <div class="input">Schwerin</div>
-          </div>
-        </div>
-      </div>
-      <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
-      <div class="drop-down-list">
-        <div class="form-three-column">
-          <div class="control school">
-            <div class="input">Wahldorf</div>
-          </div>
-          <div class="control class">
-            <div class="input">1</div>
-          </div>
-          <div class="control letter">
-            <div class="input">A</div>
-          </div>
-        </div>
-      </div>
+    <div class="two-buttons">
+      <button class="btn btn-cancel" (click)="goToMenu()">Absagen</button>
+      <button type="submit" class="btn">Ändern</button>
     </div>
-  </div>
-  <button type="submit" class="btn">Ändern</button>
+  </form>
 </div>

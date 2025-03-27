@@ -28,7 +28,7 @@ export class FoodsPageComponent implements OnInit {
   }
 
   editFood(id: number) {
-    this.router.navigate(['/admin/edit', id]);
+    this.router.navigate(['/admin/food', id]);
   }
 
   removeFood(id: number) {

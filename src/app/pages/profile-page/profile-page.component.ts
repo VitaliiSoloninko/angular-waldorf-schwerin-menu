@@ -1,111 +1,63 @@
-import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { RouterLink } from '@angular/router';
-
-function equalValues(controlName1: string, controlName2: string) {
-  return (control: AbstractControl) => {
-    const val1 = control.get(controlName1)?.value;
-    const val2 = control.get(controlName2)?.value;
-
-    if (val1 === val2) {
-      return null;
-    }
-    return { passwordNotEqual: true };
-  };
-}
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CreateUser } from '../../models/create-user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, RouterLink],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
-export class ProfilePageComponent {
-  form = new FormGroup({
-    email: new FormControl('', {
-      validators: [Validators.email, Validators.required],
-    }),
+export class ProfilePageComponent implements OnInit {
+  formData: CreateUser = {
+    email: '',
+    passwords: '',
+    firstName: '',
+    lastName: '',
+    firstNameChild: '',
+    lastNameChild: '',
+    street: '',
+    number: '',
+    postalCode: '',
+    city: '',
+    school: '',
+    class: '',
+    letter: '',
+  };
 
-    passwords: new FormGroup(
-      {
-        password: new FormControl('', {
-          validators: [Validators.required, Validators.minLength(6)],
-        }),
-        confirmPassword: new FormControl('', {
-          validators: [Validators.required, Validators.minLength(6)],
-        }),
-      },
-      { validators: [equalValues('password', 'confirmPassword')] }
-    ),
-    firstName: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    lastName: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    firstNameChild: new FormControl('', {
-      validators: [Validators.required],
-    }),
-    lastNameChild: new FormControl('', {
-      validators: [Validators.required],
-    }),
+  userId: number | null = null;
 
-    address: new FormGroup({
-      street: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      number: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      postalCode: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      city: new FormControl('', {
-        validators: [Validators.required],
-      }),
-    }),
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-    school: new FormControl<'waldorf'>('waldorf', {
-      validators: [Validators.required],
-    }),
-    class: new FormControl<'1' | '2' | '3' | '4'>('1', {
-      validators: [Validators.required],
-    }),
-    letter: new FormControl<'A' | 'B' | 'C'>('A', {
-      validators: [Validators.required],
-    }),
-  });
-
-  get emailIsInvalid() {
-    return (
-      this.form.controls.email.touched &&
-      this.form.controls.email.dirty &&
-      this.form.controls.email.invalid
-    );
-  }
-
-  get passwordsAreNotSame() {
-    return (
-      this.form.controls.passwords.controls.confirmPassword.invalid &&
-      this.form.value.passwords?.password !==
-        this.form.value.passwords?.confirmPassword
-    );
-  }
-
-  onSubmit() {
-    if (this.form.invalid) {
-      console.log('INVALID FORM');
+  ngOnInit(): void {
+    this.userId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.userId) {
+      this.userService.getUserById(this.userId).subscribe((user) => {
+        this.formData = { ...user, passwords: user.password };
+      });
     }
-    console.log(this.form.value);
   }
 
-  onReset() {
-    this.form.reset();
+  save() {
+    if (this.userId) {
+      this.userService.updateUser(this.userId, this.formData).subscribe({
+        next: () => {
+          this.router.navigate(['/profile']);
+        },
+        error: (er: any) => {
+          console.log(er);
+        },
+      });
+    }
+  }
+
+  goToMenu() {
+    this.router.navigate(['/menu']);
   }
 }

@@ -25,8 +25,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
   { path: 'registration-teacher', component: RegistrationTeacherPageComponent },
-
-  { path: 'profile', component: ProfilePageComponent },
+  { path: 'profile/:id', component: ProfilePageComponent },
   {
     path: 'admin',
     component: AdminPageComponent,
@@ -34,7 +33,7 @@ export const routes: Routes = [
       { path: 'orders', component: OrdersPageComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'foods', component: FoodsPageComponent },
-      { path: 'edit/:id', component: EditFoodPageComponent },
+      { path: 'food/:id', component: EditFoodPageComponent },
       { path: 'create', component: CreateFoodPageComponent },
       { path: 'statistics', component: StatisticsPageComponent },
       { path: 'settings', component: SettingsPageComponent },

@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateFood } from '../../../models/create-food.model';
 import { FoodService } from '../../../services/food.service';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-edit-food-page',
-  imports: [FormsModule],
+  imports: [FormsModule, TitleComponent],
   templateUrl: './edit-food-page.component.html',
   styleUrl: './edit-food-page.component.scss',
 })

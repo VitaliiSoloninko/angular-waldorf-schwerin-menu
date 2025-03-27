@@ -8,7 +8,6 @@
     <thead>
       <tr>
         <th scope="col" class="name">E-Mail</th>
-        <th scope="col">Password</th>
         <th scope="col">Vorname</th>
         <th scope="col">Nachname</th>
         <th scope="col">Vorname Kind</th>
@@ -18,13 +17,12 @@
         <th scope="col">PLZ</th>
         <th scope="col">Schule</th>
         <th scope="col">Klasse</th>
-        <th scope="col">PDF</th>
+        <th scope="col">Bearbeiten</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
         <td>{{ user.email }}</td>
-        <td>{{ user.password }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.firstNameChild }}</td>
@@ -38,22 +36,31 @@
         <td class="center">{{ user.class }} {{ user.letter }}</td>
         <td class="center">
           <div class="buttons">
-            <button type="button" (click)="removeUser(user.id)">
+            <button type="button" (click)="editUser(user.id)">
+              <lucide-icon
+                [img]="pencil"
+                color="var(--dark-color)"
+                [size]="18"
+                class="my-icon"
+              ></lucide-icon>
+            </button>
+            <!-- <button type="button" (click)="removeUser(user.id)">
               <lucide-icon
                 [img]="trash2"
                 color="var(--red-color)"
                 [size]="18"
                 class="my-icon"
               ></lucide-icon>
-            </button>
-            <button type="button">
+            </button> -->
+
+            <!-- <button type="button">
               <lucide-icon
                 [img]="fileText"
                 color="var(--main-color)"
                 [size]="18"
                 class="my-icon"
               ></lucide-icon>
-            </button>
+            </button> -->
           </div>
         </td>
       </tr>

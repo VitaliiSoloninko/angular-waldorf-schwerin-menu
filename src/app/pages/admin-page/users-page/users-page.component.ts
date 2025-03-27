@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FileText, LucideAngularModule, Trash2 } from 'lucide-angular';
+import { Router, RouterLink } from '@angular/router';
+import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
@@ -15,8 +15,9 @@ import { UserService } from '../../../services/user.service';
 export class UsersPageComponent implements OnInit {
   fileText: any = FileText;
   trash2: any = Trash2;
+  pencil: any = Pencil;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   users: User[] = [];
 
@@ -24,6 +25,10 @@ export class UsersPageComponent implements OnInit {
     this.userService.getAll().subscribe((data) => {
       this.users = data;
     });
+  }
+
+  editUser(id: number) {
+    this.router.navigate(['/profile', id]);
   }
 
   removeUser(id: number) {
