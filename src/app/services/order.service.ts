@@ -22,8 +22,8 @@ export class OrderService {
     return this.httpClient.get<Order[]>(USERS_ORDERS + `/user/${id}`);
   }
 
-  getByOrderId(id: number) {
-    return this.httpClient.get<Order>(USERS_ORDERS + `/${id}`);
+  getOrdersByDate(date: string) {
+    return this.httpClient.get<Order[]>(USERS_ORDERS + `/date/${date}`);
   }
 
   removeOrder(id: number) {

@@ -1,1 +1,24 @@
-<h1 class="h2 mb16 title"><span>Heute </span>bestellt</h1>
+<app-title [prefix]="'Heute'" [name]="' bestellt'" class="center" />
+
+<div class="table-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Class</th>
+        <th scope="col">Letter</th>
+        <th scope="col">Kind</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.date }}</td>
+        <td>{{ getUser(order.userId)?.class }}</td>
+        <td>{{ getUser(order.userId)?.letter }}</td>
+        <td>{{ getUser(order.userId)?.firstNameChild }}</td>
+        <td>{{ getUser(order.userId)?.lastNameChild }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

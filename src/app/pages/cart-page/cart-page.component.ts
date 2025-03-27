@@ -9,9 +9,9 @@ import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { ModalService } from '../../services/modal.service';
 import { OrderService } from '../../services/order.service';
+import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { ModalComponent } from '../../ui/modal/modal.component';
 import { NotificationComponent } from '../../ui/notification/notification.component';
-import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
@@ -69,7 +69,9 @@ export class CartPageComponent implements OnInit {
       foodId: item.food.id,
       name: item.food.name,
       price: Number(item.food.price),
-      date: String(DateTime.fromFormat(item.food.date, 'dd.MM.yyyy')),
+      date: String(
+        DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').toISODate()
+      ),
       day: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').day,
       week: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').weekNumber,
       month: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').month,
