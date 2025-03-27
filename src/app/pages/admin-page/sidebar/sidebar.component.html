@@ -1,7 +1,7 @@
 <div class="sidenav" [ngClass]="isSidebarSmall() ? 'sidenav-small' : ''">
   <div class="logo-container">
     <button class="logo" (click)="toggleSidebarLogo()">
-      <lucide-icon [img]="lock" class="my-icon"></lucide-icon>
+      <img src="/assets/svg/shield.svg" alt="" />
     </button>
     @if (!isSidebarSmall()){
     <div class="logo-text">Admin panel</div>

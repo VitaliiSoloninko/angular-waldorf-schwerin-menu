@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-  Calendar,
-  Lock,
-  LucideAngularModule,
-  ShoppingCart,
-  User,
-  Utensils,
-  X,
-} from 'lucide-angular';
+import { LucideAngularModule, X } from 'lucide-angular';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,11 +10,6 @@ import {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  utensils: any = Utensils;
-  shoppingCart: any = ShoppingCart;
-  calendar = Calendar;
-  user: any = User;
-  lock: any = Lock;
   x: any = X;
 
   isSidebarSmall = input.required<boolean>();
@@ -31,23 +18,23 @@ export class SidebarComponent {
   menuItems = [
     {
       routerLink: 'orders',
-      icon: 'svg/calendar.svg',
-      linkText: 'Bestellungen',
+      icon: 'assets/svg/calendar.svg',
+      linkText: 'Heute bestellt',
     },
     {
       routerLink: 'users',
-      icon: 'svg/user.svg',
+      icon: 'assets/svg/users.svg',
       linkText: 'Kunden',
     },
     {
       routerLink: 'foods',
-      icon: 'svg/utensils.svg',
+      icon: 'assets/svg/food.svg',
       linkText: 'Menu',
     },
     {
-      routerLink: 'create',
-      icon: 'svg/square-plus.svg',
-      linkText: 'Neu Essen',
+      routerLink: 'statistics',
+      icon: 'assets/svg/statistic.svg',
+      linkText: 'Statistiken',
     },
     // {
     //   routerLink: 'settings',

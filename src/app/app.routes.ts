@@ -5,6 +5,7 @@ import { EditFoodPageComponent } from './pages/admin-page/edit-food-page/edit-fo
 import { FoodsPageComponent } from './pages/admin-page/foods-page/foods-page.component';
 import { OrdersPageComponent } from './pages/admin-page/orders-page/orders-page.component';
 import { SettingsPageComponent } from './pages/admin-page/settings-page/settings-page.component';
+import { StatisticsPageComponent } from './pages/admin-page/statistics-page/statistics-page.component';
 import { UsersPageComponent } from './pages/admin-page/users-page/users-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
@@ -35,6 +36,7 @@ export const routes: Routes = [
       { path: 'foods', component: FoodsPageComponent },
       { path: 'edit/:id', component: EditFoodPageComponent },
       { path: 'create', component: CreateFoodPageComponent },
+      { path: 'statistics', component: StatisticsPageComponent },
       { path: 'settings', component: SettingsPageComponent },
     ],
   },
