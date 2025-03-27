@@ -47,14 +47,15 @@
 
     <div class="big-control control">
       <label for="txtDescription" class="form-label">Description</label>
-      <input
-        type="text"
+      <textarea
         name="description"
-        [(ngModel)]="formData.description"
-        class="form-control"
+        class="form-control textarea"
         id="txtDescription"
-      />
+        rows="4"
+        [(ngModel)]="formData.description"
+      ></textarea>
     </div>
+    <button class="btn btn-cancel" (click)="goToFoods()">Absagen</button>
     <button type="button" (click)="create()" class="btn">
       Zum Menü hinzufügen
     </button>

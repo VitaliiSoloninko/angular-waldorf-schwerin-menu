@@ -35,4 +35,8 @@ export class CreateFoodPageComponent {
       },
     });
   }
+
+  goToFoods() {
+    this.router.navigate(['/admin/foods']);
+  }
 }
