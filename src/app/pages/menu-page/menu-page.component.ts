@@ -92,12 +92,18 @@ export class MenuPageComponent implements OnInit {
       this.orders = orders;
 
       this.foodItems.forEach((food) => {
-        const foodDate = DateTime.fromFormat(food.date, 'dd.MM.yyyy');
-        const matchingOrder = this.orders.find((order) =>
-          DateTime.fromISO(order.date).hasSame(foodDate, 'day')
-        );
-        if (matchingOrder) {
+        const foodDate = DateTime.fromFormat(
+          food.date,
+          'dd.MM.yyyy'
+        ).toISODate();
+        const orderDate = this.orders.find((order) => {
+          const orderDate = DateTime.fromISO(order.date).toISODate();
+          return orderDate === foodDate;
+        });
+        if (orderDate) {
           food.checked = true;
+        } else {
+          food.checked = false;
         }
       });
 
@@ -140,8 +146,8 @@ export class MenuPageComponent implements OnInit {
   onWeekChanged(weekNumber: number): void {
     this.currentWeekNumber = weekNumber;
     const userId = this.loginService.getUserId();
-    if (this.userId !== null) {
-      this.loadFoodItemsAndOrders(this.userId, weekNumber);
+    if (userId !== null) {
+      this.loadFoodItemsAndOrders(userId, weekNumber);
     } else {
       this.loadFoodItemsWithoutChecked();
     }
