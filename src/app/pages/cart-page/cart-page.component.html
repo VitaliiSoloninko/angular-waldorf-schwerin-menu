@@ -13,10 +13,10 @@
 
   <div class="items mb16">
     <div class="item" *ngFor="let cartItem of cart.items">
-      <div>{{ cartItem.food.date }}</div>
-      <div class="food-name">{{ cartItem.food.name }}</div>
+      <div>{{ cartItem.order.date }}</div>
+      <div class="food-name">{{ cartItem.order.foodName }}</div>
       <div class="food-price">
-        {{ cartItem.food.price | currency : "EUR" }}
+        {{ cartItem.order.foodPrice | currency : "EUR" }}
       </div>
       <div>
         <button class="icon" (click)="removeFromCart(cartItem)">

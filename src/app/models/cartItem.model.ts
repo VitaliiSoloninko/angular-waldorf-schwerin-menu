@@ -1,10 +1,10 @@
-import { Food } from './food.model';
+import { Order } from './order.model';
 
 export class CartItem {
   quantity: number = 1;
   price: number = 0;
 
-  constructor(public food: Food) {
-    this.price = food.price;
+  constructor(public order: Order) {
+    this.price = order.foodPrice;
   }
 }

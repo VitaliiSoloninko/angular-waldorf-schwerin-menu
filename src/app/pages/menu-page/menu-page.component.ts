@@ -65,7 +65,7 @@ export class MenuPageComponent implements OnInit {
     if (userId === null) {
       this.loadFoodItemsWithoutChecked();
     } else {
-      this.loadFoodItemsAndOrders(userId, this.currentWeekNumber);
+      this.loadOrdersByWeek(userId, this.currentWeekNumber);
     }
 
     this.loginService.logout$.subscribe(() => {
@@ -74,7 +74,7 @@ export class MenuPageComponent implements OnInit {
     });
   }
 
-  loadFoodItemsAndOrders(userId: number, week: number): void {
+  loadOrdersByWeek(userId: number, week: number): void {
     forkJoin({
       foods: this.foodService.getAllFoods(),
       orders: this.userOrderService.getOrdersByUserIdAndWeek(userId, week),
@@ -147,24 +147,28 @@ export class MenuPageComponent implements OnInit {
     this.currentWeekNumber = weekNumber;
     const userId = this.loginService.getUserId();
     if (userId !== null) {
-      this.loadFoodItemsAndOrders(userId, weekNumber);
+      this.loadOrdersByWeek(userId, weekNumber);
     } else {
       this.loadFoodItemsWithoutChecked();
     }
   }
 
-  onFoodChecked(food: Food): void {
-    if (food.checked) {
-      this.cartService.addToCart(food);
+  sendOrderToCart(order: Order): void {
+    if (order.checked) {
+      this.cartService.addToCart(order);
     } else {
-      this.cartService.removeFromCart(food);
-      this.sendEmptyFoodToCart(food);
+      this.cartService.removeFromCart(order);
+      this.sendEmptyOrderToCart(order);
     }
   }
 
-  sendEmptyFoodToCart(food: Food): void {
-    const emptyFood: Food = { ...food, checked: false, price: -food.price };
-    this.cartService.addToCart(emptyFood);
+  sendEmptyOrderToCart(order: Order): void {
+    const emptyOrder: Order = {
+      ...order,
+      checked: false,
+      foodPrice: -order.foodPrice,
+    };
+    this.cartService.addToCart(emptyOrder);
   }
 
   goToCart() {

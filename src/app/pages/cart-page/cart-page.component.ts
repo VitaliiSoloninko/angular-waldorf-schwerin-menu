@@ -51,7 +51,7 @@ export class CartPageComponent implements OnInit {
   }
 
   removeFromCart(cartItem: CartItem) {
-    this.cartService.removeFromCart(cartItem.food);
+    this.cartService.removeFromCart(cartItem.order);
   }
 
   clearCart(): void {
@@ -66,20 +66,20 @@ export class CartPageComponent implements OnInit {
 
     const orderItems = this.cart.items.map((item) => ({
       userId: this.userId ?? 0,
-      foodId: item.food.id,
-      name: item.food.name,
-      price: Number(item.food.price),
+      foodId: item.order.foodId,
+      name: item.order.foodName,
+      price: item.order.foodPrice,
       date: String(
-        DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').toISODate()
+        DateTime.fromFormat(item.order.date, 'dd.MM.yyyy').toISODate()
       ),
-      day: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').day,
-      week: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').weekNumber,
-      month: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').month,
-      year: DateTime.fromFormat(item.food.date, 'dd.MM.yyyy').year,
-      ordered: item.food.checked,
+      day: item.order.day,
+      week: item.order.week,
+      month: item.order.month,
+      year: item.order.year,
+      ordered: item.order.checked,
     }));
 
-    console.log(JSON.stringify(orderItems));
+    console.log({ orderItems });
 
     this.orderService.createOrders(orderItems).subscribe(
       (response) => {

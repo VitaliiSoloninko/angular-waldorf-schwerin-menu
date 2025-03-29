@@ -9,4 +9,5 @@ export interface Order {
   week: number;
   month: number;
   year: number;
+  checked: boolean;
 }

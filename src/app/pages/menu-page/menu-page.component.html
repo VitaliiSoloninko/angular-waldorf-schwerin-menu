@@ -19,7 +19,7 @@
       *ngFor="let foodItem of currentWeekFoodItems; let i = index"
       [style.background-color]="getColor(i)"
       [food]="foodItem"
-      (foodChecked)="onFoodChecked($event)"
+      (foodChecked)="sendOrderToCart($event)"
     ></app-food-item>
   </div>
 
