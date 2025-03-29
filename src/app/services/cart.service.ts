@@ -12,7 +12,9 @@ export class CartService {
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
 
   addToCart(food: Food): void {
-    let cartItem = this.cart.items.find((item) => item.food.id === food.id);
+    let cartItem = this.cart.items.find(
+      (item) => item.food.id === food.id && item.food.date === food.date
+    );
     if (cartItem) return;
 
     this.cart.items.push(new CartItem(food));

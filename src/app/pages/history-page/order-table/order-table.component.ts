@@ -48,6 +48,6 @@ export class OrderTableComponent implements OnInit {
   }
 
   calculateTotalPrice(): number {
-    return this.orders.reduce((total, order) => total + order.price, 0);
+    return this.orders.reduce((total, order) => total + order.foodPrice, 0);
   }
 }
