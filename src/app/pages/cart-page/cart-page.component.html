@@ -12,7 +12,11 @@
   </p>
 
   <div class="items mb16">
-    <div class="item" *ngFor="let cartItem of cart.items">
+    <div
+      class="item"
+      *ngFor="let cartItem of cart.items"
+      [ngClass]="{ 'item-cancel': cartItem.order.foodPrice < 0 }"
+    >
       <div>{{ cartItem.order.date }}</div>
       <div class="food-name">{{ cartItem.order.foodName }}</div>
       <div class="food-price">

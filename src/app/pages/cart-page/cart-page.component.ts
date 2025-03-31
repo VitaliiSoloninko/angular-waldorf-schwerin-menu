@@ -1,4 +1,10 @@
-import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import {
+  AsyncPipe,
+  CommonModule,
+  CurrencyPipe,
+  NgFor,
+  NgIf,
+} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LucideAngularModule, Trash2 } from 'lucide-angular';
@@ -26,6 +32,7 @@ import { TitleComponent } from '../../ui/title/title.component';
     NotificationComponent,
     BgLogoComponent,
     TitleComponent,
+    CommonModule,
   ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
