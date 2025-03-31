@@ -10,6 +10,7 @@ import { CartService } from '../../services/cart.service';
 import { FoodService } from '../../services/food.service';
 import { LoginService } from '../../services/login.service';
 import { LuxonDateService } from '../../services/luxon-date.service';
+import { MenuStateService } from '../../services/menu-state.service';
 import { UserOrderService } from '../../services/user-order.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { ColorPaletteComponent } from '../../ui/color-palette/color-palette.component';
@@ -52,26 +53,36 @@ export class MenuPageComponent implements OnInit {
     private loginService: LoginService,
     private luxonDateService: LuxonDateService,
     private router: Router,
-    private userOrderService: UserOrderService
+    private userOrderService: UserOrderService,
+    private menuStateService: MenuStateService
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.loginService.getUserId() ?? 0;
-    const savedColorScheme = localStorage.getItem('colorScheme');
-    if (savedColorScheme) {
-      this.currentColorScheme = JSON.parse(savedColorScheme);
-    }
+    const savedFoodItems = this.menuStateService.getFoodItems();
 
-    if (this.userId === null) {
-      this.loadFoodItemsWithoutChecked();
+    if (savedFoodItems.length > 0) {
+      // Restore the state if it exists
+      this.foodItems = savedFoodItems;
+      this.updateCurrentWeekFoodItems();
     } else {
-      this.loadOrdersByWeek(this.userId, this.currentWeekNumber);
-    }
+      // Load data from the server if no saved state exists
+      this.userId = this.loginService.getUserId() ?? 0;
+      const savedColorScheme = localStorage.getItem('colorScheme');
+      if (savedColorScheme) {
+        this.currentColorScheme = JSON.parse(savedColorScheme);
+      }
 
-    this.loginService.logout$.subscribe(() => {
-      this.userId = null;
-      this.loadFoodItemsWithoutChecked();
-    });
+      if (this.userId === null) {
+        this.loadFoodItemsWithoutChecked();
+      } else {
+        this.loadOrdersByWeek(this.userId, this.currentWeekNumber);
+      }
+
+      this.loginService.logout$.subscribe(() => {
+        this.userId = null;
+        this.loadFoodItemsWithoutChecked();
+      });
+    }
   }
 
   loadOrdersByWeek(userId: number, week: number): void {
@@ -108,7 +119,9 @@ export class MenuPageComponent implements OnInit {
           food.initialChecked = food.checked;
         }
       });
-      console.log('Food items:', this.foodItems);
+
+      // Save the state to the service
+      this.menuStateService.setFoodItems(this.foodItems);
 
       this.updateCurrentWeekFoodItems();
     });
@@ -120,6 +133,10 @@ export class MenuPageComponent implements OnInit {
         food.checked = false;
         return food;
       });
+
+      // Save the state to the service
+      this.menuStateService.setFoodItems(this.foodItems);
+
       this.updateCurrentWeekFoodItems();
     });
   }
