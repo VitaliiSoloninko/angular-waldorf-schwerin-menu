@@ -34,7 +34,7 @@ import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.comp
 })
 export class MenuPageComponent implements OnInit {
   orders: Order[] = [];
-  userId: number = 0;
+  userId: number | null = 0;
   foodItems: Food[] = [];
   currentWeekFoodItems: Food[] = [];
   currentWeekNumber: number = DateTime.now().weekNumber;
@@ -56,20 +56,20 @@ export class MenuPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let userId = this.loginService.getUserId();
+    this.userId = this.loginService.getUserId() ?? 0;
     const savedColorScheme = localStorage.getItem('colorScheme');
     if (savedColorScheme) {
       this.currentColorScheme = JSON.parse(savedColorScheme);
     }
 
-    if (userId === null) {
+    if (this.userId === null) {
       this.loadFoodItemsWithoutChecked();
     } else {
-      this.loadOrdersByWeek(userId, this.currentWeekNumber);
+      this.loadOrdersByWeek(this.userId, this.currentWeekNumber);
     }
 
     this.loginService.logout$.subscribe(() => {
-      userId = null;
+      this.userId = null;
       this.loadFoodItemsWithoutChecked();
     });
   }
@@ -102,10 +102,13 @@ export class MenuPageComponent implements OnInit {
         });
         if (orderDate) {
           food.checked = true;
+          food.initialChecked = food.checked;
         } else {
           food.checked = false;
+          food.initialChecked = food.checked;
         }
       });
+      console.log('Food items:', this.foodItems);
 
       this.updateCurrentWeekFoodItems();
     });
@@ -153,22 +156,37 @@ export class MenuPageComponent implements OnInit {
     }
   }
 
-  sendOrderToCart(order: Order): void {
-    if (order.checked) {
-      this.cartService.addToCart(order);
-    } else {
-      this.cartService.removeFromCart(order);
-      this.sendEmptyOrderToCart(order);
-    }
-  }
-
-  sendEmptyOrderToCart(order: Order): void {
-    const emptyOrder: Order = {
-      ...order,
-      checked: false,
-      foodPrice: -order.foodPrice,
+  sendOrderToCart(food: Food): void {
+    const order: Order = {
+      id: undefined,
+      userId: this.userId ?? 0,
+      day: DateTime.fromFormat(food.date, 'dd.MM.yyyy').day,
+      week: DateTime.fromFormat(food.date, 'dd.MM.yyyy').weekNumber,
+      month: DateTime.fromFormat(food.date, 'dd.MM.yyyy').month,
+      year: DateTime.fromFormat(food.date, 'dd.MM.yyyy').year,
+      foodId: food.id,
+      foodName: food.name,
+      foodPrice: food.checked
+        ? food.price
+        : food.initialChecked
+        ? -food.price
+        : 0,
+      date: food.date,
+      checked: food.checked,
     };
-    this.cartService.addToCart(emptyOrder);
+
+    if (food.checked) {
+      this.cartService.addToCart(order);
+      // console.log('Order added:', order);
+    } else {
+      if (food.initialChecked) {
+        this.cartService.addToCart(order);
+        // console.log('Order updated with -4 €:', order);
+      } else {
+        this.cartService.removeFromCart(order);
+        // console.log('Order removed:', order);
+      }
+    }
   }
 
   goToCart() {

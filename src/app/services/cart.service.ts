@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { CartItem } from '../models/cartItem.model';
-import { Food } from '../models/food.model';
 import { Order } from '../models/order.model';
 
 @Injectable({
@@ -12,18 +11,21 @@ export class CartService {
   private cart: Cart = this.getCartFromLocalStorage();
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
 
-  addToCart(orderId: Order): void {
-    let cartItem = this.cart.items.find((item) => item.order.id === orderId.id);
+  addToCart(order: Order): void {
+    let cartItem = this.cart.items.find(
+      (item) => item.order.date === order.date
+    );
     if (cartItem) return;
 
-    this.cart.items.push(new CartItem(orderId));
+    this.cart.items.push(new CartItem(order));
     this.setCartToLocalStorage();
   }
 
-  removeFromCart(orderId: Order): void {
+  removeFromCart(order: Order): void {
     this.cart.items = this.cart.items.filter(
-      (item) => item.order.id !== orderId.id
+      (item) => item.order.date !== order.date
     );
+
     this.setCartToLocalStorage();
   }
 

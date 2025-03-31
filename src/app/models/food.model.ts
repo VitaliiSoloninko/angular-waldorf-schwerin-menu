@@ -6,6 +6,7 @@ export interface Food {
   price: number;
   description: string;
   image: string;
-  checked: boolean;
   date: string;
+  checked: boolean;
+  initialChecked?: boolean;
 }

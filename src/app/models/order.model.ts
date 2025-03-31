@@ -1,5 +1,5 @@
 export interface Order {
-  id: number;
+  id: number | undefined;
   foodId: number;
   foodName: string;
   foodPrice: number;
