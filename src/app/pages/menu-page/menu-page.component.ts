@@ -178,6 +178,7 @@ export class MenuPageComponent implements OnInit {
       id: undefined,
       userId: this.userId ?? 0,
       day: DateTime.fromFormat(food.date, 'dd.MM.yyyy').day,
+      dayName: DateTime.fromFormat(food.date, 'dd.MM.yyyy').toFormat('cccc'),
       week: DateTime.fromFormat(food.date, 'dd.MM.yyyy').weekNumber,
       month: DateTime.fromFormat(food.date, 'dd.MM.yyyy').month,
       year: DateTime.fromFormat(food.date, 'dd.MM.yyyy').year,

@@ -74,12 +74,13 @@ export class CartPageComponent implements OnInit {
     const orderItems = this.cart.items.map((item) => ({
       userId: this.userId ?? 0,
       foodId: item.order.foodId,
-      name: item.order.foodName,
-      price: item.order.foodPrice,
+      foodName: item.order.foodName,
+      foodPrice: Number(item.order.foodPrice),
       date: String(
         DateTime.fromFormat(item.order.date, 'dd.MM.yyyy').toISODate()
       ),
       day: item.order.day,
+      dayName: item.order.dayName,
       week: item.order.week,
       month: item.order.month,
       year: item.order.year,

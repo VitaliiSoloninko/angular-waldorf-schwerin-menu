@@ -1,7 +1,7 @@
 export interface CreateOrder {
   foodId: number;
-  name: string;
-  price: number;
+  foodName: string;
+  foodPrice: number;
   userId: number;
   date: string;
   day: number;

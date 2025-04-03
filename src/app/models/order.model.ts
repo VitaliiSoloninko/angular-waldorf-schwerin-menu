@@ -6,6 +6,7 @@ export interface Order {
   userId: number;
   date: string;
   day: number;
+  dayName: string;
   week: number;
   month: number;
   year: number;

@@ -30,7 +30,7 @@ export class OrderTableComponent implements OnInit {
     const month = currentDate.month;
     const year = currentDate.year;
     this.userOrderService
-      .getOrdersByUserIdAndCurrentMonth(userId)
+      .getOrdersByUserIdAndMonth(userId, month)
       .subscribe((orders) => {
         this.orders = orders
           .map((order) => ({
@@ -43,8 +43,8 @@ export class OrderTableComponent implements OnInit {
               DateTime.fromFormat(b.date, 'dd.MM.yyyy').toMillis()
           );
         this.totalPrice = this.calculateTotalPrice();
+        console.log(this.orders);
       });
-    console.log(userId);
   }
 
   calculateTotalPrice(): number {
