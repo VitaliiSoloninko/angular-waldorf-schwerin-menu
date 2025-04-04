@@ -87,12 +87,13 @@ export class CartPageComponent implements OnInit {
       ordered: item.order.checked,
     }));
 
-    console.log({ orderItems });
+    //  console.log({ orderItems });
 
     this.orderService.createOrders(orderItems).subscribe(
       (response) => {
         this.clearCart();
         this.modalService.open();
+        // this.router.navigate(['/history']);
       },
       (error) => {
         console.error('Failed to place order:', error);

@@ -17,20 +17,26 @@
       *ngFor="let cartItem of cart.items"
       [ngClass]="{ 'item-cancel': cartItem.order.foodPrice < 0 }"
     >
-      <div>{{ cartItem.order.date }}</div>
-      <div class="food-name">{{ cartItem.order.foodName }}</div>
-      <div class="food-price">
-        {{ cartItem.order.foodPrice | currency : "EUR" }}
+      <div class="food-left">
+        <div>{{ cartItem.order.date }}</div>
+        <div>{{ cartItem.order.dayName }}</div>
       </div>
-      <div>
-        <button class="icon" (click)="removeFromCart(cartItem)">
-          <lucide-icon
-            [img]="trash2"
-            color="var(--red-color)"
-            [size]="18"
-            class="my-icon"
-          ></lucide-icon>
-        </button>
+
+      <div class="food-right">
+        <div class="food-name">{{ cartItem.order.foodName }}</div>
+        <div class="food-price">
+          {{ cartItem.order.foodPrice | currency : "EUR" }}
+        </div>
+        <div>
+          <button class="icon" (click)="removeFromCart(cartItem)">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -52,6 +52,22 @@ span {
   background-color: rgb(245, 101, 101, 0.2);
 }
 
+.food-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @media (max-width: $mobile) {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+}
+
+.food-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .item-right {
   display: flex;
   justify-content: center;
