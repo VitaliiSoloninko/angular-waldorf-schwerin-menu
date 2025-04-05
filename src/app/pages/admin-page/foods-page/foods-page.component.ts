@@ -16,14 +16,18 @@ export class FoodsPageComponent implements OnInit {
   pencil: any = Pencil;
   trash2: any = Trash2;
   fileText: any = FileText;
+  foods: Food[] = [];
 
   constructor(private foodService: FoodService, private router: Router) {}
 
-  foods: Food[] = [];
-
   ngOnInit(): void {
-    this.foodService.getAllFoods().subscribe((data) => {
-      this.foods = data;
+    this.foodService.getAllFoods().subscribe((val) => {
+      this.foods = val.sort((a, b) => {
+        if (a.week === b.week) {
+          return a.day - b.day;
+        }
+        return a.week - b.week;
+      });
     });
   }
 
