@@ -142,25 +142,17 @@ export class MenuPageComponent implements OnInit {
   }
 
   updateCurrentWeekFoodItems(): void {
-    const firstWeekOfYear = DateTime.local().startOf('year').startOf('week');
-    const weekStartDate = firstWeekOfYear.plus({
-      weeks: this.currentWeekNumber - 1,
-    });
-
     this.currentWeekFoodItems = this.foodItems
-      .filter((food, index) => {
-        const weekNumber = Math.floor(index / 5) + 1;
+      .filter((food) => {
         return (
-          (weekNumber % 2 === 0 && this.currentWeekNumber % 2 === 0) ||
-          (weekNumber % 2 !== 0 && this.currentWeekNumber % 2 !== 0)
+          (this.currentWeekNumber % 2 === 0 && food.week % 2 === 0) ||
+          (this.currentWeekNumber % 2 !== 0 && food.week % 2 !== 0)
         );
       })
-      .map((food, index) => {
-        food.date = weekStartDate
-          .plus({ days: index % 5 })
-          .toFormat('dd.MM.yyyy');
-        return food;
+      .sort((a, b) => {
+        return a.day - b.day;
       });
+    console.log(this.currentWeekFoodItems);
   }
 
   onWeekChanged(weekNumber: number): void {
@@ -220,4 +212,7 @@ export class MenuPageComponent implements OnInit {
   onColorSchemeChanged(newColorScheme: string[]): void {
     this.currentColorScheme = newColorScheme;
   }
+}
+function sort(arg0: (a: any, b: any) => number) {
+  throw new Error('Function not implemented.');
 }
