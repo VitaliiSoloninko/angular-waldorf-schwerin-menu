@@ -19,7 +19,7 @@ export class SidebarComponent {
     {
       routerLink: 'orders',
       icon: 'assets/svg/calendar.svg',
-      linkText: 'Heute bestellt',
+      linkText: 'Bestellungen',
     },
     {
       routerLink: 'users',

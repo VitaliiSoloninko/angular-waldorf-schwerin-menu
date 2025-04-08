@@ -152,6 +152,9 @@ export class MenuPageComponent implements OnInit {
       .sort((a, b) => {
         return a.day - b.day;
       });
+
+    this.menuStateService.setFoodItems(this.foodItems);
+
     console.log(this.currentWeekFoodItems);
   }
 
@@ -212,7 +215,4 @@ export class MenuPageComponent implements OnInit {
   onColorSchemeChanged(newColorScheme: string[]): void {
     this.currentColorScheme = newColorScheme;
   }
-}
-function sort(arg0: (a: any, b: any) => number) {
-  throw new Error('Function not implemented.');
 }

@@ -1,3 +1,7 @@
+<div class="mb16">
+  <app-title [prefix]="'Anzahl'" [name]="' der Bestellungen'" class="center" />
+</div>
+
 <div class="items mb16">
   <div class="item">
     <div class="item-title">
@@ -5,7 +9,7 @@
     </div>
     <div class="food-item__title">
       <div class="food-name">Menge</div>
-      <div class="food-price">20</div>
+      <div class="food-price">{{ getOrderCounts().today }}</div>
     </div>
   </div>
 
@@ -15,51 +19,70 @@
     </div>
     <div class="food-item__title">
       <div class="food-name">Menge</div>
-      <div class="food-price">20</div>
+      <div class="food-price">{{ getOrderCounts().tomorrow }}</div>
     </div>
   </div>
 
   <div class="item">
     <div class="item-title">
-      <div>Diese Woche</div>
+      <div>Übermorgen</div>
     </div>
     <div class="food-item__title">
       <div class="food-name">Menge</div>
-      <div class="food-price">250</div>
-    </div>
-  </div>
-
-  <div class="item">
-    <div class="item-title">
-      <div>Nächste Woche</div>
-    </div>
-    <div class="food-item__title">
-      <div class="food-name">Menge</div>
-      <div class="food-price">250</div>
+      <div class="food-price">{{ getOrderCounts().tomorrow }}</div>
     </div>
   </div>
 </div>
 
 <app-title [prefix]="'Heute'" [name]="' bestellt'" class="center" />
-<div class="table-body">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Class</th>
-        <th scope="col">Letter</th>
-        <th scope="col">Kind</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.date }}</td>
-        <td>{{ getUser(order.userId)?.class }}</td>
-        <td>{{ getUser(order.userId)?.letter }}</td>
-        <td>{{ getUser(order.userId)?.firstNameChild }}</td>
-        <td>{{ getUser(order.userId)?.lastNameChild }}</td>
-      </tr>
-    </tbody>
-  </table>
+
+<div
+  *ngFor="let group of getGroupedOrders() | keyvalue"
+  class="table-container"
+>
+  <h3 class="table-header">
+    {{
+      group.key === "No Class"
+        ? "No Class"
+        : group.key === "Teachers"
+        ? "Teachers"
+        : "Class " + group.key
+    }}
+  </h3>
+  <div class="table-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Vorname Kind</th>
+          <th scope="col">Nachname Kind</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Klasse</th>
+          <th scope="col"></th>
+          <th scope="col">Datum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of group.value">
+          <td>
+            {{
+              group.key === "Teachers"
+                ? getUser(order.userId)?.firstName
+                : getUser(order.userId)?.firstNameChild
+            }}
+          </td>
+          <td>
+            {{
+              group.key === "Teachers"
+                ? getUser(order.userId)?.lastName
+                : getUser(order.userId)?.lastNameChild
+            }}
+          </td>
+          <td>{{ getUser(order.userId)?.class }}</td>
+          <td>{{ getUser(order.userId)?.class }}</td>
+          <td>{{ getUser(order.userId)?.letter }}</td>
+          <td>{{ order.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

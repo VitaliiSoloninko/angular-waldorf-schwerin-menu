@@ -7,9 +7,7 @@
 <div class="container">
   <app-title [prefix]="'Waren'" [name]="'korb'" class="mb16" />
 
-  <p class="mb16 subtitle">
-    Das gesamte Essen, das Sie bestellt haben, ist hier.
-  </p>
+  <p class="mb16 subtitle">Hier finden Sie Ihre Bestellungen</p>
 
   <div class="items mb16">
     <div
@@ -47,11 +45,13 @@
   </p>
 
   <p class="mb16 text">
-    Bestellpreis ist
+    Gesamtpreis
     <span>{{ cart.totalPrice | currency : "EUR" }}</span>
   </p>
 
-  <button class="btn btn-cancel mb16" (click)="clearCart()">Absagen</button>
+  <button class="btn btn-cancel mb16" (click)="clearCart()">
+    Alles löschen
+  </button>
   <button class="btn mb72" (click)="placeOrder()">Bestellen</button>
 </div>
 

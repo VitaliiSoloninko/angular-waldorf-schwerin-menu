@@ -27,10 +27,12 @@ span {
 }
 
 .items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   @media (max-width: $mobile) {
-    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
 

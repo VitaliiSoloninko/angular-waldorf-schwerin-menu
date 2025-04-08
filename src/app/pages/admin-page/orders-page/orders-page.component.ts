@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -12,7 +12,13 @@ import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-orders-page',
-  imports: [TitleComponent, NgFor, RouterLink, LucideAngularModule],
+  imports: [
+    TitleComponent,
+    NgFor,
+    RouterLink,
+    LucideAngularModule,
+    CommonModule,
+  ],
   templateUrl: './orders-page.component.html',
   styleUrl: './orders-page.component.scss',
 })
@@ -37,7 +43,6 @@ export class OrdersPageComponent implements OnInit {
       forkJoin(userIds.map((id) => this.userService.getUserById(id))).subscribe(
         (users) => {
           this.users = users;
-          this.sortOrders();
         }
       );
     });
@@ -47,27 +52,49 @@ export class OrdersPageComponent implements OnInit {
     return this.users.find((user) => user.id === userId);
   }
 
-  sortOrders(): void {
-    this.orders.sort((a, b) => {
-      const userA = this.getUser(a.userId);
-      const userB = this.getUser(b.userId);
+  getGroupedOrders(): { [key: string]: Order[] } {
+    const groupedOrders: { [key: string]: Order[] } = {
+      Teachers: [], // Separate group for teachers
+    };
 
-      // Handle cases where class or letter is missing
-      if (!userA?.class && !userB?.class) return 0;
-      if (!userA?.class) return -1;
-      if (!userB?.class) return 1;
+    this.orders.forEach((order) => {
+      const user = this.getUser(order.userId);
 
-      // Compare class numerically
-      const classComparison =
-        parseInt(userA.class, 10) - parseInt(userB.class, 10);
-      if (classComparison !== 0) return classComparison;
+      if (!user?.firstNameChild || !user?.lastNameChild) {
+        // If no child's name, add to the "Teachers" group
+        groupedOrders.Teachers.push(order);
+      } else {
+        // Otherwise, group by class and letter
+        const groupKey =
+          user?.class && user?.letter
+            ? `${user.class}${user.letter}`
+            : 'No Class';
 
-      // Compare letter alphabetically
-      if (!userA.letter && !userB.letter) return 0;
-      if (!userA.letter) return -1;
-      if (!userB.letter) return 1;
+        if (!groupedOrders[groupKey]) {
+          groupedOrders[groupKey] = [];
+        }
 
-      return userA.letter.localeCompare(userB.letter);
+        groupedOrders[groupKey].push(order);
+      }
     });
+
+    return groupedOrders;
+  }
+
+  getOrderCounts(): { today: number; tomorrow: number } {
+    const today = DateTime.now().toISODate();
+    const tomorrow = DateTime.now().plus({ days: 1 }).toISODate();
+
+    const todayCount = this.orders.filter(
+      (order) => order.date === today
+    ).length;
+    const tomorrowCount = this.orders.filter(
+      (order) => order.date === tomorrow
+    ).length;
+
+    return {
+      today: todayCount,
+      tomorrow: tomorrowCount,
+    };
   }
 }
