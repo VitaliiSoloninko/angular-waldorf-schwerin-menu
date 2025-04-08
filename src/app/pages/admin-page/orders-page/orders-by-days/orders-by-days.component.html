@@ -1,0 +1,25 @@
+<div class="mb16">
+  <app-title [prefix]="'Bestellen'" [name]="'anzahl'" class="center" />
+</div>
+
+<div class="items mb16">
+  <div class="item">
+    <div class="item-title">
+      <div>Heute</div>
+    </div>
+    <div class="food-item__title">
+      <div class="food-name">Menge</div>
+      <div class="food-price">{{ getOrderCounts().today }}</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">
+      <div>Morgen</div>
+    </div>
+    <div class="food-item__title">
+      <div class="food-name">Menge</div>
+      <div class="food-price">{{ getOrderCounts().tomorrow }}</div>
+    </div>
+  </div>
+</div>
