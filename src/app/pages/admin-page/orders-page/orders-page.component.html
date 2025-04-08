@@ -1,25 +1,51 @@
 <app-orders-by-days></app-orders-by-days>
 
 <app-title [prefix]="'Heute'" [name]="' bestellt'" class="center" />
+<h3 class="table-header">Teachers</h3>
 <div class="table-body">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Vorname Kind</th>
         <th scope="col">Nachname Kind</th>
-        <th scope="col">Klasse</th>
-        <th scope="col"></th>
         <th scope="col">Menu</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let merged of mergedOrders">
-        <td>{{ merged.user.firstNameChild }}</td>
-        <td>{{ merged.user.firstNameChild }}</td>
-        <td>{{ merged.user.class }}</td>
-        <td>{{ merged.user.letter }}</td>
-        <td>{{ merged.order.foodName }}</td>
+      <tr *ngFor="let teacher of groupedData.teachers">
+        <td>{{ teacher.user.firstName }}</td>
+        <td>{{ teacher.user.firstName }}</td>
+        <td>{{ teacher.order.foodName }}</td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div
+  *ngFor="let group of groupedData.classes | keyvalue"
+  class="table-container"
+>
+  <h3 class="table-header">Class {{ group.key }}</h3>
+  <div class="table-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Vorname Kind</th>
+          <th scope="col">Nachname Kind</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Klasse</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of group.value">
+          <td>{{ student.user.firstNameChild }}</td>
+          <td>{{ student.user.lastNameChild }}</td>
+          <td>{{ student.order.foodName }}</td>
+          <td>{{ student.user.class }}</td>
+          <td>{{ student.user.letter }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

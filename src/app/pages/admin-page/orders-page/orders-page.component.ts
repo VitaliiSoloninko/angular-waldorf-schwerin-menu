@@ -32,6 +32,13 @@ export class OrdersPageComponent implements OnInit {
   orders: Order[] = [];
   users: User[] = [];
   mergedOrders: { order: Order; user: User }[] = [];
+  groupedData: {
+    teachers: { order: Order; user: User }[];
+    classes: { [key: string]: { order: Order; user: User }[] };
+  } = {
+    teachers: [],
+    classes: {},
+  };
 
   ngOnInit(): void {
     const today = DateTime.now().toISODate();
@@ -57,32 +64,37 @@ export class OrdersPageComponent implements OnInit {
             }
             return { order, user };
           });
+
+          // Group the data into teachers and classes
+          this.groupedData = this.groupOrders(this.mergedOrders);
         }
       );
     });
   }
 
-  // sortOrders(): void {
-  //   this.orders.sort((a, b) => {
-  //     const userA = this.getUser(a.userId);
-  //     const userB = this.getUser(b.userId);
+  groupOrders(mergedOrders: { order: Order; user: User }[]): {
+    teachers: { order: Order; user: User }[];
+    classes: { [key: string]: { order: Order; user: User }[] };
+  } {
+    const teachers: { order: Order; user: User }[] = [];
+    const classes: { [key: string]: { order: Order; user: User }[] } = {};
 
-  //     // Handle cases where class or letter is missing
-  //     if (!userA?.class && !userB?.class) return 0;
-  //     if (!userA?.class) return -1;
-  //     if (!userB?.class) return 1;
+    mergedOrders.forEach((merged) => {
+      const { user } = merged;
 
-  //     // Compare class numerically
-  //     const classComparison =
-  //       parseInt(userA.class, 10) - parseInt(userB.class, 10);
-  //     if (classComparison !== 0) return classComparison;
+      if (!user.firstNameChild || !user.lastNameChild) {
+        // If no child's name, add to teachers
+        teachers.push(merged);
+      } else {
+        // Group by class and letter
+        const groupKey = `${user.class}${user.letter}`;
+        if (!classes[groupKey]) {
+          classes[groupKey] = [];
+        }
+        classes[groupKey].push(merged);
+      }
+    });
 
-  //     // Compare letter alphabetically
-  //     if (!userA.letter && !userB.letter) return 0;
-  //     if (!userA.letter) return -1;
-  //     if (!userB.letter) return 1;
-
-  //     return userA.letter.localeCompare(userB.letter);
-  //   });
-  // }
+    return { teachers, classes };
+  }
 }
