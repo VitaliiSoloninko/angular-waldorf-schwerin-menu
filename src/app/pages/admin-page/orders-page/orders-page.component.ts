@@ -82,7 +82,7 @@ export class OrdersPageComponent implements OnInit {
     mergedOrders.forEach((merged) => {
       const { user } = merged;
 
-      if (!user.firstNameChild || !user.lastNameChild) {
+      if (!user.firstNameChild) {
         // If no child's name, add to teachers
         teachers.push(merged);
       } else {
@@ -94,7 +94,6 @@ export class OrdersPageComponent implements OnInit {
         classes[groupKey].push(merged);
       }
     });
-
     return { teachers, classes };
   }
 }
