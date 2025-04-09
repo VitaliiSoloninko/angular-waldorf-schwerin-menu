@@ -2,6 +2,14 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .title {
   @media (max-width: $mobile) {
     display: none;

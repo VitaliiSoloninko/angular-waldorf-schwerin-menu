@@ -19,6 +19,7 @@ $mobileSmall: 479.98px;
   --main-dark-color: #177417;
   --red-color: #f56565;
   --orange-color: #f29401;
+  --orange-hover-color: #ff9d00;
   --yellow-color: #f3c501;
   --red-hover-color: #ef4b4b;
   --dark-color: #263238;
@@ -86,6 +87,14 @@ body {
   &:hover,
   &:focus-visible {
     background-color: var(--red-hover-color);
+  }
+}
+
+.btn-orange {
+  background-color: var(--orange-color);
+  &:hover,
+  &:focus-visible {
+    background-color: var(--orange-hover-color);
   }
 }
 

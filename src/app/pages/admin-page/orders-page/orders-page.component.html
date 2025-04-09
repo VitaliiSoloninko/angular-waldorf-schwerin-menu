@@ -1,6 +1,11 @@
 <app-orders-by-days></app-orders-by-days>
 
-<app-title [prefix]="'Heute'" [name]="' bestellt'" class="center" />
+<div class="header">
+  <app-title [prefix]="'Heute'" [name]="' bestellt'" class="center" />
+  <button class="btn btn-orange" (click)="exportToPDF()">
+    Als PDF speichern
+  </button>
+</div>
 <h3 class="table-header h4 center mt16">Lehrer/in</h3>
 <div class="table-body">
   <table class="table">

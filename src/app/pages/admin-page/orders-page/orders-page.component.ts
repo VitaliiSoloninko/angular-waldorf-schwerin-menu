@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { LucideAngularModule } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { forkJoin } from 'rxjs';
@@ -95,5 +97,56 @@ export class OrdersPageComponent implements OnInit {
       }
     });
     return { teachers, classes };
+  }
+
+  exportToPDF(): void {
+    const doc = new jsPDF();
+    const today = DateTime.now().toFormat('d.MM.yyyy');
+    const todayISO = DateTime.now().toISODate();
+
+    console.log(todayISO);
+
+    // Add title
+    doc.text(`Bestellung ${today}`, 14, 10);
+
+    // Teachers Table
+    if (this.groupedData.teachers.length > 0) {
+      autoTable(doc, {
+        head: [['First Name', 'Last Name', 'Menu Name']],
+        body: this.groupedData.teachers.map((teacher) => [
+          teacher.user.firstName,
+          teacher.user.lastName,
+          teacher.order.foodName,
+        ]),
+        startY: 20,
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] },
+      });
+    }
+    // Class-Based Tables
+    Object.keys(this.groupedData.classes).forEach((classKey, index) => {
+      const startY = (doc as any).lastAutoTable
+        ? (doc as any).lastAutoTable.finalY + 10
+        : 20;
+
+      doc.text(`Class ${classKey}`, 14, startY);
+
+      autoTable(doc, {
+        head: [['First Name', 'Last Name', 'Menu Name', 'Class', 'Letter']],
+        body: this.groupedData.classes[classKey].map((student) => [
+          student.user.firstNameChild,
+          student.user.lastNameChild,
+          student.order.foodName,
+          student.user.class,
+          student.user.letter,
+        ]),
+        startY: startY + 5,
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] },
+      });
+    });
+
+    // Save the PDF
+    doc.save(`${todayISO} Bestellung.pdf`);
   }
 }
