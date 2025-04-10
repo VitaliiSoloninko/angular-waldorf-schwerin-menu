@@ -7,26 +7,26 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" class="name">E-Mail</th>
         <th scope="col">Vorname</th>
         <th scope="col">Nachname</th>
         <th scope="col">Vorname Kind</th>
         <th scope="col">Nachname Kind</th>
+        <th scope="col" class="name">E-Mail</th>
         <th scope="col">Straße</th>
         <th scope="col">№</th>
         <th scope="col">PLZ</th>
         <th scope="col">Schule</th>
         <th scope="col">Klasse</th>
-        <th scope="col">Bearbeiten</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.email }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.firstNameChild }}</td>
         <td>{{ user.lastNameChild }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.street }}</td>
         <td>{{ user.number }}</td>
         <td>{{ user.postalCode }}</td>
@@ -53,14 +53,14 @@
               ></lucide-icon>
             </button> -->
 
-            <!-- <button type="button">
+            <button type="button">
               <lucide-icon
                 [img]="fileText"
                 color="var(--main-color)"
                 [size]="18"
                 class="my-icon"
               ></lucide-icon>
-            </button> -->
+            </button>
           </div>
         </td>
       </tr>
