@@ -1,0 +1,40 @@
+table {
+  max-width: 50rem;
+  margin: 0.3rem auto;
+  padding: 0.5rem;
+  table-layout: fixed;
+  border-spacing: 1rem;
+  text-align: right;
+}
+
+table thead {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.8rem;
+  color: #222;
+}
+
+table tbody {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+span {
+  color: var(--main-color);
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}

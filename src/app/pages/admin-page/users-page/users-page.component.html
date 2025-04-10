@@ -53,7 +53,10 @@
               ></lucide-icon>
             </button> -->
 
-            <button type="button">
+            <button
+              type="button"
+              (click)="user && goToUserMonthOrders(user.id)"
+            >
               <lucide-icon
                 [img]="fileText"
                 color="var(--main-color)"

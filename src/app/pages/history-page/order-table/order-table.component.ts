@@ -29,6 +29,7 @@ export class OrderTableComponent implements OnInit {
     const currentDate = DateTime.now();
     const month = currentDate.month;
     const year = currentDate.year;
+
     this.userOrderService
       .getOrdersByUserIdAndMonth(userId, month)
       .subscribe((orders) => {

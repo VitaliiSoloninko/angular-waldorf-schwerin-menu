@@ -38,4 +38,8 @@ export class UsersPageComponent implements OnInit {
       },
     });
   }
+
+  goToUserMonthOrders(userId: number): void {
+    this.router.navigate(['/admin/user-month-orders', userId]);
+  }
 }
