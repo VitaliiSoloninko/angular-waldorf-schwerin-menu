@@ -9,6 +9,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
+import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 function equalValues(controlName1: string, controlName2: string) {
   return (control: AbstractControl) => {
@@ -24,7 +25,7 @@ function equalValues(controlName1: string, controlName2: string) {
 
 @Component({
   selector: 'app-registration-page',
-  imports: [ReactiveFormsModule, RouterLink, BgLogoComponent],
+  imports: [ReactiveFormsModule, RouterLink, BgLogoComponent, SvgIconComponent],
   templateUrl: './registration-page.component.html',
   styleUrl: './registration-page.component.scss',
 })

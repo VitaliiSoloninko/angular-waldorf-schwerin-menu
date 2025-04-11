@@ -35,3 +35,20 @@ span {
   flex-direction: column;
   gap: 10px;
 }
+
+.password-input {
+  position: relative;
+}
+
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: grey;
+  cursor: pointer;
+}
