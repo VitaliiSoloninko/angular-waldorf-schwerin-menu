@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -9,6 +9,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
+import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 function equalValues(controlName1: string, controlName2: string) {
   return (control: AbstractControl) => {
@@ -24,12 +25,14 @@ function equalValues(controlName1: string, controlName2: string) {
 
 @Component({
   selector: 'app-registration-teacher-page',
-  imports: [ReactiveFormsModule, RouterLink, BgLogoComponent],
+  imports: [ReactiveFormsModule, RouterLink, BgLogoComponent, SvgIconComponent],
   templateUrl: './registration-teacher-page.component.html',
   styleUrl: './registration-teacher-page.component.scss',
 })
 export class RegistrationTeacherPageComponent {
   constructor(private router: Router, private userService: UserService) {}
+
+  isPasswordVisible = signal<boolean>(false);
 
   form = new FormGroup({
     email: new FormControl('', {

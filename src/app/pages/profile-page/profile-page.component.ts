@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CreateUser } from '../../models/create-user.model';
 import { UserService } from '../../services/user.service';
+import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, SvgIconComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
@@ -28,6 +29,7 @@ export class ProfilePageComponent implements OnInit {
   };
 
   userId: number | null = null;
+  isPasswordVisible = signal<boolean>(false);
 
   constructor(
     private userService: UserService,
