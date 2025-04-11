@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -31,6 +31,8 @@ function equalValues(controlName1: string, controlName2: string) {
 })
 export class RegistrationPageComponent {
   constructor(private router: Router, private userService: UserService) {}
+
+  isPasswordVisible = signal<boolean>(false);
 
   form = new FormGroup({
     email: new FormControl('', {
