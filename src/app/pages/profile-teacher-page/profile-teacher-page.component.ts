@@ -6,12 +6,12 @@ import { UserService } from '../../services/user.service';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 @Component({
-  selector: 'app-profile-page',
+  selector: 'app-profile-teacher-page',
   imports: [FormsModule, RouterLink, SvgIconComponent],
-  templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss',
+  templateUrl: './profile-teacher-page.component.html',
+  styleUrl: './profile-teacher-page.component.scss',
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfileTeacherPageComponent implements OnInit {
   formData: CreateUser = {
     email: '',
     passwords: '',
@@ -41,10 +41,6 @@ export class ProfilePageComponent implements OnInit {
     if (this.userId) {
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.formData = { ...user, passwords: user.password };
-
-        if (this.formData.class === '') {
-          this.router.navigate(['/profile-teacher/' + this.userId]);
-        }
       });
     }
   }

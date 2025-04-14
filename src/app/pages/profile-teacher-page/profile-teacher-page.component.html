@@ -2,7 +2,7 @@
   <form (ngSubmit)="save()" #foodForm="ngForm">
     <div class="form">
       <div class="form-main-column personal-data">
-        <h3 class="h3 center">Persönliche Daten<span> (Eltern)</span></h3>
+        <h3 class="h3 center">Persönliche Daten <span>(Lehrer/in)</span></h3>
         <div class="control user-email">
           <label for="email">E-Mail</label>
           <input
@@ -13,6 +13,7 @@
             id="txtEmail"
           />
         </div>
+
         <div class="form-two-column user-names">
           <div class="control first-name">
             <label for="first-name">Vorname</label>
@@ -32,31 +33,6 @@
               [(ngModel)]="formData.lastName"
               class="form-control"
               id="txtLastName"
-            />
-          </div>
-        </div>
-        <div class="mt16">
-          <h3 class="h3 center">Kinderdaten</h3>
-        </div>
-        <div class="form-two-column user-names-child">
-          <div class="control">
-            <label for="first-name">Vorname des Kindes</label>
-            <input
-              type="text"
-              name="first-name"
-              [(ngModel)]="formData.firstNameChild"
-              class="form-control"
-              id="txtFirstNameChild"
-            />
-          </div>
-          <div class="control">
-            <label for="last-name">Nachname des Kindes</label>
-            <input
-              type="text"
-              name="last-name"
-              [(ngModel)]="formData.lastNameChild"
-              class="form-control"
-              id="txtLastNameChild"
             />
           </div>
         </div>
@@ -110,37 +86,16 @@
               />
             </div>
           </div>
-        </div>
-        <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
-        <div class="drop-down-list">
-          <div class="form-three-column">
-            <div class="control school">
-              <input
-                type="text"
-                name="school"
-                [(ngModel)]="formData.school"
-                class="form-control"
-                id="txtSchool"
-              />
-            </div>
-            <div class="control class">
-              <input
-                type="text"
-                name="class"
-                [(ngModel)]="formData.class"
-                class="form-control"
-                id="txtClass"
-              />
-            </div>
-            <div class="control letter">
-              <input
-                type="text"
-                name="letter"
-                [(ngModel)]="formData.letter"
-                class="form-control"
-                id="txtLetter"
-              />
-            </div>
+
+          <div class="control school">
+            <label for="street">Schule</label>
+            <input
+              type="text"
+              name="school"
+              [(ngModel)]="formData.school"
+              class="form-control"
+              id="txtSchool"
+            />
           </div>
         </div>
       </div>
