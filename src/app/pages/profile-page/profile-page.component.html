@@ -2,7 +2,7 @@
   <form (ngSubmit)="save()" #foodForm="ngForm">
     <div class="form">
       <div class="form-main-column personal-data">
-        <h3 class="h3 center">Persönliche Daten<span> (Eltern)</span></h3>
+        <h3 class="h3 center"><span>Eltern</span> Daten</h3>
         <div class="control user-email">
           <label for="email">E-Mail</label>
           <input
@@ -35,8 +35,8 @@
             />
           </div>
         </div>
-        <div class="mt16">
-          <h3 class="h3 center">Kinderdaten</h3>
+        <div class="mt16 mb16">
+          <h3 class="h3 center"><span>Kinder</span> daten</h3>
         </div>
         <div class="form-two-column user-names-child">
           <div class="control">
@@ -115,24 +115,37 @@
         <div class="drop-down-list">
           <div class="form-three-column">
             <div class="control school">
-              <input
-                type="text"
+              <label for="school">Schule</label>
+              <select
                 name="school"
                 [(ngModel)]="formData.school"
                 class="form-control"
                 id="txtSchool"
-              />
+              >
+                <option [value]="formData.school">{{ formData.school }}</option>
+                <option *ngFor="let school of schools" [value]="school">
+                  {{ school }}
+                </option>
+              </select>
             </div>
             <div class="control class">
-              <input
-                type="text"
-                name="class"
+              <label for="class">Klasse</label>
+              <select
                 [(ngModel)]="formData.class"
                 class="form-control"
+                name="class"
                 id="txtClass"
-              />
+              >
+                <option [value]="formData.class">{{ formData.class }}</option>
+                <option
+                  *ngFor="let classOption of classes"
+                  [value]="classOption"
+                >
+                  {{ classOption }}
+                </option>
+              </select>
             </div>
-            <div class="control letter">
+            <!-- <div class="control letter">
               <input
                 type="text"
                 name="letter"
@@ -140,7 +153,7 @@
                 class="form-control"
                 id="txtLetter"
               />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

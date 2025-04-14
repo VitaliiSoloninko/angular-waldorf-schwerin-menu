@@ -71,9 +71,7 @@ export class RegistrationPageComponent {
     class: new FormControl<'1' | '2' | '3' | '4'>('1', {
       validators: [Validators.required],
     }),
-    letter: new FormControl<'A' | 'B' | 'C'>('A', {
-      validators: [Validators.required],
-    }),
+    letter: new FormControl<'' | 'A' | 'B' | 'C'>('', {}),
   });
 
   get emailIsInvalid() {

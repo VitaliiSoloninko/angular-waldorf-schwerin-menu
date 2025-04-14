@@ -18,7 +18,7 @@
   <form [formGroup]="form" (ngSubmit)="createNewUser()">
     <div class="form">
       <div class="form-main-column personal-data">
-        <h3 class="h3 center">Persönliche Daten</h3>
+        <h3 class="h3 center"><span>Elterns</span> Daten</h3>
         <div class="control user-email">
           <label for="email">E-Mail</label>
           <input
@@ -71,6 +71,11 @@
               formControlName="lastName"
             />
           </div>
+        </div>
+        <div>
+          <h3 class="h3 center mt16">
+            <span>Kinders</span> Daten <span></span>
+          </h3>
         </div>
         <div class="form-two-column user-names-child">
           <div class="control">
@@ -150,13 +155,13 @@
                 <option value="4">4</option>
               </select>
             </div>
-            <div class="control letter">
+            <!-- <div class="control letter">
               <select id="letter" name="letter" formControlName="letter">
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
               </select>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

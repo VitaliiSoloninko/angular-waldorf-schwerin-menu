@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -7,7 +8,7 @@ import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [FormsModule, RouterLink, SvgIconComponent],
+  imports: [FormsModule, RouterLink, SvgIconComponent, CommonModule],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
@@ -35,6 +36,9 @@ export class ProfilePageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+
+  schools: string[] = ['Waldorf'];
+  classes: number[] = [1, 2, 3, 4];
 
   ngOnInit(): void {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));
