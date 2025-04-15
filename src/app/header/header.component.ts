@@ -1,6 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
 import { CartService } from '../services/cart.service';
 import { LoginService } from '../services/login.service';
@@ -33,15 +33,12 @@ export class HeaderComponent implements OnInit {
       name: 'Kontakte',
       link: 'contact',
     },
-    {
-      name: 'Admin',
-      link: 'admin',
-    },
   ];
 
   constructor(
     private loginService: LoginService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {
     loginService.userObservable.subscribe((newUser) => {
       this.user = newUser;
@@ -56,5 +53,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+  }
+
+  goToAdmin() {
+    this.router.navigate(['admin']);
   }
 }

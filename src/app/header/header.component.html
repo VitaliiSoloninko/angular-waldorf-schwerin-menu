@@ -18,6 +18,9 @@
       </nav>
     </div>
     <div class="header__actions">
+      <button class="btn-small-super btn-orange" (click)="goToAdmin()">
+        Admin
+      </button>
       <div *ngIf="!user.firstName">
         <a routerLink="/login" class="header__button">Login</a>
       </div>

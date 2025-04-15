@@ -82,6 +82,13 @@ body {
   }
 }
 
+.btn-small-super {
+  width: fit-content;
+  padding: 0.7rem 1rem;
+  font-family: inherit;
+  border-radius: 8px;
+}
+
 .btn-cancel {
   background-color: var(--red-color);
   &:hover,
