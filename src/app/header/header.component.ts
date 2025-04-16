@@ -56,6 +56,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goToAdmin() {
-    this.router.navigate(['admin']);
+    this.router.navigate(['admin/orders']);
   }
 }

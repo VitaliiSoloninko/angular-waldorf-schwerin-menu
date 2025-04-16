@@ -53,8 +53,27 @@ export class CartPageComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartObservable().subscribe((newCart) => {
       this.cart = newCart;
+      this.removeExpiredOrders();
     });
     this.userId = this.loginService.getUserId();
+  }
+
+  removeExpiredOrders(): void {
+    const now = DateTime.now();
+    const today = now.startOf('day');
+    const eightAM = today.plus({ hours: 8 });
+
+    this.cart.items = this.cart.items.filter((item) => {
+      const orderDate = DateTime.fromFormat(item.order.date, 'dd.MM.yyyy');
+      const isBeforeToday = orderDate < today;
+      const isTodayAndAfterEightAM = orderDate.equals(today) && now >= eightAM;
+
+      if (isBeforeToday || isTodayAndAfterEightAM) {
+        return false;
+      }
+
+      return true;
+    });
   }
 
   removeFromCart(cartItem: CartItem) {
