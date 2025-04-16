@@ -49,7 +49,7 @@ export class ProfileTeacherPageComponent implements OnInit {
     if (this.userId) {
       this.userService.updateUser(this.userId, this.formData).subscribe({
         next: () => {
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/menu']);
         },
         error: (er: any) => {
           console.log(er);
