@@ -7,65 +7,55 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Vorname</th>
         <th scope="col">Nachname</th>
-        <th scope="col">Vorname Kind</th>
-        <th scope="col">Nachname Kind</th>
-        <th scope="col" class="name">E-Mail</th>
-        <th scope="col">Straße</th>
-        <th scope="col">№</th>
-        <th scope="col">PLZ</th>
-        <th scope="col">Schule</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Kinder</th>
+        <th scope="col">Daten</th>
         <th scope="col">Klasse</th>
-        <th scope="col"></th>
+        <th scope="col">PDF</th>
+        <th scope="col">Bearbeiten</th>
+        <th scope="col">Löschen</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
-        <td>{{ user.firstNameChild }}</td>
+        <td>{{ user.firstName }}</td>
         <td>{{ user.lastNameChild }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.street }}</td>
-        <td>{{ user.number }}</td>
-        <td>{{ user.postalCode }}</td>
-        <td>
-          {{ user.school }}
-        </td>
+        <td>{{ user.firstNameChild }}</td>
         <td class="center">{{ user.class }} {{ user.letter }}</td>
         <td class="center">
-          <div class="buttons">
-            <button type="button" (click)="editUser(user.id)">
-              <lucide-icon
-                [img]="pencil"
-                color="var(--dark-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
-            </button>
-            <!-- <button type="button" (click)="removeUser(user.id)">
-              <lucide-icon
-                [img]="trash2"
-                color="var(--red-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
-            </button> -->
-
-            <button
-              type="button"
-              (click)="user && goToUserMonthOrders(user.id)"
-            >
-              <lucide-icon
-                [img]="fileText"
-                color="var(--main-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
-            </button>
-          </div>
+          <button type="button" (click)="user && goToUserMonthOrders(user.id)">
+            <lucide-icon
+              [img]="fileText"
+              color="var(--main-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
         </td>
+        <td class="center">
+          <button type="button" (click)="editUser(user.id)">
+            <lucide-icon
+              [img]="pencil"
+              color="var(--dark-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+        <td class="center">
+          <button type="button" (click)="removeUser(user.id)">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+        <td>{{ user.email }}</td>
       </tr>
     </tbody>
   </table>
