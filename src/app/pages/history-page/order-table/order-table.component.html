@@ -1,7 +1,18 @@
+<div class="month-navigation">
+  <button class="btn btn-prev" (click)="goToPreviousMonth()">
+    ← Previous Month
+  </button>
+  <span class="current-month"
+    >{{ currentMonth | date : "MMMM" }} {{ currentYear }}</span
+  >
+  <button class="btn btn-next" (click)="goToNextMonth()">Next Month →</button>
+</div>
+
 @if(!orders.length) {
 <p class="center">Sie haben diesen Monat noch nichts bestellt.</p>
 
 } @else {
+
 <table>
   <thead>
     <tr>

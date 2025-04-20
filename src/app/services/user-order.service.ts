@@ -15,9 +15,9 @@ export class UserOrderService {
     );
   }
 
-  getOrdersByUserIdAndMonth(id: number, month: number) {
+  getOrdersByUserIdAndMonth(id: number, month: number, year: number) {
     return this.http.get<Order[]>(
-      USERS_ORDERS + `/user-orders/${id}/month/${month}`
+      USERS_ORDERS + `/user-orders/${id}/month/${month}/year/${year}`
     );
   }
 

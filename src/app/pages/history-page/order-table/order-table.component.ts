@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Order } from '../../../models/order.model';
@@ -7,7 +7,7 @@ import { UserOrderService } from '../../../services/user-order.service';
 
 @Component({
   selector: 'app-order-table',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, CommonModule],
   templateUrl: './order-table.component.html',
   styleUrl: './order-table.component.scss',
 })
@@ -15,6 +15,8 @@ export class OrderTableComponent implements OnInit {
   orders: Order[] = [];
   totalPrice: number = 0;
   userId: number = 0;
+  currentMonth: number = DateTime.now().month;
+  currentYear: number = DateTime.now().year;
 
   constructor(
     private loginService: LoginService,
@@ -22,16 +24,20 @@ export class OrderTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.loginService.getUserId();
-    if (userId === null) {
+    this.userId = this.loginService.getUserId() ?? 0;
+    if (this.userId === null) {
       return;
     }
-    const currentDate = DateTime.now();
-    const month = currentDate.month;
-    const year = currentDate.year;
+    this.fetchOrders();
+  }
 
+  fetchOrders(): void {
     this.userOrderService
-      .getOrdersByUserIdAndMonth(userId, month)
+      .getOrdersByUserIdAndMonth(
+        this.userId,
+        this.currentMonth,
+        this.currentYear
+      )
       .subscribe((orders) => {
         this.orders = orders
           .map((order) => ({
@@ -50,5 +56,25 @@ export class OrderTableComponent implements OnInit {
 
   calculateTotalPrice(): number {
     return this.orders.reduce((total, order) => total + order.foodPrice, 0);
+  }
+
+  goToNextMonth(): void {
+    if (this.currentMonth === 12) {
+      this.currentMonth = 1;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.fetchOrders();
+  }
+
+  goToPreviousMonth(): void {
+    if (this.currentMonth === 1) {
+      this.currentMonth = 12;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
+    }
+    this.fetchOrders();
   }
 }

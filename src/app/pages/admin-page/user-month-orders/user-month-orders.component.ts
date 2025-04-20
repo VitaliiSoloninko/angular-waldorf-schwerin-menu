@@ -49,7 +49,7 @@ export class UserMonthOrdersComponent implements OnInit {
     const year = currentDate.year;
 
     this.userOrderService
-      .getOrdersByUserIdAndMonth(this.userId, month)
+      .getOrdersByUserIdAndMonth(this.userId, month, year)
       .subscribe((orders) => {
         this.orders = orders
           .map((order) => ({
