@@ -79,6 +79,7 @@ export class RegistrationTeacherPageComponent {
   createNewUser() {
     if (this.form.invalid) {
       console.log('INVALID FORM');
+      return;
     }
     console.log(this.form.value);
     //@ts-ignore

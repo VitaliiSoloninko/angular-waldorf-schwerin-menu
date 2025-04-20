@@ -71,7 +71,7 @@ export class RegistrationPageComponent {
     class: new FormControl<'1' | '2' | '3' | '4'>('1', {
       validators: [Validators.required],
     }),
-    letter: new FormControl<'' | 'A' | 'B' | 'C'>('', {}),
+    // letter: new FormControl<'' | 'A' | 'B' | 'C'>('', {}),
   });
 
   get emailIsInvalid() {
@@ -85,6 +85,7 @@ export class RegistrationPageComponent {
   createNewUser() {
     if (this.form.invalid) {
       console.log('INVALID FORM');
+      return; // Prevent submission if the form is invalid
     }
     console.log(this.form.value);
     //@ts-ignore
