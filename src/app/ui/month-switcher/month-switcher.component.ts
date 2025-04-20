@@ -1,16 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-month-switcher',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './month-switcher.component.html',
   styleUrl: './month-switcher.component.scss',
 })
-export class MonthSwitcherComponent implements OnInit {
-  month: string = '';
+export class MonthSwitcherComponent {
+  currentMonth: number = DateTime.now().month;
+  currentYear: number = DateTime.now().year;
 
-  ngOnInit(): void {
-    this.month = DateTime.now().setLocale('de').toFormat('LLLL yyyy');
+  @Output() monthChanged = new EventEmitter<{ month: number; year: number }>();
+
+  goToNextMonth(): void {
+    if (this.currentMonth === 12) {
+      this.currentMonth = 1;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.emitMonthChange();
+  }
+
+  goToPreviousMonth(): void {
+    if (this.currentMonth === 1) {
+      this.currentMonth = 12;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
+    }
+    this.emitMonthChange();
+  }
+
+  goToCurrentMonth(): void {
+    this.currentMonth = DateTime.now().month;
+    this.currentYear = DateTime.now().year;
+    this.emitMonthChange();
+  }
+
+  private emitMonthChange(): void {
+    this.monthChanged.emit({
+      month: this.currentMonth,
+      year: this.currentYear,
+    });
   }
 }

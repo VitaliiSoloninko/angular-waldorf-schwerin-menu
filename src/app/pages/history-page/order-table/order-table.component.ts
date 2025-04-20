@@ -4,10 +4,11 @@ import { DateTime } from 'luxon';
 import { Order } from '../../../models/order.model';
 import { LoginService } from '../../../services/login.service';
 import { UserOrderService } from '../../../services/user-order.service';
+import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switcher.component';
 
 @Component({
   selector: 'app-order-table',
-  imports: [CurrencyPipe, CommonModule],
+  imports: [CurrencyPipe, CommonModule, MonthSwitcherComponent],
   templateUrl: './order-table.component.html',
   styleUrl: './order-table.component.scss',
 })
@@ -58,23 +59,9 @@ export class OrderTableComponent implements OnInit {
     return this.orders.reduce((total, order) => total + order.foodPrice, 0);
   }
 
-  goToNextMonth(): void {
-    if (this.currentMonth === 12) {
-      this.currentMonth = 1;
-      this.currentYear++;
-    } else {
-      this.currentMonth++;
-    }
-    this.fetchOrders();
-  }
-
-  goToPreviousMonth(): void {
-    if (this.currentMonth === 1) {
-      this.currentMonth = 12;
-      this.currentYear--;
-    } else {
-      this.currentMonth--;
-    }
+  onMonthChanged(event: { month: number; year: number }): void {
+    this.currentMonth = event.month;
+    this.currentYear = event.year;
     this.fetchOrders();
   }
 }
