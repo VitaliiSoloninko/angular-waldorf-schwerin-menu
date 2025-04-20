@@ -18,20 +18,6 @@ export class OrderTableComponent implements OnInit {
   userId: number = 0;
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
-  months: string[] = [
-    'Januar',
-    'Februar',
-    'März',
-    'April',
-    'Mai',
-    'Juni',
-    'Juli',
-    'August',
-    'September',
-    'Oktober',
-    'November',
-    'Dezember',
-  ];
 
   constructor(
     private loginService: LoginService,

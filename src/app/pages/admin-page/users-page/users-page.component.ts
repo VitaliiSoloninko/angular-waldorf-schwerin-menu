@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 
+import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
 
@@ -16,6 +17,9 @@ export class UsersPageComponent implements OnInit {
   fileText: any = FileText;
   trash2: any = Trash2;
   pencil: any = Pencil;
+
+  currentMonth: number = DateTime.now().month;
+  currentYear: number = DateTime.now().year;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -40,6 +44,6 @@ export class UsersPageComponent implements OnInit {
   }
 
   goToUserMonthOrders(userId: number): void {
-    this.router.navigate([`/admin/user/${userId}/month-orders`]);
+    this.router.navigate([`/admin/user/${userId}`]);
   }
 }

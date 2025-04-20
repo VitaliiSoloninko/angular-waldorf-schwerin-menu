@@ -8,10 +8,17 @@ import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
 import { UserOrderService } from '../../../services/user-order.service';
 import { UserService } from '../../../services/user.service';
+import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switcher.component';
+import { OrderTableComponent } from '../../history-page/order-table/order-table.component';
 
 @Component({
   selector: 'app-user-month-orders',
-  imports: [CurrencyPipe, CommonModule],
+  imports: [
+    CurrencyPipe,
+    CommonModule,
+    MonthSwitcherComponent,
+    OrderTableComponent,
+  ],
   templateUrl: './user-month-orders.component.html',
   styleUrl: './user-month-orders.component.scss',
 })
@@ -20,7 +27,12 @@ export class UserMonthOrdersComponent implements OnInit {
   totalPrice: number = 0;
   userId: number = 0;
   userData: User | null = null;
-  currentMonthYear: string = '';
+  currentMonth: number = DateTime.now().month;
+  currentYear: number = DateTime.now().year;
+
+  get currentMonthYear(): string {
+    return `${this.currentMonth}.${this.currentYear}`;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -34,22 +46,19 @@ export class UserMonthOrdersComponent implements OnInit {
       return;
     }
 
-    // Fetch user details
     this.userService.getUserById(this.userId).subscribe((user) => {
       this.userData = user;
-      console.log('User Data:', this.userData);
     });
+    this.fetchOrders();
+  }
 
-    // Set the current month and year
-    this.currentMonthYear = DateTime.now().toFormat('MMMM yyyy');
-
-    // Fetch orders for the current month
-    const currentDate = DateTime.now();
-    const month = currentDate.month;
-    const year = currentDate.year;
-
+  fetchOrders(): void {
     this.userOrderService
-      .getOrdersByUserIdAndMonth(this.userId, month, year)
+      .getOrdersByUserIdAndMonth(
+        this.userId,
+        this.currentMonth,
+        this.currentYear
+      )
       .subscribe((orders) => {
         this.orders = orders
           .map((order) => ({
@@ -68,6 +77,12 @@ export class UserMonthOrdersComponent implements OnInit {
 
   calculateTotalPrice(): number {
     return this.orders.reduce((total, order) => total + order.foodPrice, 0);
+  }
+
+  onMonthChanged(event: { month: number; year: number }): void {
+    this.currentMonth = event.month;
+    this.currentYear = event.year;
+    this.fetchOrders();
   }
 
   exportToPDF(): void {

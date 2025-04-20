@@ -41,7 +41,7 @@ export const routes: Routes = [
       { path: 'statistics', component: StatisticsPageComponent },
       { path: 'settings', component: SettingsPageComponent },
       {
-        path: 'user/:userId/month/:month/year/:year',
+        path: 'user/:userId',
         component: UserMonthOrdersComponent,
       },
     ],
