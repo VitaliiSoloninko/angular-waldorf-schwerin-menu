@@ -1,0 +1,35 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.control {
+  cursor: pointer;
+  background-color: var(--main-color);
+  padding: 6px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease 0s;
+}
+
+.control:hover {
+  background-color: var(--main-hover-color);
+}
+
+.control-text {
+  cursor: pointer;
+  text-align: center;
+}
+
+.control-text:hover {
+  text-decoration: underline;
+}
