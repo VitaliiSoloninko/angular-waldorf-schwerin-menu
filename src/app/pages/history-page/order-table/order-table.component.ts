@@ -18,6 +18,20 @@ export class OrderTableComponent implements OnInit {
   userId: number = 0;
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
+  months: string[] = [
+    'Januar',
+    'Februar',
+    'März',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'August',
+    'September',
+    'Oktober',
+    'November',
+    'Dezember',
+  ];
 
   constructor(
     private loginService: LoginService,
@@ -63,5 +77,14 @@ export class OrderTableComponent implements OnInit {
     this.currentMonth = event.month;
     this.currentYear = event.year;
     this.fetchOrders();
+  }
+
+  getCurrentMonthName(): string {
+    return DateTime.fromObject({
+      month: this.currentMonth,
+      year: this.currentYear,
+    })
+      .setLocale('de')
+      .toFormat('LLLL');
   }
 }
