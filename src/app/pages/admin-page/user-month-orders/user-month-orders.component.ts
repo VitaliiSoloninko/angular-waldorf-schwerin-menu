@@ -26,7 +26,7 @@ export class UserMonthOrdersComponent implements OnInit {
   orders: Order[] = [];
   totalPrice: number = 0;
   userId: number = 0;
-  userData: User | null = null;
+  user: User | null = null;
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
 
@@ -47,7 +47,7 @@ export class UserMonthOrdersComponent implements OnInit {
     }
 
     this.userService.getUserById(this.userId).subscribe((user) => {
-      this.userData = user;
+      this.user = user;
     });
     this.fetchOrders();
   }
@@ -87,29 +87,28 @@ export class UserMonthOrdersComponent implements OnInit {
 
   exportToPDF(): void {
     const doc = new jsPDF();
-    const today = DateTime.now().toFormat('d.MM.yyyy');
-    const todayISO = DateTime.now().toISODate();
+    const month = DateTime.now().toFormat('MM.yyyy');
 
     // Add title
     doc.text(`Bestellungen für ${this.currentMonthYear}`, 14, 10);
 
     // Add user details
-    if (this.userData) {
+    if (this.user) {
       doc.text(
-        `Bestellungen von: ${this.userData.firstNameChild || '-'} ${
-          this.userData.lastNameChild || '-'
+        `Bestellungen von: ${this.user.firstNameChild || '-'} ${
+          this.user.lastNameChild || '-'
         }`,
         14,
         50
       );
 
-      doc.text(`${this.userData.firstName}`, 14, 30);
-      doc.text(`${this.userData.lastName}`, 14, 40);
+      doc.text(`${this.user.firstName}`, 14, 30);
+      doc.text(`${this.user.lastName}`, 14, 40);
 
       doc.text(
-        `${this.userData.street || '-'} ${this.userData.number || '-'}, ${
-          this.userData.postalCode || '-'
-        } ${this.userData.city || '-'}`,
+        `${this.user.street || '-'} ${this.user.number || '-'}, ${
+          this.user.postalCode || '-'
+        } ${this.user.city || '-'}`,
         14,
         70
       );
@@ -140,6 +139,8 @@ export class UserMonthOrdersComponent implements OnInit {
     }
 
     // Save the PDF
-    doc.save(`${todayISO}_Orders.pdf`);
+    doc.save(
+      `${month}_${this.user?.lastName}_${this.user?.firstName}_Waldorf-menu_Rechnung.pdf`
+    );
   }
 }

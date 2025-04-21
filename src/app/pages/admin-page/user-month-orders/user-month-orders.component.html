@@ -6,14 +6,14 @@
 
 <h1 class="h2 center mb16">
   Bestellungen von
-  <span>{{ userData?.firstNameChild }} {{ userData?.lastNameChild }}</span>
+  <span>{{ user?.firstNameChild }} {{ user?.lastNameChild }}</span>
 </h1>
-<p class="center">Ihre Kundennummer: {{ userData?.id }}</p>
+<p class="center">Ihre Kundennummer: {{ user?.id }}</p>
 
 <div class="user-details">
-  <p>{{ userData?.firstName }} {{ userData?.lastName }}</p>
-  <p>{{ userData?.street }} {{ userData?.number }},</p>
-  <p>{{ userData?.postalCode }} {{ userData?.city }}</p>
+  <p>{{ user?.firstName }} {{ user?.lastName }}</p>
+  <p>{{ user?.street }} {{ user?.number }},</p>
+  <p>{{ user?.postalCode }} {{ user?.city }}</p>
 </div>
 
 <app-order-table></app-order-table>

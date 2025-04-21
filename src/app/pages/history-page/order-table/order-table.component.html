@@ -35,8 +35,8 @@
   </tbody>
 </table>
 
-<p class="center mb72">
-  Bestellungen für diesen Monat
+<p class="center mb72 bold">
+  Bestellungen für {{ getCurrentMonthName() }}:
   <span class="bold">{{ totalPrice | currency : "EUR" }}</span>
 </p>
 }
