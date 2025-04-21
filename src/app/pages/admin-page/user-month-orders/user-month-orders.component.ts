@@ -85,9 +85,17 @@ export class UserMonthOrdersComponent implements OnInit {
     this.fetchOrders();
   }
 
+  getCurrentMonthName(): string {
+    return DateTime.fromObject({
+      month: this.currentMonth,
+      year: this.currentYear,
+    })
+      .setLocale('de')
+      .toFormat('LLLL');
+  }
+
   exportToPDF(): void {
     const doc = new jsPDF();
-    const month = DateTime.now().toFormat('MM.yyyy');
 
     // Add title
     doc.text(`Bestellungen für ${this.currentMonthYear}`, 14, 10);
@@ -138,9 +146,13 @@ export class UserMonthOrdersComponent implements OnInit {
       doc.text('No orders found for this month.', 14, 80);
     }
 
+    //
     // Save the PDF
-    doc.save(
-      `${month}_${this.user?.lastName}_${this.user?.firstName}_Waldorf-menu_Rechnung.pdf`
-    );
+    const month = `${this.currentMonth.toString().padStart(2, '0')}.${
+      this.currentYear
+    }`;
+    const userName = `${this.user?.lastName}_${this.user?.firstName}`;
+    const fileName = `${month}_${userName}_Waldorf-menu_Rechnung.pdf`;
+    doc.save(fileName);
   }
 }
