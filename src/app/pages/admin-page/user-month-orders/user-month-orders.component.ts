@@ -87,37 +87,36 @@ export class UserMonthOrdersComponent implements OnInit {
 
   exportToPDF(): void {
     const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
 
-    // Add title
-    doc.text(`Bestellungen für ${this.currentMonthYear}`, 14, 10);
-
-    // Add user details
     if (this.user) {
-      doc.text(
-        `Bestellungen von: ${this.user.firstNameChild || '-'} ${
-          this.user.lastNameChild || '-'
-        }`,
-        14,
-        50
-      );
+      // Title
+      const title = `Bestellung für ${this.user.firstNameChild || '-'} ${
+        this.user.lastNameChild || '-'
+      } für ${this.currentMonthYear}`;
 
-      doc.text(`${this.user.firstName}`, 14, 30);
-      doc.text(`${this.user.lastName}`, 14, 40);
+      const textWidth = doc.getTextWidth(title);
+      const xPosition = (pageWidth - textWidth) / 2;
 
+      doc.text(title, xPosition, 30);
+
+      // Address
+      doc.setFontSize(10);
+      doc.text(`${this.user.firstName} ${this.user.lastName}`, 16, 50);
+      doc.text(`${this.user.street || '-'} ${this.user.number || '-'}`, 16, 55);
       doc.text(
-        `${this.user.street || '-'} ${this.user.number || '-'}, ${
-          this.user.postalCode || '-'
-        } ${this.user.city || '-'}`,
-        14,
-        70
+        `${this.user.postalCode || '-'} ${this.user.city || '-'}`,
+        16,
+        60
       );
     }
-    // Add orders table
+    // Table
     if (this.orders.length > 0) {
       autoTable(doc, {
-        head: [['Datum', 'Menu', 'Menu']],
+        head: [['Datum', 'Wochentag', 'Menu', 'Preis']],
         body: this.orders.map((order) => [
           order.date,
+          order.dayName,
           order.foodName,
           `${order.foodPrice.toFixed(2)} €`,
         ]),
@@ -128,13 +127,17 @@ export class UserMonthOrdersComponent implements OnInit {
 
       // Add total price
       const finalY = (doc as any).lastAutoTable.finalY || 80;
-      doc.text(
-        `Bestellungen: ${this.totalPrice.toFixed(2)} €`,
-        14,
-        finalY + 10
-      );
+
+      const price = `Bestellungen für ${
+        this.currentMonthYear
+      }: ${this.totalPrice.toFixed(2)} €`;
+
+      const textWidth = doc.getTextWidth(price);
+      const xPosition = (pageWidth - textWidth) / 2;
+
+      doc.text(price, xPosition, finalY + 10);
     } else {
-      doc.text('No orders found for this month.', 14, 80);
+      doc.text('No orders found for this month.', 16, 80);
     }
 
     //
