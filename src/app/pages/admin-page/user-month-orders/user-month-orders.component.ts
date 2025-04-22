@@ -85,15 +85,6 @@ export class UserMonthOrdersComponent implements OnInit {
     this.fetchOrders();
   }
 
-  getCurrentMonthName(): string {
-    return DateTime.fromObject({
-      month: this.currentMonth,
-      year: this.currentYear,
-    })
-      .setLocale('de')
-      .toFormat('LLLL');
-  }
-
   exportToPDF(): void {
     const doc = new jsPDF();
 

@@ -1,4 +1,4 @@
-<div class="controls">
+<div class="controls mb16">
   <div class="control" (click)="goToPreviousMonth()">
     <img src="/svg/arrow-left.svg" alt="" />
   </div>
@@ -7,3 +7,8 @@
     <img src="/svg/arrow-right.svg" alt="" />
   </div>
 </div>
+
+<p class="center mb16">
+  Bestellungen für
+  <span class="bold">{{ getCurrentMonthName() }} {{ currentYear }}</span>
+</p>

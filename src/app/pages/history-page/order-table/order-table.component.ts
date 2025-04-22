@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Order } from '../../../models/order.model';
 import { LoginService } from '../../../services/login.service';
@@ -13,11 +13,12 @@ import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switche
   styleUrl: './order-table.component.scss',
 })
 export class OrderTableComponent implements OnInit {
+  @Input() currentMonth!: number;
+  @Input() currentYear!: number;
+
   orders: Order[] = [];
   totalPrice: number = 0;
   userId: number = 0;
-  currentMonth: number = DateTime.now().month;
-  currentYear: number = DateTime.now().year;
 
   constructor(
     private loginService: LoginService,
@@ -30,6 +31,12 @@ export class OrderTableComponent implements OnInit {
       return;
     }
     this.fetchOrders();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['currentMonth'] || changes['currentYear']) {
+      this.fetchOrders();
+    }
   }
 
   fetchOrders(): void {
@@ -57,12 +64,6 @@ export class OrderTableComponent implements OnInit {
 
   calculateTotalPrice(): number {
     return this.orders.reduce((total, order) => total + order.foodPrice, 0);
-  }
-
-  onMonthChanged(event: { month: number; year: number }): void {
-    this.currentMonth = event.month;
-    this.currentYear = event.year;
-    this.fetchOrders();
   }
 
   getCurrentMonthName(): string {

@@ -46,4 +46,13 @@ export class MonthSwitcherComponent {
       year: this.currentYear,
     });
   }
+
+  getCurrentMonthName(): string {
+    return DateTime.fromObject({
+      month: this.currentMonth,
+      year: this.currentYear,
+    })
+      .setLocale('de')
+      .toFormat('LLLL');
+  }
 }

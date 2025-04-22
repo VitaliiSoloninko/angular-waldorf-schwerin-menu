@@ -16,16 +16,11 @@
   <p>{{ user?.postalCode }} {{ user?.city }}</p>
 </div>
 
-<div class="center mb16">
-  PDF Change
-  <app-month-switcher
-    (monthChanged)="onMonthChanged($event)"
-  ></app-month-switcher>
-</div>
+<app-month-switcher
+  (monthChanged)="onMonthChanged($event)"
+></app-month-switcher>
 
-<p class="center mb16">
-  Bestellungen für
-  <span class="bold">{{ getCurrentMonthName() }} {{ currentYear }}</span>
-</p>
-
-<app-order-table></app-order-table>
+<app-order-table
+  [currentMonth]="currentMonth"
+  [currentYear]="currentYear"
+></app-order-table>

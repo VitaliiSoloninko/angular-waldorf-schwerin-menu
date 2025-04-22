@@ -1,15 +1,7 @@
-<div class="mb16">
-  <app-month-switcher (monthChanged)="onMonthChanged($event)" />
-</div>
-
 @if(!orders.length) {
 <p class="center">Sie haben diesen Monat noch nichts bestellt.</p>
 
 } @else {
-<p class="center">
-  Bestellungen für
-  <span class="bold">{{ getCurrentMonthName() }} {{ currentYear }}</span>
-</p>
 
 <table>
   <thead>
