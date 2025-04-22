@@ -6,7 +6,7 @@ import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { UserFiltersComponent } from '../user-filters/user-filters.component';
+import { UserFiltersComponent } from './user-filters/user-filters.component';
 
 @Component({
   selector: 'app-users-page',
