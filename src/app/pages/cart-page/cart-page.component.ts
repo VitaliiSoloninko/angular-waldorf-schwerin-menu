@@ -112,11 +112,16 @@ export class CartPageComponent implements OnInit {
       (response) => {
         this.clearCart();
         this.modalService.open();
-        // this.router.navigate(['/history']);
+        setTimeout(() => {
+          this.router.navigate(['/history']);
+        }, 2000);
       },
       (error) => {
         console.error('Failed to place order:', error);
         this.modalService.open();
+        setTimeout(() => {
+          this.router.navigate(['/history']);
+        }, 2000);
       }
     );
   }
