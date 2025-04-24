@@ -22,6 +22,11 @@ export class SidebarComponent {
       linkText: 'Bestellungen',
     },
     {
+      routerLink: 'month-bills',
+      icon: 'assets/svg/banknote-arrow-up.svg',
+      linkText: 'Rechnungen',
+    },
+    {
       routerLink: 'users',
       icon: 'assets/svg/users.svg',
       linkText: 'Kunden',

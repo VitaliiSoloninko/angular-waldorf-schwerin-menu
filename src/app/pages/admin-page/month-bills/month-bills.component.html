@@ -1,0 +1,55 @@
+<div class="month-bills">
+  <div class="filters mb16">
+    <label for="month">Monat:</label>
+    <select
+      id="month"
+      [(ngModel)]="currentMonth"
+      (change)="onMonthOrYearChange()"
+    >
+      <option *ngFor="let month of months" [value]="month.value">
+        {{ month.name }}
+      </option>
+    </select>
+
+    <label for="year">Jahr:</label>
+    <select
+      id="year"
+      [(ngModel)]="currentYear"
+      (change)="onMonthOrYearChange()"
+    >
+      <option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </option>
+    </select>
+  </div>
+
+  <h2 class="mb16">Rechnungen für {{ currentMonth }}/{{ currentYear }}</h2>
+
+  <div class="statistics mb16">
+    <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
+    <p><strong>Anzahl der Benutzer:</strong> {{ uniqueUsers }}</p>
+  </div>
+
+  <!-- <table *ngIf="bills.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Datum</th>
+        <th>Bestellung</th>
+        <th>Preis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ bill.date }}</td>
+        <td>{{ bill.orderName }}</td>
+        <td>{{ bill.price | currency : "EUR" }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p>Keine Rechnungen für diesen Monat gefunden.</p>
+  </ng-template> -->
+</div>

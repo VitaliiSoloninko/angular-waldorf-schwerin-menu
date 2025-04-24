@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs';
 import { CreateUser } from '../models/create-user.model';
 import { User } from '../models/user.model';
 import { USERS_REGISTER_URL, USERS_URL } from '../urls';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,15 @@ export class UserService {
 
   remove(id: number) {
     return this.httpClient.delete<User>(USERS_URL + `/${id}`);
+  }
+
+  filterUsers(formValue: any): Observable<User[]> {
+    return this.httpClient.get<User[]>(USERS_URL + `/filter`, {
+      params: {
+        lastName: formValue.lastName,
+        firstName: formValue.firstName,
+        id: formValue.id,
+      },
+    });
   }
 }

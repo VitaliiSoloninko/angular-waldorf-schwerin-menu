@@ -3,6 +3,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { CreateFoodPageComponent } from './pages/admin-page/create-food-page/create-food-page.component';
 import { EditFoodPageComponent } from './pages/admin-page/edit-food-page/edit-food-page.component';
 import { FoodsPageComponent } from './pages/admin-page/foods-page/foods-page.component';
+import { MonthBillsComponent } from './pages/admin-page/month-bills/month-bills.component';
 import { OrdersPageComponent } from './pages/admin-page/orders-page/orders-page.component';
 import { SettingsPageComponent } from './pages/admin-page/settings-page/settings-page.component';
 import { StatisticsPageComponent } from './pages/admin-page/statistics-page/statistics-page.component';
@@ -34,6 +35,7 @@ export const routes: Routes = [
     component: AdminPageComponent,
     children: [
       { path: 'orders', component: OrdersPageComponent },
+      { path: 'month-bills', component: MonthBillsComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'foods', component: FoodsPageComponent },
       { path: 'food/:id', component: EditFoodPageComponent },

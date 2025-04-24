@@ -1,6 +1,6 @@
 <h2 class="h3 center">Suchen</h2>
 
-<form>
+<form [formGroup]="searchForm">
   <div class="form">
     <div class="controls">
       <div class="control last-name">
@@ -10,6 +10,7 @@
           name="last-name"
           class="form-control"
           id="txtLastName"
+          formControlName="lastName"
         />
       </div>
 
@@ -20,14 +21,23 @@
           name="first-name"
           class="form-control"
           id="txtFirstName"
+          formControlName="firstName"
         />
       </div>
 
       <div class="control id">
         <label for="last-name">Kunden Nummer</label>
-        <input type="text" name="id" class="form-control" id="txtId" />
+        <input
+          type="text"
+          name="id"
+          class="form-control"
+          id="txtId"
+          formControlName="id"
+        />
       </div>
 
+      <!-- <div class="control">/></div> -->
+      <!-- 
       <div class="control">
         <label for="last-name-child">Nachname des Kindes</label>
         <input
@@ -51,7 +61,7 @@
       <div class="control">
         <label for="first-name">Klasse</label>
         <input type="text" name="class" class="form-control" id="txtClass" />
-      </div>
+      </div> -->
     </div>
   </div>
 </form>
