@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { debounceTime, of, switchMap } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
@@ -34,9 +35,23 @@ export class RegistrationPageComponent {
 
   isPasswordVisible = signal<boolean>(false);
 
+  emailExistsValidator(control: AbstractControl) {
+    if (!control.value) {
+      return of(null);
+    }
+    return this.userService.checkEmailExists(control.value).pipe(
+      debounceTime(300),
+      switchMap((exists) => {
+        return exists ? of({ emailExists: true }) : of(null);
+      })
+    );
+  }
+
   form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
+      asyncValidators: [this.emailExistsValidator.bind(this)],
+      updateOn: 'blur',
     }),
     password: new FormControl('', {
       validators: [Validators.required, Validators.minLength(6)],
