@@ -5,37 +5,7 @@
     <a routerLink="/registration" class="registration">Hier registrieren</a>
   </div>
 
-  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="control">
-      <label for="email">E-Mail</label>
-      <app-text-input
-        [control]="fc.email"
-        [showErrorsWhen]="isSubmitted"
-        type="email"
-        label="Email"
-      />
-    </div>
-
-    <div class="control">
-      <label for="password">Passwort</label>
-      <app-text-input
-        [control]="fc.password"
-        [showErrorsWhen]="isSubmitted"
-        type="password"
-        label="Password"
-      />
-    </div>
-
-    <button class="btn mt16 login">Login</button>
-  </form>
-  <p class="bottom-text">
-    Es ist besser, sich anzumelden. Aber Sie können für den Test folgende Daten
-    verwenden. <br />
-  </p>
-  <p class="bottom-text">
-    E-Mail: user&#64;gmail.com <br />
-    Passwort: password
-  </p>
+  <app-login-form />
 </div>
 
 <app-bg-logo [logoName]="'Orange'" />
