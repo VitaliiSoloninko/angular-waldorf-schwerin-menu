@@ -24,12 +24,15 @@
             type="email"
             name="email"
             [formControl]="form.controls.email"
+            (input)="emailExists = false"
           />
         </div>
         @if (emailIsInvalid) {
         <p class="control-error">
           Bitte geben Sie eine gültige E-Mail-Adresse ein.
         </p>
+        }@if (emailExists) {
+        <p class="control-error">E-Mail existiert bereits. Ändern Sie es.</p>
         }
 
         <div class="control">

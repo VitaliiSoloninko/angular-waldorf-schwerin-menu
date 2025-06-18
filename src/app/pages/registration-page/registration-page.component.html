@@ -26,12 +26,15 @@
             type="email"
             name="email"
             [formControl]="form.controls.email"
+            (input)="emailExists = false"
           />
         </div>
         @if (emailIsInvalid) {
         <p class="control-error">
           Bitte geben Sie eine gültige E-Mail-Adresse ein.
         </p>
+        } @if (emailExists) {
+        <p class="control-error">E-Mail existiert bereits. Ändern Sie es.</p>
         }
 
         <div class="control">
@@ -155,13 +158,6 @@
                 <option value="4">4</option>
               </select>
             </div>
-            <!-- <div class="control letter">
-              <select id="letter" name="letter" formControlName="letter">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-              </select>
-            </div> -->
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -8,24 +7,11 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
-
-function equalValues(controlName1: string, controlName2: string) {
-  return (control: AbstractControl) => {
-    const val1 = control.get(controlName1)?.value;
-    const val2 = control.get(controlName2)?.value;
-
-    if (val1 === val2) {
-      return null;
-    }
-    return { passwordNotEqual: true };
-  };
-}
 
 @Component({
   selector: 'app-registration-teacher-page',
-  imports: [ReactiveFormsModule, RouterLink, BgLogoComponent, SvgIconComponent],
+  imports: [ReactiveFormsModule, RouterLink, SvgIconComponent],
   templateUrl: './registration-teacher-page.component.html',
   styleUrl: './registration-teacher-page.component.scss',
 })
@@ -33,6 +19,7 @@ export class RegistrationTeacherPageComponent {
   constructor(private router: Router, private userService: UserService) {}
 
   isPasswordVisible = signal<boolean>(false);
+  emailExists = false;
 
   form = new FormGroup({
     email: new FormControl('', {
@@ -77,18 +64,20 @@ export class RegistrationTeacherPageComponent {
   }
 
   createNewUser() {
+    this.emailExists = false;
+
     if (this.form.invalid) {
-      console.log('INVALID FORM');
       return;
     }
-    console.log(this.form.value);
     //@ts-ignore
     this.userService.createUser(this.form.value).subscribe({
-      next: (val) => {
+      next: () => {
         this.router.navigate(['/login']);
       },
-      error: (er) => {
-        console.log(er);
+      error: (err) => {
+        if (err.status === 400 && err.error?.message?.includes('email')) {
+          this.emailExists = true;
+        }
       },
     });
   }
