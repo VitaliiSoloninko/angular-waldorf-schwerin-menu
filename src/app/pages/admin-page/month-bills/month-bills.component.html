@@ -26,11 +26,11 @@
   <h2 class="mb16">Rechnungen für {{ currentMonth }}/{{ currentYear }}</h2>
 
   <div class="statistics mb16">
-    <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
     <p><strong>Anzahl der Benutzer:</strong> {{ uniqueUsers }}</p>
+    <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
   </div>
 
-  <!-- <table *ngIf="bills.length > 0; else noData">
+  <table *ngIf="bills.length > 0; else noData">
     <thead>
       <tr>
         <th>#</th>
@@ -51,5 +51,5 @@
 
   <ng-template #noData>
     <p>Keine Rechnungen für diesen Monat gefunden.</p>
-  </ng-template> -->
+  </ng-template>
 </div>

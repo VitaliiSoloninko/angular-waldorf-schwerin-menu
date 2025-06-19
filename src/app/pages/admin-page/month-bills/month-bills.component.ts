@@ -55,9 +55,9 @@ export class MonthBillsComponent {
   }
 
   calculateStatistics(): void {
-    this.totalOrders = this.bills.length; // Total number of orders
-    const userIds = this.bills.map((bill) => bill.userId); // Extract user IDs
-    this.uniqueUsers = new Set(userIds).size; // Count unique user IDs
+    this.totalOrders = this.bills.length;
+    const userIds = this.bills.map((bill) => bill.userId);
+    this.uniqueUsers = new Set(userIds).size;
   }
 
   onMonthOrYearChange(): void {
@@ -65,7 +65,6 @@ export class MonthBillsComponent {
   }
 
   ngOnInit(): void {
-    // Fetch bills for the current month and year on component initialization
     this.fetchBills(this.currentMonth, this.currentYear);
   }
 }
