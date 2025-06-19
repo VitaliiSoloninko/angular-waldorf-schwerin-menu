@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import jsPDF from 'jspdf';
@@ -13,12 +13,7 @@ import { OrderTableComponent } from '../../history-page/order-table/order-table.
 
 @Component({
   selector: 'app-user-month-orders',
-  imports: [
-    CurrencyPipe,
-    CommonModule,
-    MonthSwitcherComponent,
-    OrderTableComponent,
-  ],
+  imports: [CommonModule, MonthSwitcherComponent, OrderTableComponent],
   templateUrl: './user-month-orders.component.html',
   styleUrl: './user-month-orders.component.scss',
 })
@@ -85,68 +80,92 @@ export class UserMonthOrdersComponent implements OnInit {
     this.fetchOrders();
   }
 
+  // Calculate the first day of the next month
+
   exportToPDF(): void {
+    const leftMargin = 25; // 3 cm in points
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
 
     if (this.user) {
-      // Title
-      const title = `Bestellung für ${this.user.firstNameChild || '-'} ${
-        this.user.lastNameChild || '-'
-      } für ${this.currentMonthYear}`;
-
-      const textWidth = doc.getTextWidth(title);
-      const xPosition = (pageWidth - textWidth) / 2;
-
-      doc.text(title, xPosition, 30);
-
-      // Address
+      doc.setFontSize(16);
+      doc.text('Waldorf-menu', leftMargin, 15);
       doc.setFontSize(10);
-      doc.text(`${this.user.firstName} ${this.user.lastName}`, 16, 50);
-      doc.text(`${this.user.street || '-'} ${this.user.number || '-'}`, 16, 55);
+      doc.text('Max-Suhrbier-Straße 61, 19059, Schwerin', leftMargin, 22);
+
+      doc.text(`Rechnung Nr.: ${this.currentMonthYear}`, 150, 15);
+      doc.text(
+        `Datum: 01.${this.currentMonth + 1}.${this.currentYear}`,
+        150,
+        22
+      );
+
+      doc.text(`${this.user.firstName} ${this.user.lastName}`, leftMargin, 35);
+      doc.text(
+        `${this.user.street || '-'} ${this.user.number || '-'}`,
+        leftMargin,
+        40
+      );
       doc.text(
         `${this.user.postalCode || '-'} ${this.user.city || '-'}`,
-        16,
+        leftMargin,
+        45
+      );
+
+      doc.text('Kind:', leftMargin, 55);
+      doc.text(
+        `${this.user.firstNameChild} ${this.user.lastNameChild}`,
+        leftMargin,
         60
       );
+
+      if (this.orders.length > 0) {
+        autoTable(doc, {
+          startY: 70,
+          margin: { left: leftMargin },
+          head: [['Datum', 'Wochentag', 'Menu', 'Preis']],
+          body: this.orders.map((order) => [
+            order.date,
+            order.dayName,
+            order.foodName,
+            `${order.foodPrice.toFixed(2)} €`,
+          ]),
+          theme: 'grid',
+          headStyles: { fillColor: [41, 128, 185] },
+        });
+
+        // Total price
+        const finalY = (doc as any).lastAutoTable.finalY;
+
+        doc.text(
+          `Gesamtbetrag ${this.currentMonthYear}: ${this.totalPrice.toFixed(
+            2
+          )} €`,
+          leftMargin,
+          finalY + 10
+        );
+
+        doc.text(
+          `Die Auszahlung erfolgt bis zum 3 Tag dieses Monats automaticsh,`,
+          leftMargin,
+          finalY + 20
+        );
+        doc.text(
+          `andereseits überweisen Sie bitte den Betrag auf folgendes Konto:`,
+          leftMargin,
+          finalY + 25
+        );
+        doc.text('IBAN: DE00 0000 0000 0000 0000 00', leftMargin, finalY + 35);
+        doc.text('BIC: GENODEF1S01', leftMargin, finalY + 40);
+      }
+
+      // Save the PDF
+      const month = `${this.currentMonth.toString().padStart(2, '0')}.${
+        this.currentYear
+      }`;
+      const userName = `${this.user?.lastName}_${this.user?.firstName}`;
+      const fileName = `Rechnung_Waldorf-menu_${month}_${userName}.pdf`;
+      doc.save(fileName);
     }
-    // Table
-    if (this.orders.length > 0) {
-      autoTable(doc, {
-        head: [['Datum', 'Wochentag', 'Menu', 'Preis']],
-        body: this.orders.map((order) => [
-          order.date,
-          order.dayName,
-          order.foodName,
-          `${order.foodPrice.toFixed(2)} €`,
-        ]),
-        startY: 80,
-        theme: 'grid',
-        headStyles: { fillColor: [41, 128, 185] },
-      });
-
-      // Add total price
-      const finalY = (doc as any).lastAutoTable.finalY || 80;
-
-      const price = `Bestellungen für ${
-        this.currentMonthYear
-      }: ${this.totalPrice.toFixed(2)} €`;
-
-      const textWidth = doc.getTextWidth(price);
-      const xPosition = (pageWidth - textWidth) / 2;
-
-      doc.text(price, xPosition, finalY + 10);
-    } else {
-      doc.text('No orders found for this month.', 16, 80);
-    }
-
-    //
-    // Save the PDF
-    const month = `${this.currentMonth.toString().padStart(2, '0')}.${
-      this.currentYear
-    }`;
-    const userName = `${this.user?.lastName}_${this.user?.firstName}`;
-    const fileName = `${month}_${userName}_Waldorf-menu_Rechnung.pdf`;
-    doc.save(fileName);
   }
 }
