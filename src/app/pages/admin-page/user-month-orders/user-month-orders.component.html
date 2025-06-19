@@ -1,7 +1,11 @@
 <div class="center mb16">
-  <button class="btn btn-orange" (click)="exportToPDF()">
-    Als PDF speichern
-  </button>
+  <app-pdf-user-month-orders
+    [user]="user"
+    [orders]="orders"
+    [totalPrice]="totalPrice"
+    [currentMonth]="currentMonth"
+    [currentYear]="currentYear"
+  />
 </div>
 
 <h1 class="h3 center mb16">
