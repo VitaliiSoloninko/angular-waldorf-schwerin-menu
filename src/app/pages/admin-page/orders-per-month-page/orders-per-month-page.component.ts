@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Order } from '../../../models/order.model';
 import { OrderService } from '../../../services/order.service';
-import { USERS_ORDERS } from '../../../urls';
 
 @Component({
   selector: 'app-orders-per-month-page',
@@ -12,13 +11,14 @@ import { USERS_ORDERS } from '../../../urls';
   templateUrl: './orders-per-month-page.component.html',
   styleUrl: './orders-per-month-page.component.scss',
 })
-export class OrdersPerMonthPageComponent {
+export class OrdersPerMonthPageComponent implements OnInit {
   orders: Order[] = [];
   currentMonth: number = new Date().getMonth() + 1;
   currentYear: number = new Date().getFullYear();
-  totalOrders: number = 0;
   years: number[] = [];
+  totalOrders: number = 0;
   uniqueUsers: number = 0;
+  userOrderStats: { userId: number; orderCount: number }[] = [];
 
   months = [
     { value: 1, name: 'Januar' },
@@ -42,14 +42,35 @@ export class OrdersPerMonthPageComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.fetchOrders(this.currentMonth, this.currentYear);
+  }
+
+  onMonthOrYearChange(): void {
+    this.fetchOrders(this.currentMonth, this.currentYear);
+  }
+
   fetchOrders(month: number, year: number): void {
-    const apiUrl =
-      USERS_ORDERS + `/filter-by-month?month=${month}&year=${year}`;
-    this.http.get<Order[]>(apiUrl).subscribe(
+    this.orderService.getOrdersByMonth(month, year).subscribe(
       (orders) => {
         this.orders = orders;
         this.calculateStatistics();
-        console.log('Fetched orders:', this.orders);
+
+        const userOrderMap = new Map<number, number>();
+        orders.forEach((order) => {
+          if (order.userId) {
+            userOrderMap.set(
+              order.userId,
+              (userOrderMap.get(order.userId) || 0) + 1
+            );
+          }
+        });
+        this.userOrderStats = Array.from(userOrderMap.entries()).map(
+          ([userId, orderCount]) => ({
+            userId,
+            orderCount,
+          })
+        );
       },
       (error) => {
         console.error('Error fetching orders:', error);
@@ -59,15 +80,9 @@ export class OrdersPerMonthPageComponent {
 
   calculateStatistics(): void {
     this.totalOrders = this.orders.length;
-    const userIds = this.orders.map((order) => order.userId);
+    const userIds = this.orders
+      .filter((order) => order.userId)
+      .map((order) => order.userId);
     this.uniqueUsers = new Set(userIds).size;
-  }
-
-  onMonthOrYearChange(): void {
-    this.fetchOrders(this.currentMonth, this.currentYear);
-  }
-
-  ngOnInit(): void {
-    this.fetchOrders(this.currentMonth, this.currentYear);
   }
 }

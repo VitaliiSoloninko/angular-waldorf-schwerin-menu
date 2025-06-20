@@ -30,21 +30,19 @@
     <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
   </div>
 
-  <table *ngIf="orders.length > 0; else noData">
+  <table *ngIf="userOrderStats.length > 0">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Datum</th>
-        <th>Bestellung</th>
-        <th>Preis</th>
+        <th>№</th>
+        <th>User ID</th>
+        <th>Bestellungen</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders; let i = index">
+      <tr *ngFor="let stat of userOrderStats; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ order.userId }}</td>
-        <td>{{ order.foodName }}</td>
-        <td>{{ order.foodPrice | currency : "EUR" }}</td>
+        <td>{{ stat.userId }}</td>
+        <td>{{ stat.orderCount }}</td>
       </tr>
     </tbody>
   </table>
