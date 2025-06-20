@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CreateOrder } from '../models/create-order.model';
 import { Order } from '../models/order.model';
 import { USERS_ORDERS } from '../urls';
@@ -16,6 +17,12 @@ export class OrderService {
 
   getAllOrders() {
     return this.httpClient.get<Order[]>(USERS_ORDERS);
+  }
+
+  getOrdersByMonth(month: number, year: number): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(
+      USERS_ORDERS + `/filter-by-month?month=${month}&year=${year}`
+    );
   }
 
   getOrdersByUserId(id: number) {

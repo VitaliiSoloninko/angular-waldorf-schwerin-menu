@@ -30,7 +30,16 @@
     <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
   </div>
 
-  <table *ngIf="bills.length > 0; else noData">
+  <div *ngIf="usersWhoOrdered.length > 0">
+    <h3>Benutzer, die in diesem Monat bestellt haben:</h3>
+    <ul>
+      <li *ngFor="let user of usersWhoOrdered">
+        {{ user.firstName }} {{ user.lastName }} (ID: {{ user.id }})
+      </li>
+    </ul>
+  </div>
+
+  <table *ngIf="orders.length > 0; else noData">
     <thead>
       <tr>
         <th>#</th>
@@ -40,11 +49,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bill of bills; let i = index">
+      <tr *ngFor="let order of orders; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ bill.date }}</td>
-        <td>{{ bill.orderName }}</td>
-        <td>{{ bill.price | currency : "EUR" }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ order.orderName }}</td>
+        <td>{{ order.price | currency : "EUR" }}</td>
       </tr>
     </tbody>
   </table>

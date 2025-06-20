@@ -1,20 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { OrderService } from '../../../services/order.service';
+import { USERS_ORDERS } from '../../../urls';
 
 @Component({
-  selector: 'app-month-bills',
+  selector: 'app-orders-per-month-page',
   imports: [CommonModule, FormsModule],
-  templateUrl: './month-bills.component.html',
-  styleUrl: './month-bills.component.scss',
+  templateUrl: './orders-per-month-page.component.html',
+  styleUrl: './orders-per-month-page.component.scss',
 })
-export class MonthBillsComponent {
-  bills: any[] = []; // Store the fetched data
+export class OrdersPerMonthPageComponent {
+  orders: any[] = []; // Store the fetched data
   currentMonth: number = new Date().getMonth() + 1; // Current month (1-based)
   currentYear: number = new Date().getFullYear(); // Current year
   totalOrders: number = 0;
   uniqueUsers: number = 0;
+  usersWhoOrdered: any[] = [];
 
   months = [
     { value: 1, name: 'Januar' },
@@ -33,7 +36,7 @@ export class MonthBillsComponent {
 
   years: number[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private orderService: OrderService) {
     const currentYear = new Date().getFullYear();
     for (let year = 2025; year <= currentYear + 5; year++) {
       this.years.push(year);
@@ -41,12 +44,13 @@ export class MonthBillsComponent {
   }
 
   fetchBills(month: number, year: number): void {
-    const apiUrl = `https://nestjs-postgresql-waldorf-menu-production.up.railway.app/api/orders/filter-by-month?month=${month}&year=${year}`;
+    const apiUrl =
+      USERS_ORDERS + `/filter-by-month?month=${month}&year=${year}`;
     this.http.get<any[]>(apiUrl).subscribe(
       (data) => {
-        this.bills = data;
+        this.orders = data;
         this.calculateStatistics();
-        console.log('Fetched bills:', this.bills);
+        console.log('Fetched bills:', this.orders);
       },
       (error) => {
         console.error('Error fetching bills:', error);
@@ -55,8 +59,8 @@ export class MonthBillsComponent {
   }
 
   calculateStatistics(): void {
-    this.totalOrders = this.bills.length;
-    const userIds = this.bills.map((bill) => bill.userId);
+    this.totalOrders = this.orders.length;
+    const userIds = this.orders.map((order) => order.userId);
     this.uniqueUsers = new Set(userIds).size;
   }
 
