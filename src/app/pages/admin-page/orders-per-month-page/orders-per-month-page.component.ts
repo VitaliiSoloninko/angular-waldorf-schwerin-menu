@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Order } from '../../../models/order.model';
 import { OrderService } from '../../../services/order.service';
 import { USERS_ORDERS } from '../../../urls';
 
@@ -12,12 +13,12 @@ import { USERS_ORDERS } from '../../../urls';
   styleUrl: './orders-per-month-page.component.scss',
 })
 export class OrdersPerMonthPageComponent {
-  orders: any[] = []; // Store the fetched data
-  currentMonth: number = new Date().getMonth() + 1; // Current month (1-based)
-  currentYear: number = new Date().getFullYear(); // Current year
+  orders: Order[] = [];
+  currentMonth: number = new Date().getMonth() + 1;
+  currentYear: number = new Date().getFullYear();
   totalOrders: number = 0;
+  years: number[] = [];
   uniqueUsers: number = 0;
-  usersWhoOrdered: any[] = [];
 
   months = [
     { value: 1, name: 'Januar' },
@@ -34,26 +35,24 @@ export class OrdersPerMonthPageComponent {
     { value: 12, name: 'Dezember' },
   ];
 
-  years: number[] = [];
-
   constructor(private http: HttpClient, private orderService: OrderService) {
     const currentYear = new Date().getFullYear();
-    for (let year = 2025; year <= currentYear + 5; year++) {
+    for (let year = 2025; year <= currentYear + 10; year++) {
       this.years.push(year);
     }
   }
 
-  fetchBills(month: number, year: number): void {
+  fetchOrders(month: number, year: number): void {
     const apiUrl =
       USERS_ORDERS + `/filter-by-month?month=${month}&year=${year}`;
-    this.http.get<any[]>(apiUrl).subscribe(
-      (data) => {
-        this.orders = data;
+    this.http.get<Order[]>(apiUrl).subscribe(
+      (orders) => {
+        this.orders = orders;
         this.calculateStatistics();
-        console.log('Fetched bills:', this.orders);
+        console.log('Fetched orders:', this.orders);
       },
       (error) => {
-        console.error('Error fetching bills:', error);
+        console.error('Error fetching orders:', error);
       }
     );
   }
@@ -65,10 +64,10 @@ export class OrdersPerMonthPageComponent {
   }
 
   onMonthOrYearChange(): void {
-    this.fetchBills(this.currentMonth, this.currentYear);
+    this.fetchOrders(this.currentMonth, this.currentYear);
   }
 
   ngOnInit(): void {
-    this.fetchBills(this.currentMonth, this.currentYear);
+    this.fetchOrders(this.currentMonth, this.currentYear);
   }
 }
