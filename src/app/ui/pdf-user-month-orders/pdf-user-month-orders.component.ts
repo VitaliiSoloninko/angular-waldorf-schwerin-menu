@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { User } from '../../models/user.model';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-pdf-user-month-orders',
@@ -9,8 +11,8 @@ import autoTable from 'jspdf-autotable';
   styleUrl: './pdf-user-month-orders.component.scss',
 })
 export class PdfUserMonthOrdersComponent {
-  @Input() user: any;
-  @Input() orders: any[] = [];
+  @Input() user: User | null = null;
+  @Input() orders: Order[] = [];
   @Input() totalPrice: number = 0;
   @Input() currentMonth: number = 1;
   @Input() currentYear: number = 2025;

@@ -10,6 +10,9 @@ import { USERS_REGISTER_URL, USERS_URL } from '../urls';
   providedIn: 'root',
 })
 export class UserService {
+  getAllUsers(): any {
+    throw new Error('Method not implemented.');
+  }
   constructor(private httpClient: HttpClient) {}
 
   getAll() {

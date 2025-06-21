@@ -2,24 +2,27 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { Order } from '../../../models/order.model';
+import { User } from '../../../models/user.model';
 import { OrderService } from '../../../services/order.service';
+import { UserService } from '../../../services/user.service';
+import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/pdf-user-month-orders.component';
 
 @Component({
   selector: 'app-orders-per-month-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, PdfUserMonthOrdersComponent],
   templateUrl: './orders-per-month-page.component.html',
   styleUrl: './orders-per-month-page.component.scss',
 })
 export class OrdersPerMonthPageComponent implements OnInit {
   orders: Order[] = [];
+  allUsers: User[] = [];
   currentMonth: number = new Date().getMonth() + 1;
   currentYear: number = new Date().getFullYear();
-  years: number[] = [];
   totalOrders: number = 0;
   uniqueUsers: number = 0;
-  userOrderStats: { userId: number; orderCount: number }[] = [];
-
+  userOrderStats: { user: User; orderCount: number }[] = [];
   months = [
     { value: 1, name: 'Januar' },
     { value: 2, name: 'Februar' },
@@ -34,8 +37,13 @@ export class OrdersPerMonthPageComponent implements OnInit {
     { value: 11, name: 'November' },
     { value: 12, name: 'Dezember' },
   ];
+  years: number[] = [];
 
-  constructor(private http: HttpClient, private orderService: OrderService) {
+  constructor(
+    private http: HttpClient,
+    private orderService: OrderService,
+    private userService: UserService
+  ) {
     const currentYear = new Date().getFullYear();
     for (let year = 2025; year <= currentYear + 10; year++) {
       this.years.push(year);
@@ -43,15 +51,19 @@ export class OrdersPerMonthPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchOrders(this.currentMonth, this.currentYear);
+    this.fetchOrdersPerMonth(this.currentMonth, this.currentYear);
+
+    this.userService.getAll().subscribe((users) => {
+      this.allUsers = users;
+    });
   }
 
   onMonthOrYearChange(): void {
-    this.fetchOrders(this.currentMonth, this.currentYear);
+    this.fetchOrdersPerMonth(this.currentMonth, this.currentYear);
   }
 
-  fetchOrders(month: number, year: number): void {
-    this.orderService.getOrdersByMonth(month, year).subscribe(
+  fetchOrdersPerMonth(month: number, year: number): void {
+    this.orderService.getOrdersPerMonth(month, year).subscribe(
       (orders) => {
         this.orders = orders;
         this.calculateStatistics();
@@ -65,12 +77,20 @@ export class OrdersPerMonthPageComponent implements OnInit {
             );
           }
         });
-        this.userOrderStats = Array.from(userOrderMap.entries()).map(
-          ([userId, orderCount]) => ({
-            userId,
-            orderCount,
+        // console.log('User Order Map:', userOrderMap); {4 => 21, 17 => 6}
+
+        this.userOrderStats = Array.from(userOrderMap.entries())
+          .map(([userId, orderCount]) => {
+            const user = this.allUsers.find((u) => u.id === userId);
+            if (user) {
+              return { user, orderCount };
+            }
+            return undefined;
           })
-        );
+          .filter(
+            (entry): entry is { user: User; orderCount: number } =>
+              entry !== undefined
+          );
       },
       (error) => {
         console.error('Error fetching orders:', error);
@@ -84,5 +104,18 @@ export class OrdersPerMonthPageComponent implements OnInit {
       .filter((order) => order.userId)
       .map((order) => order.userId);
     this.uniqueUsers = new Set(userIds).size;
+  }
+
+  getOrdersForUser(userId: number | undefined): any[] {
+    if (!userId) {
+      return [];
+    }
+    return this.orders?.filter((order) => order.userId === userId) || [];
+  }
+
+  getTotalPriceForUser(userId: number): number {
+    return this.orders
+      .filter((order) => order.userId === userId)
+      .reduce((sum, order) => sum + (order.foodPrice || 0), 0);
   }
 }

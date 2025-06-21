@@ -34,15 +34,31 @@
     <thead>
       <tr>
         <th>№</th>
-        <th>User ID</th>
-        <th>Bestellungen</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Nachname Kind</th>
+        <th>Vorname Kind</th>
+        <th>Anzahl</th>
+        <th>Rechnung</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let stat of userOrderStats; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ stat.userId }}</td>
+        <td>{{ stat.user.lastName }}</td>
+        <td>{{ stat.user.firstName }}</td>
+        <td>{{ stat.user.firstNameChild }}</td>
+        <td>{{ stat.user.lastNameChild }}</td>
         <td>{{ stat.orderCount }}</td>
+        <td>
+          <app-pdf-user-month-orders
+            [user]="stat.user"
+            [orders]="getOrdersForUser(stat.user.id)"
+            [totalPrice]="getTotalPriceForUser(stat.user.id ?? 0)"
+            [currentMonth]="currentMonth"
+            [currentYear]="currentYear"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

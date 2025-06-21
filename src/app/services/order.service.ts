@@ -19,7 +19,7 @@ export class OrderService {
     return this.httpClient.get<Order[]>(USERS_ORDERS);
   }
 
-  getOrdersByMonth(month: number, year: number): Observable<Order[]> {
+  getOrdersPerMonth(month: number, year: number): Observable<Order[]> {
     return this.httpClient.get<Order[]>(
       USERS_ORDERS + `/filter-by-month?month=${month}&year=${year}`
     );
