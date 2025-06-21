@@ -30,6 +30,12 @@
     <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
   </div>
 
+  <div class="center">
+    <button class="btn btn-orange" (click)="saveAllPDFs()">
+      Alle PDFs speichern
+    </button>
+  </div>
+
   <table *ngIf="userOrderStats.length > 0">
     <thead>
       <tr>

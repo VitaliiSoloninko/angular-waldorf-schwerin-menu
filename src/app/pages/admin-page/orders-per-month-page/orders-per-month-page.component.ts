@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Order } from '../../../models/order.model';
@@ -16,6 +16,9 @@ import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/p
   styleUrl: './orders-per-month-page.component.scss',
 })
 export class OrdersPerMonthPageComponent implements OnInit {
+  @ViewChildren(PdfUserMonthOrdersComponent)
+  pdfComponents!: QueryList<PdfUserMonthOrdersComponent>;
+
   orders: Order[] = [];
   allUsers: User[] = [];
   currentMonth: number = new Date().getMonth() + 1;
@@ -117,5 +120,9 @@ export class OrdersPerMonthPageComponent implements OnInit {
     return this.orders
       .filter((order) => order.userId === userId)
       .reduce((sum, order) => sum + (order.foodPrice || 0), 0);
+  }
+
+  saveAllPDFs() {
+    this.pdfComponents.forEach((pdfComp) => pdfComp.exportToPDF());
   }
 }
