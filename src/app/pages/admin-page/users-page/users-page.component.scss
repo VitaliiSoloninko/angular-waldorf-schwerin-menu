@@ -2,13 +2,18 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
-.header {
+.search {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.form-control {
+  width: 454px;
   @media (max-width: $mobile) {
-    flex-direction: column;
+    width: 100%;
   }
 }
 
