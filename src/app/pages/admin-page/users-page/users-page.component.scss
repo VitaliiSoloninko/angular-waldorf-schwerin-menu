@@ -4,17 +4,11 @@ $mobileSmall: 479.98px;
 
 .search {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-.form-control {
-  width: 454px;
-  @media (max-width: $mobile) {
-    width: 100%;
-  }
 }
 
 .table-body {

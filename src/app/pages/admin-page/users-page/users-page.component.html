@@ -1,15 +1,21 @@
-<div class="search mb16">
+<div>
+  <h3 class="h3 center mt16 mb16"><span>Suchen</span> nach ID <span></span></h3>
+</div>
+<div class="form-two-column">
   <div class="control">
     <input
-      type="number"
+      type="text"
       name="id"
       class="form-control"
       [(ngModel)]="searchId"
       placeholder="User ID eingeben"
     />
   </div>
-  <button class="btn" (click)="searchUserById()">Suchen</button>
+  <div class="control">
+    <button class="btn" (click)="searchUserById()">Suchen</button>
+  </div>
 </div>
+
 <div class="table-body">
   <table class="table" *ngIf="foundUser">
     <thead>
@@ -73,7 +79,9 @@
   </table>
 </div>
 
-<div *ngIf="error" class="error">{{ error }}</div>
+<div class="center mt16 mb16">
+  <div *ngIf="error" class="error red">{{ error }}</div>
+</div>
 
 <h1 class="h2 mb16 center"><span>Alle</span> unsere Kunden</h1>
 <div>
@@ -81,7 +89,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">№</th>
           <th scope="col">Nachname</th>
           <th scope="col">Vorname</th>
           <th scope="col">Kunden №</th>
@@ -97,7 +104,6 @@
       <tbody>
         @for (user of users; track $index) {
         <tr>
-          <td class="center">{{ $index + 1 }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.firstName }}</td>
           <td class="center">{{ user.id }}</td>
