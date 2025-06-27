@@ -29,7 +29,12 @@ export class SidebarComponent {
     {
       routerLink: 'users',
       icon: 'assets/svg/users.svg',
-      linkText: 'Kunden',
+      linkText: 'Alle Kunden',
+    },
+    {
+      routerLink: 'users-search',
+      icon: 'assets/svg/users.svg',
+      linkText: 'Kunden Suche',
     },
     {
       routerLink: 'foods',

@@ -1,0 +1,84 @@
+<div>
+  <h3 class="h2 center mt16 mb16"><span>Suchen</span> nach ID <span></span></h3>
+</div>
+<div class="form-two-column">
+  <div class="control">
+    <input
+      type="text"
+      name="id"
+      class="form-control"
+      [(ngModel)]="searchId"
+      placeholder="User ID eingeben"
+    />
+  </div>
+  <div class="control">
+    <button class="btn" (click)="searchUserById()">Suchen</button>
+  </div>
+</div>
+
+<div class="table-body">
+  <table class="table" *ngIf="foundUser">
+    <thead>
+      <tr>
+        <th scope="col">Nachname</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Kunden №</th>
+        <th scope="col">Kinder</th>
+        <th scope="col">Daten</th>
+        <th scope="col">Klasse</th>
+        <th scope="col">PDF</th>
+        <th scope="col">Bearbeiten</th>
+        <th scope="col">Löschen</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ foundUser.lastName }}</td>
+        <td>{{ foundUser.firstName }}</td>
+        <td class="center">{{ foundUser.id }}</td>
+        <td>{{ foundUser.lastNameChild }}</td>
+        <td>{{ foundUser.firstNameChild }}</td>
+        <td class="center">{{ foundUser.class }} {{ foundUser.letter }}</td>
+        <td class="center">
+          <button
+            type="button"
+            (click)="foundUser && goToUserMonthOrders(foundUser.id)"
+          >
+            <lucide-icon
+              [img]="fileText"
+              color="var(--main-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+        <td class="center">
+          <button type="button" (click)="editUser(foundUser.id)">
+            <lucide-icon
+              [img]="pencil"
+              color="var(--dark-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+        <td class="center">
+          <button type="button" (click)="removeUser(foundUser.id)">
+            <lucide-icon
+              [img]="trash2"
+              color="var(--red-color)"
+              [size]="18"
+              class="my-icon"
+            ></lucide-icon>
+          </button>
+        </td>
+        <td>{{ foundUser.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="center mt16 mb16">
+  <div *ngIf="error" class="error red">{{ error }}</div>
+</div>

@@ -8,6 +8,7 @@ import { OrdersPerMonthPageComponent } from './pages/admin-page/orders-per-month
 import { SettingsPageComponent } from './pages/admin-page/settings-page/settings-page.component';
 import { StatisticsPageComponent } from './pages/admin-page/statistics-page/statistics-page.component';
 import { UserMonthOrdersComponent } from './pages/admin-page/user-month-orders/user-month-orders.component';
+import { UserSearchPageComponent } from './pages/admin-page/user-search-page/user-search-page.component';
 import { UsersPageComponent } from './pages/admin-page/users-page/users-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'orders', component: OrdersPageComponent },
       { path: 'orders-per-month', component: OrdersPerMonthPageComponent },
       { path: 'users', component: UsersPageComponent },
+      { path: 'users-search', component: UserSearchPageComponent },
       { path: 'foods', component: FoodsPageComponent },
       { path: 'food/:id', component: EditFoodPageComponent },
       { path: 'create', component: CreateFoodPageComponent },

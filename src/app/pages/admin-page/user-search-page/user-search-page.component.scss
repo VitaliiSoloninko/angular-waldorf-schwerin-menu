@@ -1,0 +1,52 @@
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
+.search {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.table-body {
+  display: flex;
+}
+
+table {
+  margin: 0.3rem auto;
+  table-layout: fixed;
+  border-spacing: 1rem;
+  text-align: left;
+}
+
+th {
+  text-align: center;
+}
+
+table thead {
+  color: #222;
+}
+
+table tbody {
+  color: #444;
+}
+
+td {
+  border-bottom: 1px dashed #999;
+}
+
+span {
+  color: var(--main-color);
+}
+
+.center {
+  text-align: center;
+}
+
+.name {
+  width: 5rem;
+  font-weight: 700;
+}
