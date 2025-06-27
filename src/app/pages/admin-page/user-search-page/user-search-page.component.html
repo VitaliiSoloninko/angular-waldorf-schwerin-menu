@@ -2,8 +2,74 @@
   <h3 class="h2 center mt16 mb16"><span>Suchen</span> nach Kunden</h3>
 </div>
 
-<!-- <div class="table-body">
-  <table class="table" *ngIf="foundUsers">
+<form [formGroup]="searchForm">
+  <div class="form">
+    <div class="controls search-controls">
+      <div class="control last-name">
+        <label for="last-name">Nachname Eltern</label>
+        <input
+          type="text"
+          name="last-name"
+          class="form-control"
+          id="txtLastName"
+          formControlName="lastName"
+        />
+      </div>
+
+      <div class="control first-name">
+        <label for="first-name">Vorname Eltern</label>
+        <input
+          type="text"
+          name="first-name"
+          class="form-control"
+          id="txtFirstName"
+          formControlName="firstName"
+        />
+      </div>
+
+      <div class="control">
+        <label for="last-name-child">Nachname des Kindes</label>
+        <input
+          type="text"
+          name="last-name"
+          class="form-control"
+          id="txtLastNameChild"
+          formControlName="lastNameChild"
+        />
+      </div>
+
+      <div class="control">
+        <label for="first-name">Vorname des Kindes</label>
+        <input
+          type="text"
+          name="first-name-child"
+          class="form-control"
+          id="txtFirstNameChild"
+          formControlName="firstNameChild"
+        />
+      </div>
+
+      <div class="control">
+        <label for="email">E-Mail</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="txtEmail"
+          formControlName="email"
+        />
+      </div>
+
+      <!-- <div class="control">
+        <label for="first-name">Klasse</label>
+        <input type="text" name="class" class="form-control" id="txtClass" />
+      </div> -->
+    </div>
+  </div>
+</form>
+
+<div class="table-body">
+  <table class="table" *ngIf="users.length > 0">
     <thead>
       <tr>
         <th scope="col">Nachname</th>
@@ -19,18 +85,16 @@
       </tr>
     </thead>
     <tbody>
+      @for (user of users; track $index) {
       <tr>
-        <td>{{ foundUsers.lastName }}</td>
-        <td>{{ foundUsers.firstName }}</td>
-        <td class="center">{{ foundUsers.id }}</td>
-        <td>{{ foundUsers.lastNameChild }}</td>
-        <td>{{ foundUsers.firstNameChild }}</td>
-        <td class="center">{{ foundUsers.class }} {{ foundUsers.letter }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.firstName }}</td>
+        <td class="center">{{ user.id }}</td>
+        <td>{{ user.lastNameChild }}</td>
+        <td>{{ user.firstNameChild }}</td>
+        <td class="center">{{ user.class }} {{ user.letter }}</td>
         <td class="center">
-          <button
-            type="button"
-            (click)="foundUsers && goToUserMonthOrders(foundUsers.id)"
-          >
+          <button type="button" (click)="user && goToUserMonthOrders(user.id)">
             <lucide-icon
               [img]="fileText"
               color="var(--main-color)"
@@ -40,7 +104,7 @@
           </button>
         </td>
         <td class="center">
-          <button type="button" (click)="editUser(foundUsers.id)">
+          <button type="button" (click)="editUser(user.id)">
             <lucide-icon
               [img]="pencil"
               color="var(--dark-color)"
@@ -50,7 +114,7 @@
           </button>
         </td>
         <td class="center">
-          <button type="button" (click)="removeUser(foundUsers.id)">
+          <button type="button" (click)="removeUser(user.id)">
             <lucide-icon
               [img]="trash2"
               color="var(--red-color)"
@@ -59,12 +123,13 @@
             ></lucide-icon>
           </button>
         </td>
-        <td>{{ foundUsers.email }}</td>
+        <td>{{ user.email }}</td>
       </tr>
+      }
     </tbody>
   </table>
 </div>
 
 <div class="center mt16 mb16">
   <div *ngIf="error" class="error red">{{ error }}</div>
-</div> -->
+</div>

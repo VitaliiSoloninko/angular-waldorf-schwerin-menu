@@ -2,13 +2,14 @@ $tablet: 991.98px;
 $mobile: 767.98px;
 $mobileSmall: 479.98px;
 
-.search {
+.search-controls {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.control {
+  max-width: 10rem;
 }
 
 .table-body {
