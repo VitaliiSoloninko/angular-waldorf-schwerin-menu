@@ -6,6 +6,7 @@ import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { UserFilterService } from '../../../services/user-filter.service';
 
 @Component({
   selector: 'app-user-search-page',
@@ -22,48 +23,35 @@ export class UserSearchPageComponent {
   users: User[] = [];
 
   searchId: number | null = null;
-  foundUser: User | null = null;
+  foundUsers: User | null = null;
   error: string | null = null;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userFilterService: UserFilterService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe((data) => {
-      this.users = data;
-    });
+    this.userFilterService
+      .searchUsers({ firstName: 'Vitalii' })
+      .subscribe((users) => {
+        console.log('Found users:', users);
+      });
   }
 
-  editUser(id: number) {
-    this.router.navigate(['/profile', id]);
-  }
+  // editUser(id: number) {
+  //   this.router.navigate(['/profile', id]);
+  // }
 
-  removeUser(id: number) {
-    this.userService.remove(id).subscribe({
-      next: (val) => {
-        this.users = this.users.filter((_) => id != id);
-      },
-    });
-  }
+  // removeUser(id: number) {
+  //   this.userService.remove(id).subscribe({
+  //     next: (val) => {
+  //       this.users = this.users.filter((_) => id != id);
+  //     },
+  //   });
+  // }
 
-  goToUserMonthOrders(userId: number): void {
-    this.router.navigate([`/admin/user/${userId}`]);
-  }
-
-  searchUserById() {
-    if (!this.searchId) {
-      this.foundUser = null;
-      this.error = null;
-      return;
-    }
-    this.userService.getUserById(this.searchId).subscribe({
-      next: (user) => {
-        this.foundUser = user;
-        this.error = null;
-      },
-      error: () => {
-        this.foundUser = null;
-        this.error = 'Benutzer nicht gefunden.';
-      },
-    });
-  }
+  // goToUserMonthOrders(userId: number): void {
+  //   this.router.navigate([`/admin/user/${userId}`]);
+  // }
 }

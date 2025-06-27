@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
+import { UserFilterService } from '../../../services/user-filter.service';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -22,10 +23,6 @@ export class UsersPageComponent implements OnInit {
   currentYear: number = DateTime.now().year;
   users: User[] = [];
 
-  searchId: number | null = null;
-  foundUser: User | null = null;
-  error: string | null = null;
-
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
@@ -33,7 +30,6 @@ export class UsersPageComponent implements OnInit {
       this.users = data;
     });
   }
-
   editUser(id: number) {
     this.router.navigate(['/profile', id]);
   }
@@ -48,23 +44,5 @@ export class UsersPageComponent implements OnInit {
 
   goToUserMonthOrders(userId: number): void {
     this.router.navigate([`/admin/user/${userId}`]);
-  }
-
-  searchUserById() {
-    if (!this.searchId) {
-      this.foundUser = null;
-      this.error = null;
-      return;
-    }
-    this.userService.getUserById(this.searchId).subscribe({
-      next: (user) => {
-        this.foundUser = user;
-        this.error = null;
-      },
-      error: () => {
-        this.foundUser = null;
-        this.error = 'Benutzer nicht gefunden.';
-      },
-    });
   }
 }

@@ -4,9 +4,10 @@
     <table class="table">
       <thead>
         <tr>
+          <th scope="col">№</th>
           <th scope="col">Nachname</th>
           <th scope="col">Vorname</th>
-          <th scope="col">Kunden №</th>
+          <th scope="col">KN</th>
           <th scope="col">Kinder</th>
           <th scope="col">Daten</th>
           <th scope="col">Klasse</th>
@@ -19,6 +20,7 @@
       <tbody>
         @for (user of users; track $index) {
         <tr>
+          <td class="center">{{ $index + 1 }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.firstName }}</td>
           <td class="center">{{ user.id }}</td>

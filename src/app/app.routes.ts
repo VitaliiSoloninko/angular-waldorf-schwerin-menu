@@ -35,6 +35,7 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminPageComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'orders' },
       { path: 'orders', component: OrdersPageComponent },
       { path: 'orders-per-month', component: OrdersPerMonthPageComponent },
       { path: 'users', component: UsersPageComponent },

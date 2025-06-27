@@ -35,16 +35,6 @@ export class UserService {
     return this.httpClient.delete<User>(USERS_URL + `/${id}`);
   }
 
-  filterUsers(formValue: any): Observable<User[]> {
-    return this.httpClient.get<User[]>(USERS_URL + `/filter`, {
-      params: {
-        lastName: formValue.lastName,
-        firstName: formValue.firstName,
-        id: formValue.id,
-      },
-    });
-  }
-
   checkEmailExists(email: string): Observable<boolean> {
     return this.httpClient.get<boolean>(
       USERS_URL + `/check-email?email=${email}`

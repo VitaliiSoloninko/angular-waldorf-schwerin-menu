@@ -1,23 +1,9 @@
 <div>
-  <h3 class="h2 center mt16 mb16"><span>Suchen</span> nach ID <span></span></h3>
-</div>
-<div class="form-two-column">
-  <div class="control">
-    <input
-      type="text"
-      name="id"
-      class="form-control"
-      [(ngModel)]="searchId"
-      placeholder="User ID eingeben"
-    />
-  </div>
-  <div class="control">
-    <button class="btn" (click)="searchUserById()">Suchen</button>
-  </div>
+  <h3 class="h2 center mt16 mb16"><span>Suchen</span> nach Kunden</h3>
 </div>
 
-<div class="table-body">
-  <table class="table" *ngIf="foundUser">
+<!-- <div class="table-body">
+  <table class="table" *ngIf="foundUsers">
     <thead>
       <tr>
         <th scope="col">Nachname</th>
@@ -34,16 +20,16 @@
     </thead>
     <tbody>
       <tr>
-        <td>{{ foundUser.lastName }}</td>
-        <td>{{ foundUser.firstName }}</td>
-        <td class="center">{{ foundUser.id }}</td>
-        <td>{{ foundUser.lastNameChild }}</td>
-        <td>{{ foundUser.firstNameChild }}</td>
-        <td class="center">{{ foundUser.class }} {{ foundUser.letter }}</td>
+        <td>{{ foundUsers.lastName }}</td>
+        <td>{{ foundUsers.firstName }}</td>
+        <td class="center">{{ foundUsers.id }}</td>
+        <td>{{ foundUsers.lastNameChild }}</td>
+        <td>{{ foundUsers.firstNameChild }}</td>
+        <td class="center">{{ foundUsers.class }} {{ foundUsers.letter }}</td>
         <td class="center">
           <button
             type="button"
-            (click)="foundUser && goToUserMonthOrders(foundUser.id)"
+            (click)="foundUsers && goToUserMonthOrders(foundUsers.id)"
           >
             <lucide-icon
               [img]="fileText"
@@ -54,7 +40,7 @@
           </button>
         </td>
         <td class="center">
-          <button type="button" (click)="editUser(foundUser.id)">
+          <button type="button" (click)="editUser(foundUsers.id)">
             <lucide-icon
               [img]="pencil"
               color="var(--dark-color)"
@@ -64,7 +50,7 @@
           </button>
         </td>
         <td class="center">
-          <button type="button" (click)="removeUser(foundUser.id)">
+          <button type="button" (click)="removeUser(foundUsers.id)">
             <lucide-icon
               [img]="trash2"
               color="var(--red-color)"
@@ -73,7 +59,7 @@
             ></lucide-icon>
           </button>
         </td>
-        <td>{{ foundUser.email }}</td>
+        <td>{{ foundUsers.email }}</td>
       </tr>
     </tbody>
   </table>
@@ -81,4 +67,4 @@
 
 <div class="center mt16 mb16">
   <div *ngIf="error" class="error red">{{ error }}</div>
-</div>
+</div> -->
