@@ -73,9 +73,9 @@ export class UserSearchPageComponent {
           return this.userFilterService.searchUsers(safeFormValue);
         })
       )
-      .subscribe((users) => {
-        this.users = users;
-        this.error = users.length === 0 ? 'Keine Kunden gefunden.' : null;
+      .subscribe((data) => {
+        this.users = data;
+        this.error = data.length === 0 ? 'Keine Kunden gefunden.' : null;
       });
   }
 

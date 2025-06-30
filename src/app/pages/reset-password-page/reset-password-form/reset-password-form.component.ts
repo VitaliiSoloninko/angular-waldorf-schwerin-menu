@@ -5,17 +5,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TextInputComponent } from '../../../ui/text-input/text-input.component';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'app-reset-password-form',
   imports: [ReactiveFormsModule, TextInputComponent, RouterLink],
-  templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
+  templateUrl: './reset-password-form.component.html',
+  styleUrl: './reset-password-form.component.scss',
 })
-export class LoginFormComponent implements OnInit {
+export class ResetPasswordFormComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
   returnUrl = '';

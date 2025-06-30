@@ -19,6 +19,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { ProfileTeacherPageComponent } from './pages/profile-teacher-page/profile-teacher-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { RegistrationTeacherPageComponent } from './pages/registration-teacher-page/registration-teacher-page.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
+  { path: 'reset-password', component: ResetPasswordPageComponent },
   { path: 'registration-teacher', component: RegistrationTeacherPageComponent },
   { path: 'profile/:id', component: ProfilePageComponent },
   { path: 'profile-teacher/:id', component: ProfileTeacherPageComponent },
