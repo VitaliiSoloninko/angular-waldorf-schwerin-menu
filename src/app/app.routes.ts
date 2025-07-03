@@ -20,6 +20,7 @@ import { ProfileTeacherPageComponent } from './pages/profile-teacher-page/profil
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { RegistrationTeacherPageComponent } from './pages/registration-teacher-page/registration-teacher-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'registration', component: RegistrationPageComponent },
+  { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'reset-password', component: ResetPasswordPageComponent },
   { path: 'registration-teacher', component: RegistrationTeacherPageComponent },
   { path: 'profile/:id', component: ProfilePageComponent },

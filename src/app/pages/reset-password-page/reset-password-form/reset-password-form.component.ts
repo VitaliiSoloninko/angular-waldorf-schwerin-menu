@@ -5,50 +5,48 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { LoginService } from '../../../services/login.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../../auth/auth.service';
 import { TextInputComponent } from '../../../ui/text-input/text-input.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password-form',
-  imports: [ReactiveFormsModule, TextInputComponent, RouterLink],
+  imports: [ReactiveFormsModule, TextInputComponent, NgIf],
   templateUrl: './reset-password-form.component.html',
   styleUrl: './reset-password-form.component.scss',
 })
 export class ResetPasswordFormComponent implements OnInit {
-  loginForm!: FormGroup;
+  resetForm!: FormGroup;
+  token = '';
   isSubmitted = false;
-  returnUrl = '';
+  successMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
-    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
-  }
 
-  get fc() {
-    return this.loginForm.controls;
+  ngOnInit(): void {
+    this.resetForm = this.formBuilder.group({
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+    });
+    this.token = this.activatedRoute.snapshot.queryParams['token'] || '';
   }
 
   onSubmit() {
     this.isSubmitted = true;
-    if (this.loginForm.invalid) return;
+    if (this.resetForm.invalid || !this.token) return;
 
-    this.loginService
-      .login({
-        email: this.fc.email.value,
-        password: this.fc.password.value,
+    this.authService
+      .resetPassword({
+        token: this.token,
+        newPassword: this.resetForm.value.newPassword,
       })
       .subscribe(() => {
-        this.router.navigateByUrl(this.returnUrl);
+        this.successMessage = 'Пароль успешно изменён!';
       });
   }
 }

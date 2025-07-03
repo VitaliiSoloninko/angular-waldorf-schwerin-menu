@@ -14,6 +14,9 @@ const TOKEN_KEY = 'token';
   providedIn: 'root',
 })
 export class LoginService {
+  forgotPassword(arg0: { email: any }) {
+    throw new Error('Method not implemented.');
+  }
   private userSubject = new BehaviorSubject<User>(
     this.getUserFromLocalStorage()
   );
