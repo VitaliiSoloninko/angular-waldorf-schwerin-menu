@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateUser } from '../models/create-user.model';
 import { User } from '../models/user.model';
-import { USERS_REGISTER_URL, USERS_URL } from '../urls';
+import { USERS_CHECK_EMAIL_URL, USERS_REGISTER_URL, USERS_URL } from '../urls';
 
 @Injectable({
   providedIn: 'root',
@@ -35,9 +35,9 @@ export class UserService {
     return this.httpClient.delete<User>(USERS_URL + `/${id}`);
   }
 
-  checkEmailExists(email: string): Observable<boolean> {
-    return this.httpClient.get<boolean>(
-      USERS_URL + `/check-email?email=${email}`
+  checkEmailExists(email: string) {
+    return this.httpClient.get<{ exists: boolean }>(
+      USERS_CHECK_EMAIL_URL + `?email=${encodeURIComponent(email)}`
     );
   }
 }

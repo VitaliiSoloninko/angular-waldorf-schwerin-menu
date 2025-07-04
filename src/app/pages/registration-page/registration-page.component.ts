@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import {
+  AbstractControl,
+  AsyncValidatorFn,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { debounceTime, first, map, of, switchMap, tap } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
@@ -21,10 +24,26 @@ export class RegistrationPageComponent {
   isPasswordVisible = signal<boolean>(false);
   emailExists = false;
 
+  emailAsyncValidator: AsyncValidatorFn = (control: AbstractControl) => {
+    return of(control.value).pipe(
+      debounceTime(500),
+      switchMap((email) =>
+        email
+          ? this.userService.checkEmailExists(email).pipe(
+              map((res) => (res.exists ? { emailExists: true } : null)),
+              tap((result) => console.log('Async validator result:', result)),
+              first()
+            )
+          : of(null)
+      )
+    );
+  };
+
   form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
-      updateOn: 'blur',
+      asyncValidators: [this.emailAsyncValidator],
+      updateOn: 'change',
     }),
     password: new FormControl('', {
       validators: [Validators.required, Validators.minLength(6)],
@@ -62,11 +81,8 @@ export class RegistrationPageComponent {
   });
 
   get emailIsInvalid() {
-    return (
-      this.form.controls.email.touched &&
-      this.form.controls.email.dirty &&
-      this.form.controls.email.invalid
-    );
+    const email = this.form.controls.email;
+    return email.touched && email.dirty && email.invalid && email.value;
   }
 
   createNewUser() {

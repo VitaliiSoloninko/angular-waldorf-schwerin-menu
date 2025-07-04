@@ -29,11 +29,14 @@
             (input)="emailExists = false"
           />
         </div>
-        @if (emailIsInvalid) {
+        @if (form.controls.email.touched && form.controls.email.dirty &&
+        form.controls.email.invalid && form.controls.email.value &&
+        !form.controls.email.errors?.emailExists) {
         <p class="control-error">
           Bitte geben Sie eine gültige E-Mail-Adresse ein.
         </p>
-        } @if (emailExists) {
+        } @else if ( form.controls.email.errors?.emailExists &&
+        form.controls.email.touched ) {
         <p class="control-error">E-Mail existiert bereits. Ändern Sie es.</p>
         }
 
