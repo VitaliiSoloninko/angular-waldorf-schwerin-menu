@@ -5,11 +5,15 @@
     <a routerLink="/login" class="login">Hier anmelden</a>
   </div>
   <div class="center two-buttons">
-    <a routerLink="/registration" class="btn btn-small btn-secondary"
+    <a
+      routerLink="/registration"
+      [queryParams]="{ teacher: false }"
+      class="btn btn-small btn-secondary"
       >Für Eltern</a
     >
     <a
-      routerLink="/registration-teacher"
+      routerLink="/registration"
+      [queryParams]="{ teacher: true }"
       class="btn btn-small btn-secondary btn-border"
       >Für Lehrer/in</a
     >
@@ -18,14 +22,14 @@
   <form [formGroup]="form" (ngSubmit)="createNewUser()">
     <div class="form">
       <div class="form-main-column personal-data">
-        <h3 class="h3 center"><span>Elterns</span> Daten</h3>
+        <h3 class="h3 center"><span>Persönliche</span> Daten</h3>
         <div class="control user-email">
           <label for="email">E-Mail</label>
           <input
             id="email"
             type="email"
             name="email"
-            [formControl]="form.controls.email"
+            formControlName="email"
             (input)="emailExists = false"
           />
         </div>
@@ -78,11 +82,13 @@
             />
           </div>
         </div>
+        @if (!isTeacher) {
         <div>
           <h3 class="h3 center mt16">
             <span>Kinders</span> Daten <span></span>
           </h3>
         </div>
+
         <div class="form-two-column user-names-child">
           <div class="control">
             <label for="first-name">Vorname des Kindes</label>
@@ -103,10 +109,11 @@
             />
           </div>
         </div>
+        }
       </div>
 
       <div class="form-main-column address-and-school">
-        <h3 class="h3 center">Adresse</h3>
+        <h3 class="h3 center"><span>Ihre</span> Adresse <span></span></h3>
         <div class="address">
           <div class="form-two-column">
             <div class="control">
@@ -145,15 +152,24 @@
             </div>
           </div>
         </div>
-        <h3 class="h3 mb16 mt16 center">Schule und Klasse</h3>
         <div class="drop-down-list">
+          @if (!isTeacher) {
+          <div>
+            <h3 class="h3 center mt16">
+              <span>Ihre </span> Schule <span></span>
+            </h3>
+          </div>
+          }
           <div class="form-three-column">
             <div class="control school">
+              <label for="city">Schule</label>
               <select id="school" name="school" formControlName="school">
                 <option value="Waldorf">Waldorf</option>
               </select>
             </div>
+            @if (!isTeacher) {
             <div class="control class">
+              <label for="class">Klasse</label>
               <select id="class" name="class" formControlName="class">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -161,6 +177,7 @@
                 <option value="4">4</option>
               </select>
             </div>
+            }
           </div>
         </div>
       </div>
