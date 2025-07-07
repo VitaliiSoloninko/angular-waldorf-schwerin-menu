@@ -9,12 +9,14 @@
       routerLink="/registration"
       [queryParams]="{ teacher: false }"
       class="btn btn-small btn-secondary"
+      [ngClass]="{ 'btn-border': isTeacher }"
       >Für Eltern</a
     >
     <a
       routerLink="/registration"
       [queryParams]="{ teacher: true }"
-      class="btn btn-small btn-secondary btn-border"
+      class="btn btn-small btn-secondary"
+      [ngClass]="{ 'btn-border': !isTeacher }"
       >Für Lehrer/in</a
     >
   </div>
