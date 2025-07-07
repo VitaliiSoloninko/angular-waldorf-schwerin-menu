@@ -46,7 +46,7 @@ export class ProfilePageComponent implements OnInit {
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.formData = { ...user, passwords: user.password };
 
-        if (this.formData.class === '') {
+        if (!this.formData.class) {
           this.router.navigate(['/profile-teacher/' + this.userId]);
         }
       });
