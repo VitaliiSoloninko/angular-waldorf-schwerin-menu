@@ -54,7 +54,20 @@ export class LoginService {
           );
         },
         error: (errorResponse) => {
-          this.toastService.error(errorResponse.error, 'Fehler beim Anmelden');
+          let message =
+            errorResponse.error?.message ||
+            errorResponse.error?.error ||
+            errorResponse.error ||
+            'Fehler beim Anmelden. Bitte überprüfen Sie Ihre Daten.';
+
+          if (
+            message === 'Incorrect email or password' ||
+            message === 'Internal server error'
+          ) {
+            message = 'Falsche E-Mail oder Passwort';
+          }
+
+          this.toastService.error(message, 'Fehler beim Anmelden');
         },
       })
     );
