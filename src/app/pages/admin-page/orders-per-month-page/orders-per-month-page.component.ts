@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
@@ -12,7 +11,7 @@ import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/p
 
 @Component({
   selector: 'app-orders-per-month-page',
-  imports: [CommonModule, FormsModule, RouterLink, PdfUserMonthOrdersComponent],
+  imports: [CommonModule, FormsModule, PdfUserMonthOrdersComponent],
   templateUrl: './orders-per-month-page.component.html',
   styleUrl: './orders-per-month-page.component.scss',
 })
@@ -89,18 +88,23 @@ export class OrdersPerMonthPageComponent implements OnInit {
         );
       }
     });
-    this.userOrderStats = Array.from(userOrderMap.entries())
-      .map(([userId, orderCount]) => {
-        const user = this.allUsers.find((u) => u.id === userId);
-        if (user) {
-          return { user, orderCount };
+
+    this.userOrderStats = Array.from(userOrderMap.entries()).map(
+      ([userId, orderCount]) => {
+        let user = this.allUsers.find((u) => u.id === userId);
+        if (!user) {
+          // Если пользователь не найден, создаём "виртуального" пользователя
+          user = {
+            id: userId,
+            firstName: 'Gelöscht',
+            lastName: 'Gelöscht',
+            email: 'Gelöscht',
+            // Добавь другие обязательные поля, если нужно
+          } as User;
         }
-        return undefined;
-      })
-      .filter(
-        (entry): entry is { user: User; orderCount: number } =>
-          entry !== undefined
-      );
+        return { user, orderCount };
+      }
+    );
   }
 
   calculateStatistics(): void {
