@@ -113,11 +113,6 @@ export class RegistrationFormComponent implements OnInit {
       next: () => {
         this.router.navigate(['/login']);
       },
-      error: (err) => {
-        if (err.status === 400 && err.error?.message?.includes('email')) {
-          this.emailExists = true;
-        }
-      },
     });
   }
 
