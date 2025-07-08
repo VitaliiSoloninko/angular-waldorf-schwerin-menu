@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
@@ -25,7 +24,6 @@ import { WeekCalendarComponent } from '../../ui/week-calendar/week-calendar.comp
     WeekCalendarComponent,
     FoodItemComponent,
     NgFor,
-    SvgIconComponent,
     ColorPaletteComponent,
     BgLogoComponent,
     TitleComponent,

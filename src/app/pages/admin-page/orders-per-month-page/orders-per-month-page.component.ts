@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
 import { OrderService } from '../../../services/order.service';
@@ -54,51 +55,52 @@ export class OrdersPerMonthPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchOrdersPerMonth(this.currentMonth, this.currentYear);
-
-    this.userService.getAll().subscribe((users) => {
-      this.allUsers = users;
-    });
+    this.loadOrdersAndUsers(this.currentMonth, this.currentYear);
   }
 
   onMonthOrYearChange(): void {
-    this.fetchOrdersPerMonth(this.currentMonth, this.currentYear);
+    this.loadOrdersAndUsers(this.currentMonth, this.currentYear);
   }
 
-  fetchOrdersPerMonth(month: number, year: number): void {
-    this.orderService.getOrdersPerMonth(month, year).subscribe(
-      (orders) => {
+  loadOrdersAndUsers(month: number, year: number): void {
+    forkJoin({
+      orders: this.orderService.getOrdersPerMonth(month, year),
+      users: this.userService.getAll(),
+    }).subscribe({
+      next: ({ orders, users }) => {
         this.orders = orders;
+        this.allUsers = users;
         this.calculateStatistics();
-
-        const userOrderMap = new Map<number, number>();
-        orders.forEach((order) => {
-          if (order.userId) {
-            userOrderMap.set(
-              order.userId,
-              (userOrderMap.get(order.userId) || 0) + 1
-            );
-          }
-        });
-        // console.log('User Order Map:', userOrderMap); {4 => 21, 17 => 6}
-
-        this.userOrderStats = Array.from(userOrderMap.entries())
-          .map(([userId, orderCount]) => {
-            const user = this.allUsers.find((u) => u.id === userId);
-            if (user) {
-              return { user, orderCount };
-            }
-            return undefined;
-          })
-          .filter(
-            (entry): entry is { user: User; orderCount: number } =>
-              entry !== undefined
-          );
+        this.buildUserOrderStats();
       },
-      (error) => {
-        console.error('Error fetching orders:', error);
+      error: (error) => {
+        console.error('Error fetching orders or users:', error);
+      },
+    });
+  }
+
+  buildUserOrderStats() {
+    const userOrderMap = new Map<number, number>();
+    this.orders.forEach((order) => {
+      if (order.userId) {
+        userOrderMap.set(
+          order.userId,
+          (userOrderMap.get(order.userId) || 0) + 1
+        );
       }
-    );
+    });
+    this.userOrderStats = Array.from(userOrderMap.entries())
+      .map(([userId, orderCount]) => {
+        const user = this.allUsers.find((u) => u.id === userId);
+        if (user) {
+          return { user, orderCount };
+        }
+        return undefined;
+      })
+      .filter(
+        (entry): entry is { user: User; orderCount: number } =>
+          entry !== undefined
+      );
   }
 
   calculateStatistics(): void {

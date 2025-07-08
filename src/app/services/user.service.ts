@@ -11,9 +11,6 @@ import { USERS_CHECK_EMAIL_URL, USERS_REGISTER_URL, USERS_URL } from '../urls';
   providedIn: 'root',
 })
 export class UserService {
-  getAllUsers(): any {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     private httpClient: HttpClient,
     private toastService: ToastrService
@@ -49,11 +46,45 @@ export class UserService {
   }
 
   updateUser(id: number, user: CreateUser): Observable<void> {
-    return this.httpClient.patch<void>(USERS_URL + `/${id}`, user);
+    return this.httpClient.patch<void>(USERS_URL + `/${id}`, user).pipe(
+      tap({
+        next: () => {
+          this.toastService.success(
+            'Benutzerdaten aktualisiert',
+            'Erfolgreich!'
+          );
+        },
+        error: (err) => {
+          let message =
+            err.error?.message ||
+            err.error?.error ||
+            err.error ||
+            'Bitte überprüfen Sie Ihre Daten';
+          this.toastService.error(message, 'Fehler bei der Aktualisierung');
+        },
+      })
+    );
   }
 
   remove(id: number) {
-    return this.httpClient.delete<User>(USERS_URL + `/${id}`);
+    return this.httpClient.delete<User>(USERS_URL + `/${id}`).pipe(
+      tap({
+        next: () => {
+          this.toastService.success(
+            'Benutzer erfolgreich gelöscht',
+            'Erfolgreich!'
+          );
+        },
+        error: (err) => {
+          let message =
+            err.error?.message ||
+            err.error?.error ||
+            err.error ||
+            'Bitte überprüfen Sie Ihre Daten';
+          this.toastService.error(message, 'Fehler beim Löschen');
+        },
+      })
+    );
   }
 
   checkEmailExists(email: string) {
