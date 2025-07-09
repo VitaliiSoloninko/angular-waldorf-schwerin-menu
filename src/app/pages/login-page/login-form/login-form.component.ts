@@ -26,6 +26,7 @@ export class LoginFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

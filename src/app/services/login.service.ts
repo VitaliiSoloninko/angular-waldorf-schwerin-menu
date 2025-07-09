@@ -46,6 +46,7 @@ export class LoginService {
           const user = new User();
           user.firstName = decodedToken.firstName || 'User';
           user.id = decodedToken.id;
+          user.roles = decodedToken.roles;
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastService.success(
@@ -110,6 +111,7 @@ export class LoginService {
   }
 
   private setUserToLocalStorage(user: User) {
+    console.log('Сохраняю в localStorage:', user);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 

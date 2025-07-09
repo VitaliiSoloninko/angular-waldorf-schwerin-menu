@@ -131,4 +131,17 @@ export class OrdersPerMonthPageComponent implements OnInit {
   saveAllPDFs() {
     this.pdfComponents.forEach((pdfComp) => pdfComp.exportToPDF());
   }
+
+  sendInvoiceByEmail(user: User) {
+    const pdfComp = this.pdfComponents.find(
+      (comp) => comp.user != null && comp.user.id === user.id
+    );
+    if (pdfComp) {
+      pdfComp.exportToPDF(true);
+    }
+  }
+
+  sendAllInvoicesByEmail() {
+    this.pdfComponents.forEach((pdfComp) => pdfComp.exportToPDF(true));
+  }
 }

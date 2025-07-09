@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
@@ -7,7 +7,7 @@ import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -58,5 +58,9 @@ export class HeaderComponent implements OnInit {
 
   goToAdmin() {
     this.router.navigate(['admin/orders']);
+  }
+
+  get isAdmin(): boolean {
+    return this.user?.roles?.some((role: any) => role.value === 'ADMIN');
   }
 }

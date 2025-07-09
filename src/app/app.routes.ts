@@ -19,6 +19,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { ProfileTeacherPageComponent } from './pages/profile-teacher-page/profile-teacher-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 
+import { adminGuard } from './guards/admin.guard';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 
@@ -37,6 +38,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
+    canActivate: [adminGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'orders' },
       { path: 'orders', component: OrdersPageComponent },

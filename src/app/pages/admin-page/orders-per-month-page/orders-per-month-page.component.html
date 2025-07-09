@@ -30,9 +30,15 @@
     <p><strong>Gesamtanzahl der Bestellungen:</strong> {{ totalOrders }}</p>
   </div>
 
-  <div class="center">
+  <div class="center mb16">
     <button class="btn btn-orange" (click)="saveAllPDFs()">
       Alle PDFs speichern
+    </button>
+  </div>
+
+  <div class="center mb16">
+    <button class="btn" (click)="sendAllInvoicesByEmail()">
+      Allen Email senden
     </button>
   </div>
 
@@ -67,6 +73,14 @@
             [currentMonth]="currentMonth"
             [currentYear]="currentYear"
           />
+        </td>
+        <td>
+          <button
+            class="btn btn-small-super"
+            (click)="sendInvoiceByEmail(stat.user)"
+          >
+            Email senden
+          </button>
         </td>
       </tr>
     </tbody>
