@@ -1,0 +1,9 @@
+<div class="modal-backdrop" *ngIf="show">
+  <div class="modal">
+    <p>{{ message }}</p>
+    <div class="modal-actions">
+      <button class="btn btn-green" (click)="onConfirm()">Bestätigen</button>
+      <button class="btn btn-gray" (click)="onCancel()">Abbrechen</button>
+    </div>
+  </div>
+</div>

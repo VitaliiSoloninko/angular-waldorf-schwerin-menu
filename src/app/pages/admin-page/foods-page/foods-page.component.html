@@ -1,6 +1,6 @@
 <div class="table-container">
   <div class="header mb16">
-    <h1 class="h2 center"><span>Alle</span> Menüs</h1>
+    <h1 class="h2 center"><span>Alle</span> Menü</h1>
     <button class="btn btn-small" routerLink="/admin/create">
       Neue Lebensmittel
     </button>
@@ -11,5 +11,9 @@
     <app-icon-button icon="items-white"></app-icon-button>
   </div>
 
-  <app-foods-table [foods]="foods" (edit)="editFood($event)"></app-foods-table>
+  <app-foods-table
+    [foods]="foods"
+    (edit)="editFood($event)"
+    (remove)="removeFood($event)"
+  ></app-foods-table>
 </div>

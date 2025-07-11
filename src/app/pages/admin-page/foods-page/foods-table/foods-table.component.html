@@ -22,9 +22,19 @@
           <button type="button" (click)="editFood(food.id)">
             <img src="assets/svg/edit-dark.svg" alt="Edit" />
           </button>
+          <button type="button" (click)="removeFood(food.id)">
+            <img src="assets/svg/trash-red.svg" alt="Delete" />
+          </button>
         </td>
       </tr>
       }
     </tbody>
   </table>
 </div>
+
+<app-confirm-dialog
+  [show]="showConfirm"
+  [message]="'Möchten Sie das Lebensmittel wirklich löschen?'"
+  (confirm)="onConfirmRemove()"
+  (cancel)="onCancelRemove()"
+></app-confirm-dialog>
