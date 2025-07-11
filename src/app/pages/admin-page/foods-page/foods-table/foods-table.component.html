@@ -1,0 +1,30 @@
+<div class="table-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="center name">Name</th>
+        <th scope="col" class="center">Woche</th>
+        <th scope="col" class="center">Tag</th>
+        <th scope="col" class="center">€</th>
+        <th scope="col" class="center">Beschreibung</th>
+        <th scope="col" class="center action">Bearbeiten</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (food of foods; track $index) {
+      <tr>
+        <td class="menu">{{ food.name }}</td>
+        <td class="center">{{ food.week }}</td>
+        <td class="center">{{ food.day }}</td>
+        <td class="center">{{ food.price }}</td>
+        <td>{{ food.description }}</td>
+        <td class="buttons">
+          <button type="button" (click)="editFood(food.id)">
+            <img src="assets/svg/edit-dark.svg" alt="Edit" />
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

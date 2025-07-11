@@ -1,36 +1,21 @@
-import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 
 import { Food } from '../../../models/food.model';
 import { FoodService } from '../../../services/food.service';
 import { IconButtonComponent } from '../../../ui/icon-button/icon-button.component';
+import { FoodsTableComponent } from './foods-table/foods-table.component';
 
 @Component({
   selector: 'app-foods-page',
-  imports: [NgFor, RouterLink, LucideAngularModule, IconButtonComponent],
+  imports: [RouterLink, IconButtonComponent, FoodsTableComponent],
   templateUrl: './foods-page.component.html',
   styleUrl: './foods-page.component.scss',
 })
-export class FoodsPageComponent implements OnInit {
-  pencil: any = Pencil;
-  trash2: any = Trash2;
-  fileText: any = FileText;
+export class FoodsPageComponent {
   foods: Food[] = [];
 
   constructor(private foodService: FoodService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.foodService.getAllFoods().subscribe((val) => {
-      this.foods = val.sort((a, b) => {
-        if (a.week === b.week) {
-          return a.day - b.day;
-        }
-        return a.week - b.week;
-      });
-    });
-  }
 
   editFood(id: number) {
     this.router.navigate(['/admin/food', id]);

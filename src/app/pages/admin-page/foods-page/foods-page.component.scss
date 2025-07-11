@@ -23,53 +23,9 @@ $mobileSmall: 479.98px;
   align-items: center;
 }
 
-.table-body {
+.view {
   display: flex;
-}
-
-table {
-  margin: 0.3rem auto;
-  padding: 0.5rem;
-  width: 100%;
-  border-spacing: 1rem;
-  text-align: left;
-}
-
-table thead {
-  color: #222;
-}
-
-table tbody {
-  color: #444;
-}
-
-td {
-  border-bottom: 1px dashed #999;
-}
-
-span {
-  color: var(--main-color);
-}
-
-.center {
-  text-align: center;
-}
-
-.menu {
-  width: 3.5rem;
-}
-
-.name {
-  max-width: 5rem;
-  font-weight: 700;
-}
-.week {
-  max-width: 3rem;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 1rem;
 }
