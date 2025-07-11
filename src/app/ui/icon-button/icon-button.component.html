@@ -1,0 +1,9 @@
+<button
+  class="icon-btn"
+  [class.active]="active"
+  (mousedown)="active = true"
+  (mouseup)="active = false"
+  (mouseleave)="active = false"
+>
+  <img [src]="iconName" alt="icon" class="icon" />
+</button>

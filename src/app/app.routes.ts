@@ -22,6 +22,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 import { adminGuard } from './guards/admin.guard';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
+import { StyleGuideComponent } from './pages/style-guide/style-guide.component';
 
 export const routes: Routes = [
   { path: '', component: MenuPageComponent },
@@ -35,6 +36,8 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordPageComponent },
   { path: 'profile/:id', component: ProfilePageComponent },
   { path: 'profile-teacher/:id', component: ProfileTeacherPageComponent },
+  { path: 'style-guide', component: StyleGuideComponent },
+
   {
     path: 'admin',
     component: AdminPageComponent,

@@ -5,10 +5,11 @@ import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 
 import { Food } from '../../../models/food.model';
 import { FoodService } from '../../../services/food.service';
+import { IconButtonComponent } from '../../../ui/icon-button/icon-button.component';
 
 @Component({
   selector: 'app-foods-page',
-  imports: [NgFor, RouterLink, LucideAngularModule],
+  imports: [NgFor, RouterLink, LucideAngularModule, IconButtonComponent],
   templateUrl: './foods-page.component.html',
   styleUrl: './foods-page.component.scss',
 })
