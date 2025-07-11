@@ -6,12 +6,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
-import { UserFilterService } from '../../../services/user-filter.service';
 import { UserService } from '../../../services/user.service';
+import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-users-page',
-  imports: [LucideAngularModule, CommonModule, FormsModule],
+  imports: [
+    LucideAngularModule,
+    CommonModule,
+    FormsModule,
+    ConfirmDialogComponent,
+  ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -22,6 +27,9 @@ export class UsersPageComponent implements OnInit {
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
   users: User[] = [];
+
+  showConfirm = false;
+  userToRemove: number | null = null;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -35,14 +43,32 @@ export class UsersPageComponent implements OnInit {
   }
 
   removeUser(id: number) {
-    this.userService.remove(id).subscribe({
-      next: (val) => {
-        this.users = this.users.filter((_) => id != id);
-      },
-    });
+    this.userToRemove = id;
+    this.showConfirm = true;
   }
 
   goToUserMonthOrders(userId: number): void {
     this.router.navigate([`/admin/user/${userId}`]);
+  }
+
+  onConfirmRemove() {
+    if (this.userToRemove !== null) {
+      this.userService.remove(this.userToRemove).subscribe({
+        next: () => {
+          this.users = this.users.filter(
+            (user) => user.id !== this.userToRemove
+          );
+          this.userToRemove = null;
+          this.showConfirm = false;
+        },
+      });
+    } else {
+      this.showConfirm = false;
+    }
+  }
+
+  onCancelRemove() {
+    this.userToRemove = null;
+    this.showConfirm = false;
   }
 }

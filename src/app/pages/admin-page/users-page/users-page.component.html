@@ -67,3 +67,10 @@
     </table>
   </div>
 </div>
+
+<app-confirm-dialog
+  [show]="showConfirm"
+  [message]="'Möchten Sie das Kunden wirklich löschen?'"
+  (confirm)="onConfirmRemove()"
+  (cancel)="onCancelRemove()"
+></app-confirm-dialog>
