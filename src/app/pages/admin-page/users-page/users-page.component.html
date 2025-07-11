@@ -32,32 +32,17 @@
               type="button"
               (click)="user && goToUserMonthOrders(user.id)"
             >
-              <lucide-icon
-                [img]="fileText"
-                color="var(--main-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
+              <img src="assets/svg/pdf-green.svg" alt="PDF" />
             </button>
           </td>
           <td class="center">
             <button type="button" (click)="editUser(user.id)">
-              <lucide-icon
-                [img]="pencil"
-                color="var(--dark-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
+              <img src="assets/svg/edit-dark.svg" alt="Edit" />
             </button>
           </td>
           <td class="center">
             <button type="button" (click)="removeUser(user.id)">
-              <lucide-icon
-                [img]="trash2"
-                color="var(--red-color)"
-                [size]="18"
-                class="my-icon"
-              ></lucide-icon>
+              <img src="assets/svg/trash-red.svg" alt="Delete" />
             </button>
           </td>
           <td>{{ user.email }}</td>
