@@ -59,17 +59,12 @@
           formControlName="email"
         />
       </div>
-
-      <!-- <div class="control">
-        <label for="first-name">Klasse</label>
-        <input type="text" name="class" class="form-control" id="txtClass" />
-      </div> -->
     </div>
   </div>
 </form>
 
-<div class="table-body">
-  <table class="table" *ngIf="users.length > 0">
+<div class="table-body" *ngIf="users.length > 0">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Nachname</th>

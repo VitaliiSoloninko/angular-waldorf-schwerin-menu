@@ -1,0 +1,51 @@
+<div class="table-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N</th>
+        <th scope="col">Nachname</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">KN</th>
+        <th scope="col">Kinder</th>
+        <th scope="col">Daten</th>
+        <th scope="col">Klasse</th>
+        <th scope="col">PDF</th>
+        <th scope="col">Bearbeiten</th>
+        <th scope="col">Löschen</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track $index) {
+      <tr>
+        <td class="center">{{ $index + 1 }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.firstName }}</td>
+        <td class="center">{{ user.id }}</td>
+        <td>{{ user.lastNameChild }}</td>
+        <td>{{ user.firstNameChild }}</td>
+        <td class="center">{{ user.class }} {{ user.letter }}</td>
+        <!-- <td class="center">
+            <button
+              type="button"
+              (click)="user && goToUserMonthOrders(user.id)"
+            >
+              <img src="assets/svg/pdf-green.svg" alt="PDF" />
+            </button>
+          </td> -->
+        <td class="center">
+          <button type="button" (click)="editUser(user.id)">
+            <img src="assets/svg/edit-dark.svg" alt="Edit" />
+          </button>
+        </td>
+        <td class="center">
+          <button type="button" (click)="removeUser(user.id)">
+            <img src="assets/svg/trash-red.svg" alt="Delete" />
+          </button>
+        </td>
+        <td>{{ user.email }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

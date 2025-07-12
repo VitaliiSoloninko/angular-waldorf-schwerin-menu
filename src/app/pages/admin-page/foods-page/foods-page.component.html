@@ -1,19 +1,19 @@
-<div class="table-container">
-  <div class="header mb16">
-    <h1 class="h2 center"><span>Alle</span> Menü</h1>
-    <button class="btn btn-small" routerLink="/admin/create">
-      Neue Lebensmittel
-    </button>
-  </div>
-
-  <div class="view">
-    <app-icon-button icon="list-white"></app-icon-button>
-    <app-icon-button icon="items-white"></app-icon-button>
-  </div>
-
-  <app-foods-table
-    [foods]="foods"
-    (edit)="editFood($event)"
-    (remove)="removeFood($event)"
-  ></app-foods-table>
+<div class="header mb16">
+  <h1 class="h2 center"><span>Alle</span> Menü</h1>
+  <button class="btn btn-small" routerLink="/admin/create">
+    Neue Lebensmittel
+  </button>
 </div>
+
+<app-foods-table
+  [foods]="foods"
+  (edit)="editFood($event)"
+  (remove)="onRemoveFood($event)"
+></app-foods-table>
+
+<app-confirm-dialog
+  [show]="showConfirm"
+  [message]="'Möchten Sie das Lebensmittel wirklich löschen?'"
+  (confirm)="onConfirmRemove()"
+  (cancel)="onCancelRemove()"
+></app-confirm-dialog>
