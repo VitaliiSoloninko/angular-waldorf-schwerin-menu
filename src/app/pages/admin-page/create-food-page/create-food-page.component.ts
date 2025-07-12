@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 
 import { CreateFood } from '../../../models/create-food.model';
 import { FoodService } from '../../../services/food.service';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-create-food-page',
-  imports: [FormsModule],
+  imports: [FormsModule, TitleComponent],
   templateUrl: './create-food-page.component.html',
   styleUrl: './create-food-page.component.scss',
 })

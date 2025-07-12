@@ -8,10 +8,16 @@ import { User } from '../../../models/user.model';
 import { OrderService } from '../../../services/order.service';
 import { UserService } from '../../../services/user.service';
 import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/pdf-user-month-orders.component';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-orders-per-month-page',
-  imports: [CommonModule, FormsModule, PdfUserMonthOrdersComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    PdfUserMonthOrdersComponent,
+    TitleComponent,
+  ],
   templateUrl: './orders-per-month-page.component.html',
   styleUrl: './orders-per-month-page.component.scss',
 })

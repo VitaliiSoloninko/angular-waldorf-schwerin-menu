@@ -1,5 +1,10 @@
 <div class="form-container">
-  <h1 class="h2 mb16 center"><span>Bearbeiten</span> Lebensmittel</h1>
+  <app-title
+    colorTitle="Bearbeiten"
+    title=" Lebensmittel"
+    class="mb16 center"
+  />
+
   <form class="form" (ngSubmit)="save()" #foodForm="ngForm">
     <div class="column">
       <div class="control">

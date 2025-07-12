@@ -3,6 +3,7 @@ import { Component, Input, OnInit, signal } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
   selector: 'app-registration-page',
@@ -11,6 +12,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     RouterLink,
     CommonModule,
     RegistrationFormComponent,
+    TitleComponent,
   ],
   templateUrl: './registration-page.component.html',
   styleUrl: './registration-page.component.scss',

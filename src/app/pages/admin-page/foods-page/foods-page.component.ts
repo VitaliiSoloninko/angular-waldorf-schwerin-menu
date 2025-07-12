@@ -4,10 +4,16 @@ import { Food } from '../../../models/food.model';
 import { FoodService } from '../../../services/food.service';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { FoodsTableComponent } from './foods-table/foods-table.component';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-foods-page',
-  imports: [RouterLink, FoodsTableComponent, ConfirmDialogComponent],
+  imports: [
+    RouterLink,
+    FoodsTableComponent,
+    ConfirmDialogComponent,
+    TitleComponent,
+  ],
   templateUrl: './foods-page.component.html',
   styleUrl: './foods-page.component.scss',
 })

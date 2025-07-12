@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './title.component.scss',
 })
 export class TitleComponent {
-  @Input() prefix: string = '';
-  @Input() name: string = '';
+  @Input() colorTitle: string = '';
+  @Input() title: string = '';
 }

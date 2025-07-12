@@ -8,6 +8,7 @@ import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { UsersTableComponent } from './users-table/users-table.component';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-users-page',
@@ -16,6 +17,7 @@ import { UsersTableComponent } from './users-table/users-table.component';
     FormsModule,
     ConfirmDialogComponent,
     UsersTableComponent,
+    TitleComponent,
   ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',

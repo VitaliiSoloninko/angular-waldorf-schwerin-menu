@@ -8,6 +8,7 @@ import { debounceTime, filter, switchMap } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { UserFilterService } from '../../../services/user-filter.service';
 import { UserService } from '../../../services/user.service';
+import { TitleComponent } from '../../../ui/title/title.component';
 
 @Component({
   selector: 'app-user-search-page',
@@ -16,6 +17,7 @@ import { UserService } from '../../../services/user.service';
     FormsModule,
     LucideAngularModule,
     ReactiveFormsModule,
+    TitleComponent,
   ],
   templateUrl: './user-search-page.component.html',
   styleUrl: './user-search-page.component.scss',
