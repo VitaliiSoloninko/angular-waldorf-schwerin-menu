@@ -2,34 +2,35 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FileText, LucideAngularModule, Pencil, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { debounceTime, filter, switchMap } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { UserFilterService } from '../../../services/user-filter.service';
 import { UserService } from '../../../services/user.service';
+import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { TitleComponent } from '../../../ui/title/title.component';
+import { UsersTableComponent } from '../users-page/users-table/users-table.component';
 
 @Component({
   selector: 'app-user-search-page',
   imports: [
     CommonModule,
     FormsModule,
-    LucideAngularModule,
     ReactiveFormsModule,
     TitleComponent,
+    UsersTableComponent,
+    ConfirmDialogComponent,
   ],
   templateUrl: './user-search-page.component.html',
   styleUrl: './user-search-page.component.scss',
 })
 export class UserSearchPageComponent {
-  fileText: any = FileText;
-  trash2: any = Trash2;
-  pencil: any = Pencil;
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
   users: User[] = [];
   error: string | null = null;
+  showConfirm = false;
+  userToRemove: number | null = null;
 
   fb = inject(FormBuilder);
   userService = inject(UserService);
@@ -95,5 +96,26 @@ export class UserSearchPageComponent {
 
   goToUserMonthOrders(userId: number): void {
     this.router.navigate([`/admin/user/${userId}`]);
+  }
+
+  onRemoveUser(id: number) {
+    this.userToRemove = id;
+    this.showConfirm = true;
+  }
+
+  onConfirmRemove() {
+    if (this.userToRemove !== null) {
+      this.removeUser(this.userToRemove);
+      this.showConfirm = false;
+      this.userToRemove = null;
+    } else {
+      this.showConfirm = false;
+      this.userToRemove = null;
+    }
+  }
+
+  onCancelRemove() {
+    this.userToRemove = null;
+    this.showConfirm = false;
   }
 }

@@ -61,67 +61,19 @@
   </div>
 </form>
 
-<div class="table-body" *ngIf="users.length > 0">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nachname</th>
-        <th scope="col">Vorname</th>
-        <th scope="col">Kunden №</th>
-        <th scope="col">Kinder</th>
-        <th scope="col">Daten</th>
-        <th scope="col">Klasse</th>
-        <th scope="col">PDF</th>
-        <th scope="col">Bearbeiten</th>
-        <th scope="col">Löschen</th>
-        <th scope="col">Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (user of users; track $index) {
-      <tr>
-        <td>{{ user.lastName }}</td>
-        <td>{{ user.firstName }}</td>
-        <td class="center">{{ user.id }}</td>
-        <td>{{ user.lastNameChild }}</td>
-        <td>{{ user.firstNameChild }}</td>
-        <td class="center">{{ user.class }} {{ user.letter }}</td>
-        <td class="center">
-          <button type="button" (click)="user && goToUserMonthOrders(user.id)">
-            <lucide-icon
-              [img]="fileText"
-              color="var(--main-color)"
-              [size]="18"
-              class="my-icon"
-            ></lucide-icon>
-          </button>
-        </td>
-        <td class="center">
-          <button type="button" (click)="editUser(user.id)">
-            <lucide-icon
-              [img]="pencil"
-              color="var(--dark-color)"
-              [size]="18"
-              class="my-icon"
-            ></lucide-icon>
-          </button>
-        </td>
-        <td class="center">
-          <button type="button" (click)="removeUser(user.id)">
-            <lucide-icon
-              [img]="trash2"
-              color="var(--red-color)"
-              [size]="18"
-              class="my-icon"
-            ></lucide-icon>
-          </button>
-        </td>
-        <td>{{ user.email }}</td>
-      </tr>
-      }
-    </tbody>
-  </table>
-</div>
+<app-users-table
+  [users]="users"
+  (edit)="editUser($event)"
+  (remove)="onRemoveUser($event)"
+  (userMonthOrders)="goToUserMonthOrders($event)"
+></app-users-table>
+
+<app-confirm-dialog
+  [show]="showConfirm"
+  [message]="'Möchten Sie das Kunden wirklich löschen?'"
+  (confirm)="onConfirmRemove()"
+  (cancel)="onCancelRemove()"
+></app-confirm-dialog>
 
 <div class="center mt16 mb16">
   <div *ngIf="error" class="error red">{{ error }}</div>
