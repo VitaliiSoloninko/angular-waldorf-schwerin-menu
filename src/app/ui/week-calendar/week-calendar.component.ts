@@ -1,20 +1,12 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
 import { LuxonDateService } from '../../services/luxon-date.service';
-import { FoodItemComponent } from '../food-item/food-item.component';
 
 @Component({
   selector: 'app-week-calendar',
-  imports: [
-    CommonModule,
-    RouterLink,
-    NgFor,
-    LucideAngularModule,
-    FoodItemComponent,
-  ],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './week-calendar.component.html',
   styleUrl: './week-calendar.component.scss',
   exportAs: 'weekCalendar',

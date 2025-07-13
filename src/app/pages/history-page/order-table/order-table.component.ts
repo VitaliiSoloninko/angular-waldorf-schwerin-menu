@@ -1,14 +1,13 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Order } from '../../../models/order.model';
 import { LoginService } from '../../../services/login.service';
 import { UserOrderService } from '../../../services/user-order.service';
-import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switcher.component';
 
 @Component({
   selector: 'app-order-table',
-  imports: [CurrencyPipe, CommonModule, MonthSwitcherComponent],
+  imports: [CurrencyPipe],
   templateUrl: './order-table.component.html',
   styleUrl: './order-table.component.scss',
 })

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { LucideAngularModule } from 'lucide-angular';
@@ -17,7 +16,6 @@ import { OrdersByDaysComponent } from './orders-by-days/orders-by-days.component
   selector: 'app-orders-page',
   imports: [
     TitleComponent,
-    RouterLink,
     LucideAngularModule,
     CommonModule,
     OrdersByDaysComponent,

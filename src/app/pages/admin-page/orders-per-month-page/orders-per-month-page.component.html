@@ -71,7 +71,7 @@
           <app-pdf-user-month-orders
             [user]="stat.user"
             [orders]="getOrdersForUser(stat.user.id)"
-            [totalPrice]="getTotalPriceForUser(stat.user.id ?? 0)"
+            [totalPrice]="getTotalPriceForUser(stat.user.id)"
             [currentMonth]="currentMonth"
             [currentYear]="currentYear"
           />

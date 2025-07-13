@@ -1,14 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateUser } from '../../models/create-user.model';
 import { UserService } from '../../services/user.service';
-import { SvgIconComponent } from '../../ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [FormsModule, RouterLink, SvgIconComponent, CommonModule],
+  imports: [FormsModule],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })

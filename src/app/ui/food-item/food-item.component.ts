@@ -1,7 +1,6 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 import { Date } from '../../models/date.model';
@@ -11,7 +10,7 @@ import { LuxonDateService } from '../../services/luxon-date.service';
 
 @Component({
   selector: 'app-food-item',
-  imports: [CommonModule, RouterLink, NgFor, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './food-item.component.html',
   styleUrl: './food-item.component.scss',
 })

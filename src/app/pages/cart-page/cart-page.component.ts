@@ -17,7 +17,6 @@ import { ModalService } from '../../services/modal.service';
 import { OrderService } from '../../services/order.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
 import { ModalComponent } from '../../ui/modal/modal.component';
-import { NotificationComponent } from '../../ui/notification/notification.component';
 import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
@@ -29,7 +28,6 @@ import { TitleComponent } from '../../ui/title/title.component';
     CurrencyPipe,
     ModalComponent,
     AsyncPipe,
-    NotificationComponent,
     BgLogoComponent,
     TitleComponent,
     CommonModule,
