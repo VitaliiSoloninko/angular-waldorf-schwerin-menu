@@ -1,7 +1,3 @@
-$tablet: 991.98px;
-$mobile: 767.98px;
-$mobileSmall: 479.98px;
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -9,7 +5,9 @@ $mobileSmall: 479.98px;
   gap: 1rem;
   padding: 0.5rem;
   flex-wrap: wrap;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
