@@ -1,9 +1,10 @@
+import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../../../models/user.model';
 
 @Component({
   selector: 'app-users-table',
-  imports: [],
+  imports: [NgIf],
   templateUrl: './users-table.component.html',
   styleUrl: './users-table.component.scss',
 })

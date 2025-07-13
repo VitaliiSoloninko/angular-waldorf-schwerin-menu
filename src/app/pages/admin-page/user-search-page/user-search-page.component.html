@@ -1,65 +1,6 @@
 <app-title colorTitle="Kunden" title=" Suche" class="center mb16" />
 
-<form [formGroup]="searchForm">
-  <div class="form">
-    <div class="controls search-controls">
-      <div class="control last-name">
-        <label for="last-name">Nachname Eltern</label>
-        <input
-          type="text"
-          name="last-name"
-          class="form-control"
-          id="txtLastName"
-          formControlName="lastName"
-        />
-      </div>
-
-      <div class="control first-name">
-        <label for="first-name">Vorname Eltern</label>
-        <input
-          type="text"
-          name="first-name"
-          class="form-control"
-          id="txtFirstName"
-          formControlName="firstName"
-        />
-      </div>
-
-      <div class="control">
-        <label for="last-name-child">Nachname des Kindes</label>
-        <input
-          type="text"
-          name="last-name"
-          class="form-control"
-          id="txtLastNameChild"
-          formControlName="lastNameChild"
-        />
-      </div>
-
-      <div class="control">
-        <label for="first-name">Vorname des Kindes</label>
-        <input
-          type="text"
-          name="first-name-child"
-          class="form-control"
-          id="txtFirstNameChild"
-          formControlName="firstNameChild"
-        />
-      </div>
-
-      <div class="control">
-        <label for="email">E-Mail</label>
-        <input
-          type="email"
-          name="email"
-          class="form-control"
-          id="txtEmail"
-          formControlName="email"
-        />
-      </div>
-    </div>
-  </div>
-</form>
+<app-user-search-form [searchForm]="searchForm"> </app-user-search-form>
 
 <app-users-table
   [users]="users"
@@ -76,5 +17,8 @@
 ></app-confirm-dialog>
 
 <div class="center mt16 mb16">
+  <div *ngIf="!error && users.length === 0" class="info">
+    Geben Sie etwas in die Suche ein, um einen Benutzer zu finden
+  </div>
   <div *ngIf="error" class="error red">{{ error }}</div>
 </div>

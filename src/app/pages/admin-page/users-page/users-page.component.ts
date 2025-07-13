@@ -63,14 +63,11 @@ export class UsersPageComponent implements OnInit {
       this.removeUser(this.userToRemove);
       this.showConfirm = false;
       this.userToRemove = null;
-    } else {
-      this.showConfirm = false;
-      this.userToRemove = null;
     }
   }
 
   onCancelRemove() {
-    this.userToRemove = null;
     this.showConfirm = false;
+    this.userToRemove = null;
   }
 }

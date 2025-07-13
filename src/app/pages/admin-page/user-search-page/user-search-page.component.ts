@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import { debounceTime, filter, switchMap } from 'rxjs';
@@ -10,16 +10,16 @@ import { UserService } from '../../../services/user.service';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { TitleComponent } from '../../../ui/title/title.component';
 import { UsersTableComponent } from '../users-page/users-table/users-table.component';
+import { UserSearchFormComponent } from './user-search-form/user-search-form.component';
 
 @Component({
   selector: 'app-user-search-page',
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    NgIf,
     TitleComponent,
     UsersTableComponent,
     ConfirmDialogComponent,
+    UserSearchFormComponent,
   ],
   templateUrl: './user-search-page.component.html',
   styleUrl: './user-search-page.component.scss',
@@ -106,9 +106,6 @@ export class UserSearchPageComponent {
   onConfirmRemove() {
     if (this.userToRemove !== null) {
       this.removeUser(this.userToRemove);
-      this.showConfirm = false;
-      this.userToRemove = null;
-    } else {
       this.showConfirm = false;
       this.userToRemove = null;
     }

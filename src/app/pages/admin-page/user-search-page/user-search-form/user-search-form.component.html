@@ -1,0 +1,60 @@
+<form [formGroup]="searchForm">
+  <div class="form">
+    <div class="controls search-controls">
+      <div class="control last-name">
+        <label for="last-name">Nachname Eltern</label>
+        <input
+          type="text"
+          name="last-name"
+          class="form-control"
+          id="txtLastName"
+          formControlName="lastName"
+        />
+      </div>
+
+      <div class="control first-name">
+        <label for="first-name">Vorname Eltern</label>
+        <input
+          type="text"
+          name="first-name"
+          class="form-control"
+          id="txtFirstName"
+          formControlName="firstName"
+        />
+      </div>
+
+      <div class="control">
+        <label for="last-name-child">Nachname des Kindes</label>
+        <input
+          type="text"
+          name="last-name"
+          class="form-control"
+          id="txtLastNameChild"
+          formControlName="lastNameChild"
+        />
+      </div>
+
+      <div class="control">
+        <label for="first-name">Vorname des Kindes</label>
+        <input
+          type="text"
+          name="first-name-child"
+          class="form-control"
+          id="txtFirstNameChild"
+          formControlName="firstNameChild"
+        />
+      </div>
+
+      <div class="control">
+        <label for="email">E-Mail</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="txtEmail"
+          formControlName="email"
+        />
+      </div>
+    </div>
+  </div>
+</form>
