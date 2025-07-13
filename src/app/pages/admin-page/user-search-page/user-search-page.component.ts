@@ -7,10 +7,10 @@ import { debounceTime, filter, switchMap } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { UserFilterService } from '../../../services/user-filter.service';
 import { UserService } from '../../../services/user.service';
-import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { TitleComponent } from '../../../ui/title/title.component';
-import { UsersTableComponent } from '../users-page/users-table/users-table.component';
-import { UserSearchFormComponent } from './user-search-form/user-search-form.component';
+import { ConfirmDialogComponent } from '../../../widgets/confirm-dialog/confirm-dialog.component';
+import { UserSearchFormComponent } from '../../../widgets/user-search-form/user-search-form.component';
+import { UsersTableComponent } from '../../../widgets/users-table/users-table.component';
 
 @Component({
   selector: 'app-user-search-page',

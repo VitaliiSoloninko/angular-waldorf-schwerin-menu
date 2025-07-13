@@ -6,9 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
 import { TitleComponent } from '../../../ui/title/title.component';
-import { UsersTableComponent } from './users-table/users-table.component';
+import { ConfirmDialogComponent } from '../../../widgets/confirm-dialog/confirm-dialog.component';
+import { UsersTableComponent } from '../../../widgets/users-table/users-table.component';
 
 @Component({
   selector: 'app-users-page',

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Food } from '../../../models/food.model';
 import { FoodService } from '../../../services/food.service';
-import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
-import { FoodsTableComponent } from './foods-table/foods-table.component';
 import { TitleComponent } from '../../../ui/title/title.component';
+import { ConfirmDialogComponent } from '../../../widgets/confirm-dialog/confirm-dialog.component';
+import { FoodsTableComponent } from '../../../widgets/foods-table/foods-table.component';
 
 @Component({
   selector: 'app-foods-page',
