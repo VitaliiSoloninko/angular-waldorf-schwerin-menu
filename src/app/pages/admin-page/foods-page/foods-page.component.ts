@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Food } from '../../../models/food.model';
 import { FoodService } from '../../../services/food.service';
@@ -17,7 +17,7 @@ import { TitleComponent } from '../../../ui/title/title.component';
   templateUrl: './foods-page.component.html',
   styleUrl: './foods-page.component.scss',
 })
-export class FoodsPageComponent {
+export class FoodsPageComponent implements OnInit {
   foods: Food[] = [];
   showConfirm = false;
   foodToRemove: number | null = null;

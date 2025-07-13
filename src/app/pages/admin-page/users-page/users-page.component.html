@@ -3,7 +3,8 @@
 <app-users-table
   [users]="users"
   (edit)="editUser($event)"
-  (remove)="removeUser($event)"
+  (remove)="onRemoveUser($event)"
+  (userMonthOrders)="goToUserMonthOrders($event)"
 ></app-users-table>
 
 <app-confirm-dialog

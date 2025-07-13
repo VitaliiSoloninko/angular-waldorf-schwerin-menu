@@ -25,14 +25,11 @@
         <td>{{ user.lastNameChild }}</td>
         <td>{{ user.firstNameChild }}</td>
         <td class="center">{{ user.class }} {{ user.letter }}</td>
-        <!-- <td class="center">
-            <button
-              type="button"
-              (click)="user && goToUserMonthOrders(user.id)"
-            >
-              <img src="assets/svg/pdf-green.svg" alt="PDF" />
-            </button>
-          </td> -->
+        <td class="center">
+          <button type="button" (click)="user && goToUserMonthOrders(user.id)">
+            <img src="assets/svg/pdf-green.svg" alt="PDF" />
+          </button>
+        </td>
         <td class="center">
           <button type="button" (click)="editUser(user.id)">
             <img src="assets/svg/edit-dark.svg" alt="Edit" />

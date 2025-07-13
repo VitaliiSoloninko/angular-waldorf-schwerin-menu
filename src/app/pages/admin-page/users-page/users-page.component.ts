@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
@@ -7,8 +7,8 @@ import { DateTime } from 'luxon';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
-import { UsersTableComponent } from './users-table/users-table.component';
 import { TitleComponent } from '../../../ui/title/title.component';
+import { UsersTableComponent } from './users-table/users-table.component';
 
 @Component({
   selector: 'app-users-page',
@@ -29,41 +29,43 @@ export class UsersPageComponent implements OnInit {
   showConfirm = false;
   userToRemove: number | null = null;
 
-  private userService = inject(UserService);
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe((data) => {
-      this.users = data;
+    this.userService.getAll().subscribe((val) => {
+      this.users = val;
     });
   }
+
   editUser(id: number) {
     this.router.navigate(['/profile', id]);
-  }
-
-  removeUser(id: number) {
-    this.userToRemove = id;
-    this.showConfirm = true;
   }
 
   goToUserMonthOrders(userId: number): void {
     this.router.navigate([`/admin/user/${userId}`]);
   }
 
+  removeUser(id: number) {
+    this.userService.getUserById(id).subscribe({
+      next: () => {
+        this.users = this.users.filter((user) => user.id !== id);
+      },
+    });
+  }
+
+  onRemoveUser(id: number) {
+    this.userToRemove = id;
+    this.showConfirm = true;
+  }
+
   onConfirmRemove() {
     if (this.userToRemove !== null) {
-      this.userService.remove(this.userToRemove).subscribe({
-        next: () => {
-          this.users = this.users.filter(
-            (user) => user.id !== this.userToRemove
-          );
-          this.userToRemove = null;
-          this.showConfirm = false;
-        },
-      });
+      this.removeUser(this.userToRemove);
+      this.showConfirm = false;
+      this.userToRemove = null;
     } else {
       this.showConfirm = false;
+      this.userToRemove = null;
     }
   }
 

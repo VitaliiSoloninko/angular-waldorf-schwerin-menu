@@ -11,29 +11,17 @@ export class UsersTableComponent {
   @Input() users: User[] = [];
   @Output() edit = new EventEmitter<number>();
   @Output() remove = new EventEmitter<number>();
-
-  showConfirm = false;
-  userToRemove: number | null = null;
+  @Output() userMonthOrders = new EventEmitter<number>();
 
   editUser(id: number) {
     this.edit.emit(id);
   }
 
   removeUser(id: number) {
-    this.userToRemove = id;
-    this.showConfirm = true;
+    this.remove.emit(id);
   }
 
-  onConfirmRemove() {
-    if (this.userToRemove !== null) {
-      this.remove.emit(this.userToRemove);
-      this.userToRemove = null;
-    }
-    this.showConfirm = false;
-  }
-
-  onCancelRemove() {
-    this.userToRemove = null;
-    this.showConfirm = false;
+  goToUserMonthOrders(id: number) {
+    this.userMonthOrders.emit(id);
   }
 }
