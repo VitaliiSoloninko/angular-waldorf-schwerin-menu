@@ -5,10 +5,6 @@
 @import url("https://fonts.googleapis.com/css?family=League+Spartan:300,regular,500,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:regular,500&display=swap");
 
-$tablet: 991.98px;
-$mobile: 767.98px;
-$mobileSmall: 479.98px;
-
 :root {
   font-family: "League Spartan";
   font-size: 18px;
@@ -26,6 +22,9 @@ $mobileSmall: 479.98px;
   --dark-hover-color: #1a2b33;
   --white-color: #ffffff;
   --gray-color: #a4a1aa;
+  --tablet: 991.98px;
+  --mobile: 767.98px;
+  --mobile-small: 479.98px;
 }
 
 body {

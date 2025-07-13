@@ -1,7 +1,3 @@
-$tablet: 991.98px;
-$mobile: 767.98px;
-$mobileSmall: 479.98px;
-
 .calender-container-header {
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +5,7 @@ $mobileSmall: 479.98px;
   align-items: center;
   gap: 2rem;
 }
-@media (max-width: $mobile) {
+@media (max-width: 600px) {
   .calender-container-header {
     flex-direction: column;
     justify-content: center;
@@ -23,7 +19,7 @@ $mobileSmall: 479.98px;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     flex-direction: row;
     gap: 1rem;
     margin-bottom: 6px;
@@ -38,7 +34,7 @@ $mobileSmall: 479.98px;
   flex-wrap: wrap;
 }
 
-@media (max-width: $mobileSmall) {
+@media (max-width: var(--mobile-small)) {
   .items {
     flex-direction: column;
     justify-content: center;

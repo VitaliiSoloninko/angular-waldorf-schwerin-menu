@@ -1,13 +1,9 @@
-$tablet: 991.98px;
-$mobile: 767.98px;
-$mobileSmall: 479.98px;
-
 .text {
   font-size: 20px;
 }
 
 .subtitle {
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     display: none;
   }
 }
@@ -42,7 +38,7 @@ span {
   gap: 1rem;
   border-radius: 10px;
   font-size: 20px;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     width: 100%;
     height: 40px;
   }
@@ -56,7 +52,7 @@ span {
   display: flex;
   align-items: center;
   gap: 1rem;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     gap: 0.5rem;
     flex-direction: column;
   }
@@ -78,7 +74,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     flex-direction: row;
     gap: 1rem;
   }
@@ -90,7 +86,7 @@ span {
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-  @media (max-width: $mobile) {
+  @media (max-width: var(--mobile)) {
     padding: 10px 1rem;
   }
 }
