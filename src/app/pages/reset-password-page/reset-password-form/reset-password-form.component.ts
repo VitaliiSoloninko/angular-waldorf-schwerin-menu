@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,10 +7,11 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { TextInputComponent } from '../../../ui/text-input/text-input.component';
 
 @Component({
   selector: 'app-reset-password-form',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './reset-password-form.component.html',
   styleUrl: './reset-password-form.component.scss',
 })

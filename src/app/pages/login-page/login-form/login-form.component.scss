@@ -6,13 +6,6 @@
   gap: 1rem;
 }
 
-.control input {
-  width: 454px;
-  @media (max-width: var(--mobile-small)) {
-    width: 100%;
-  }
-}
-
 .bottom-text {
   margin-top: 1rem;
   max-width: 350px;
