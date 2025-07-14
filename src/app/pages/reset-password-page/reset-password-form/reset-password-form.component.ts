@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
-import { TextInputComponent } from '../../../ui/text-input/text-input.component';
 
 @Component({
   selector: 'app-reset-password-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './reset-password-form.component.html',
   styleUrl: './reset-password-form.component.scss',
 })
 export class ResetPasswordFormComponent implements OnInit {
+  @Output() success = new EventEmitter<boolean>();
   resetForm!: FormGroup;
   token = '';
   isSubmitted = false;
   successMessage: string;
+  isSuccess = true;
+  errorMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private toastService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -44,8 +47,19 @@ export class ResetPasswordFormComponent implements OnInit {
         token: this.token,
         newPassword: this.resetForm.value.newPassword,
       })
-      .subscribe(() => {
-        this.successMessage = 'Пароль успешно изменён!';
+      .subscribe({
+        next: () => {
+          this.successMessage = 'Passwort erfolgreich geändert!';
+          this.toastService.success(this.successMessage, 'Erfolg');
+          this.isSuccess = true;
+          this.success.emit(true);
+        },
+        error: () => {
+          this.errorMessage = 'Fehler beim Ändern des Passworts!';
+          this.toastService.error(this.errorMessage, 'Fehler');
+          this.isSuccess = false;
+          this.success.emit(false);
+        },
       });
   }
 }

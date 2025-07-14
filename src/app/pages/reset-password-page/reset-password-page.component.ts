@@ -6,13 +6,10 @@ import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
   selector: 'app-reset-password-page',
-  imports: [
-    BgLogoComponent,
-    RouterLink,
-    ResetPasswordFormComponent,
-    TitleComponent,
-  ],
+  imports: [BgLogoComponent, ResetPasswordFormComponent, TitleComponent],
   templateUrl: './reset-password-page.component.html',
   styleUrl: './reset-password-page.component.scss',
 })
-export class ResetPasswordPageComponent {}
+export class ResetPasswordPageComponent {
+  isSuccess = true;
+}
