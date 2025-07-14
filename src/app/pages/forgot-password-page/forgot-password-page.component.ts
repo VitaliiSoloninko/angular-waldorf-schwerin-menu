@@ -15,4 +15,6 @@ import { ForgotPasswordFormComponent } from './forgot-password-form/forgot-passw
   templateUrl: './forgot-password-page.component.html',
   styleUrl: './forgot-password-page.component.scss',
 })
-export class ForgotPasswordPageComponent {}
+export class ForgotPasswordPageComponent {
+  isSuccess = false;
+}

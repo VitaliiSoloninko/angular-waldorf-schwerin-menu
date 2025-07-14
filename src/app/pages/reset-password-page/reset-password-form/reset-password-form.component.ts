@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-reset-password-form',
