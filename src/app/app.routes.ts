@@ -19,6 +19,7 @@ import { ProfileTeacherPageComponent } from './pages/profile-teacher-page/profil
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 
 import { adminGuard } from './guards/admin.guard';
+import { AboutProjectComponent } from './pages/about-project/about-project.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { StyleGuideComponent } from './pages/style-guide/style-guide.component';
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: 'profile/:id', component: ProfilePageComponent },
   { path: 'profile-teacher/:id', component: ProfileTeacherPageComponent },
   { path: 'style-guide', component: StyleGuideComponent },
+  { path: 'about-project', component: AboutProjectComponent },
 
   {
     path: 'admin',

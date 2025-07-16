@@ -21,7 +21,7 @@ export class ResetPasswordFormComponent implements OnInit {
   token = '';
   isSubmitted = false;
   successMessage: string;
-  isSuccess = true;
+  isSuccess = false;
   errorMessage = '';
 
   constructor(

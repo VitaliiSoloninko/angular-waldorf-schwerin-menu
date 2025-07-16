@@ -11,5 +11,5 @@ import { TitleComponent } from '../../ui/title/title.component';
   styleUrl: './reset-password-page.component.scss',
 })
 export class ResetPasswordPageComponent {
-  isSuccess = true;
+  isSuccess = false;
 }

@@ -1,0 +1,51 @@
+<div class="about-page">
+  <div class="lang-switch">
+    <button [class.active]="lang === 'de'" (click)="lang = 'de'">DE</button>
+    <button [class.active]="lang === 'en'" (click)="lang = 'en'">EN</button>
+  </div>
+  <header class="about-project-header">
+    <h1>
+      <span class="icon"></span>
+      Waldorf Menu
+    </h1>
+    <p><b>Waldorf Menu</b> {{ description[lang] }}</p>
+    <p style="margin-top: 16px">
+      <b>{{ developer[lang] }}</b>
+    </p>
+  </header>
+
+  <div class="about-project-grid">
+    <section class="about-card">
+      <h2>🚀 {{ lang === "de" ? "Technologie-Stack" : "Technology Stack" }}</h2>
+      <ul class="tech-list">
+        @for (tech of techStack; track $index) {
+        <li>
+          {{ tech[lang] }}
+        </li>
+        }
+      </ul>
+    </section>
+
+    <section class="about-card">
+      <h2>📄 {{ lang === "de" ? "Seiten" : "Pages" }}</h2>
+      <ul>
+        @for (section of sections; track $index) {
+        <li>
+          {{ section[lang] }}
+        </li>
+        }
+      </ul>
+    </section>
+
+    <section class="about-card">
+      <h2>✨ {{ lang === "de" ? "Features" : "Features" }}</h2>
+      <ul class="features-list">
+        @for (feature of features; track $index) {
+        <li>
+          {{ feature[lang] }}
+        </li>
+        }
+      </ul>
+    </section>
+  </div>
+</div>
