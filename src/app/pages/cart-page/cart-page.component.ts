@@ -1,42 +1,35 @@
-import {
-  AsyncPipe,
-  CommonModule,
-  CurrencyPipe,
-  NgFor,
-  NgIf,
-} from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LucideAngularModule, Trash2 } from 'lucide-angular';
+import { Router, RouterLink } from '@angular/router';
+import { LucideAngularModule, ShoppingBasket, Trash2 } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Cart } from '../../models/cart.model';
 import { CartItem } from '../../models/cartItem.model';
 import { CartService } from '../../services/cart.service';
+import { LastOrderService } from '../../services/last-order.service';
 import { LoginService } from '../../services/login.service';
 import { ModalService } from '../../services/modal.service';
 import { OrderService } from '../../services/order.service';
 import { BgLogoComponent } from '../../ui/bg-logo/bg-logo.component';
-import { ModalComponent } from '../../ui/modal/modal.component';
 import { TitleComponent } from '../../ui/title/title.component';
 
 @Component({
   selector: 'app-cart-page',
   imports: [
-    NgIf,
-    NgFor,
     LucideAngularModule,
     CurrencyPipe,
-    ModalComponent,
-    AsyncPipe,
     BgLogoComponent,
     TitleComponent,
-    CommonModule,
+    RouterLink,
+    NgClass,
   ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
 export class CartPageComponent implements OnInit {
   trash2: any = Trash2;
+  shoppingBasket: any = ShoppingBasket;
+
   cart!: Cart;
   userId: number | null = null;
 
@@ -45,7 +38,8 @@ export class CartPageComponent implements OnInit {
     private loginService: LoginService,
     private orderService: OrderService,
     public modalService: ModalService,
-    private router: Router
+    private router: Router,
+    private lastOrderService: LastOrderService
   ) {}
 
   ngOnInit(): void {
@@ -104,21 +98,17 @@ export class CartPageComponent implements OnInit {
       ordered: item.order.checked,
     }));
 
-    //  console.log({ orderItems });
-
     this.orderService.createOrders(orderItems).subscribe(
-      (response) => {
+      (response: any) => {
+        this.lastOrderService.setLastOrders(response);
         this.clearCart();
-        this.modalService.open();
-        setTimeout(() => {
-          this.router.navigate(['/history']);
-        }, 2000);
+        this.router.navigate(['/last-orders']);
       },
       (error) => {
         console.error('Failed to place order:', error);
         this.modalService.open();
         setTimeout(() => {
-          this.router.navigate(['/history']);
+          this.router.navigate(['/last-orders']);
         }, 2000);
       }
     );

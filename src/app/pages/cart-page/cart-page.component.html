@@ -1,18 +1,30 @@
-<app-modal
-  title="Bestellung aufgegeben"
-  *ngIf="modalService.isVisible$ | async"
->
-</app-modal>
-
 <div class="container">
   <app-title colorTitle="Waren" title="korb" class="mb16" />
 
-  <p class="mb16 subtitle">Hier finden Sie Ihre Bestellungen</p>
+  <p class="mb16 text">Hier finden Sie Ihre Bestellungen</p>
 
+  @if (cart.items.length === 0) {
+  <div class="mb16">
+    <lucide-icon
+      [img]="shoppingBasket"
+      color="var(--gray-color)"
+      [size]="100"
+      class="my-icon"
+    ></lucide-icon>
+  </div>
+
+  <p class="mb16 text">
+    Ihr Warenkorb ist leer. Gehen Sie zurück zum Menü und geben Sie Ihre
+    Bestellung auf.
+  </p>
+  <div class="mt32">
+    <a routerLink="/menu" class="btn">Zurück zum Menü</a>
+  </div>
+  } @if (cart.items.length > 0) {
   <div class="items mb16">
+    @for (cartItem of cart.items; track $index) {
     <div
       class="item"
-      *ngFor="let cartItem of cart.items"
       [ngClass]="{ 'item-cancel': cartItem.order.foodPrice < 0 }"
     >
       <div class="food-left">
@@ -37,6 +49,7 @@
         </div>
       </div>
     </div>
+    }
   </div>
 
   <p class="mb16 text">
@@ -49,10 +62,13 @@
     <span>{{ cart.totalPrice | currency : "EUR" }}</span>
   </p>
 
-  <button class="btn btn-cancel mb16" (click)="clearCart()">
-    Alles löschen
-  </button>
-  <button class="btn mb72" (click)="placeOrder()">Bestellen</button>
+  <div class="two-buttons">
+    <button class="btn btn-cancel btn-small mb16" (click)="clearCart()">
+      Alles löschen
+    </button>
+    <button class="btn btn-small mb72" (click)="placeOrder()">Bestellen</button>
+  </div>
+  }
 </div>
 
 <app-bg-logo [logoName]="'Red'" />

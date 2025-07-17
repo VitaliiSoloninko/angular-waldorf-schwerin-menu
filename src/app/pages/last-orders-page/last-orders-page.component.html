@@ -1,0 +1,26 @@
+<div class="container">
+  <app-title colorTitle="Bestellung" title=" erfolgreich!" class="mb32" />
+
+  @if (lastOrders.length === 0) {
+  <p class="mb16 subtitle">Keine neuen Bestellungen gefunden.</p>
+  } @if (lastOrders.length > 0) {
+  <div class="orders-list">
+    @for (order of lastOrders; track $index) {
+    <div class="order-item" [ngClass]="{ 'order-cancel': !order.ordered }">
+      <div class="order-info">
+        <div class="order-date">{{ order.date | date : "dd.MM.yyyy" }}</div>
+        <div class="order-food">{{ order.foodName }}</div>
+      </div>
+      <div class="order-price">{{ order.foodPrice | currency : "EUR" }}</div>
+      <div class="order-status" [ngClass]="{ 'not-completed': !order.ordered }">
+        {{ order.ordered ? "Bestellt" : "Nicht bestellt" }}
+      </div>
+    </div>
+    }
+    <div class="two-buttons mt32">
+      <a routerLink="/menu" class="btn btn-small btn-border">Zurück zum Menü</a>
+      <a routerLink="/history" class="btn btn-small"> Meine Bestellungen </a>
+    </div>
+  </div>
+  }
+</div>

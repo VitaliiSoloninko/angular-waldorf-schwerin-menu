@@ -186,6 +186,7 @@ export class MenuPageComponent implements OnInit {
         : 0,
       date: food.date,
       checked: food.checked,
+      ordered: undefined,
     };
 
     if (food.checked) {

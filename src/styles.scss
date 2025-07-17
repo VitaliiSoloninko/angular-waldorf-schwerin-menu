@@ -121,14 +121,12 @@ body {
 }
 
 .btn-border {
-  background-color: transparent;
-  color: grey;
-  border: 1px solid grey;
-  &:hover,
-  &:focus-visible {
-    background-color: var(--main-hover-color);
-    color: white;
-    border: 1px solid var(--main-hover-color);
+  background: #fff;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  &:hover {
+    background: #eafbe7;
+    color: #177417;
   }
 }
 

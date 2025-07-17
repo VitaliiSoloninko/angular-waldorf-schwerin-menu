@@ -21,6 +21,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 import { adminGuard } from './guards/admin.guard';
 import { AboutProjectComponent } from './pages/about-project/about-project.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { LastOrdersPageComponent } from './pages/last-orders-page/last-orders-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { StyleGuideComponent } from './pages/style-guide/style-guide.component';
 
@@ -38,6 +39,7 @@ export const routes: Routes = [
   { path: 'profile-teacher/:id', component: ProfileTeacherPageComponent },
   { path: 'style-guide', component: StyleGuideComponent },
   { path: 'about-project', component: AboutProjectComponent },
+  { path: 'last-orders', component: LastOrdersPageComponent },
 
   {
     path: 'admin',
