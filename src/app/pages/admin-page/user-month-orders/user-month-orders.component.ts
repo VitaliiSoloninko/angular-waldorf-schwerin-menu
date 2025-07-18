@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import { DateTime } from 'luxon';
 import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
 import { UserOrderService } from '../../../services/user-order.service';
 import { UserService } from '../../../services/user.service';
 import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switcher.component';
-import { OrderTableComponent } from '../../history-page/order-table/order-table.component';
 import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/pdf-user-month-orders.component';
+import { OrderTableComponent } from '../../history-page/order-table/order-table.component';
 
 @Component({
   selector: 'app-user-month-orders',
@@ -84,5 +82,14 @@ export class UserMonthOrdersComponent implements OnInit {
     this.currentMonth = event.month;
     this.currentYear = event.year;
     this.fetchOrders();
+  }
+
+  getCurrentMonthName(): string {
+    return DateTime.fromObject({
+      month: this.currentMonth,
+      year: this.currentYear,
+    })
+      .setLocale('de')
+      .toFormat('LLLL');
   }
 }

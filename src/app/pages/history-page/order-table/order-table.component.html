@@ -1,8 +1,6 @@
 @if(!orders.length) {
 <p class="center">Sie haben diesen Monat noch nichts bestellt.</p>
-
 } @else {
-
 <table>
   <thead>
     <tr>
@@ -28,7 +26,7 @@
 </table>
 
 <p class="center mb72 bold">
-  Bestellungen für {{ getCurrentMonthName() }}:
+  Bestellungen für {{ currentMonthName }}:
   <span class="bold">{{ totalPrice | currency : "EUR" }}</span>
 </p>
 }

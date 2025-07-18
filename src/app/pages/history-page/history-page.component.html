@@ -6,8 +6,9 @@
   </div>
 
   <app-order-table
-    [currentMonth]="currentMonth"
-    [currentYear]="currentYear"
+    [orders]="orders"
+    [totalPrice]="totalPrice"
+    [currentMonthName]="getCurrentMonthName()"
   ></app-order-table>
 </div>
 
