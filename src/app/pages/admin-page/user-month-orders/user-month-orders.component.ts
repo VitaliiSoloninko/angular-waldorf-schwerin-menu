@@ -8,15 +8,15 @@ import { UserOrderService } from '../../../services/user-order.service';
 import { UserService } from '../../../services/user.service';
 import { MonthSwitcherComponent } from '../../../ui/month-switcher/month-switcher.component';
 import { PdfUserMonthOrdersComponent } from '../../../ui/pdf-user-month-orders/pdf-user-month-orders.component';
-import { OrderTableComponent } from '../../history-page/order-table/order-table.component';
+import { UserMonthOrdersTableComponent } from '../../../widgets/user-month-orders-table/user-month-orders-table.component';
 
 @Component({
   selector: 'app-user-month-orders',
   imports: [
     CommonModule,
     MonthSwitcherComponent,
-    OrderTableComponent,
     PdfUserMonthOrdersComponent,
+    UserMonthOrdersTableComponent,
   ],
   templateUrl: './user-month-orders.component.html',
   styleUrl: './user-month-orders.component.scss',

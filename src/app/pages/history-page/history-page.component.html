@@ -5,11 +5,11 @@
     <app-month-switcher (monthChanged)="onMonthChanged($event)" />
   </div>
 
-  <app-order-table
+  <app-user-month-orders-table
     [orders]="orders"
     [totalPrice]="totalPrice"
     [currentMonthName]="getCurrentMonthName()"
-  ></app-order-table>
+  ></app-user-month-orders-table>
 </div>
 
 <app-bg-logo [logoName]="'Green'" />
