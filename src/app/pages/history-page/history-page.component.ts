@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ContactRound, LucideAngularModule } from 'lucide-angular';
 import { DateTime } from 'luxon';
 import { Order } from '../../models/order.model';
 import { LoginService } from '../../services/login.service';
@@ -15,11 +17,15 @@ import { UserMonthOrdersTableComponent } from '../../widgets/user-month-orders-t
     TitleComponent,
     MonthSwitcherComponent,
     UserMonthOrdersTableComponent,
+    RouterLink,
+    LucideAngularModule,
   ],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.scss',
 })
 export class HistoryPageComponent {
+  contactRound: any = ContactRound;
+
   currentMonth: number = DateTime.now().month;
   currentYear: number = DateTime.now().year;
 

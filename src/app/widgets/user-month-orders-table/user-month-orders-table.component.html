@@ -1,4 +1,12 @@
 @if(!orders.length) {
+<div class="center mb16">
+  <lucide-icon
+    [img]="layoutList"
+    color="var(--gray-color)"
+    [size]="100"
+    class="my-icon"
+  ></lucide-icon>
+</div>
 <p class="center">Sie haben diesen Monat noch nichts bestellt.</p>
 } @else {
 <table>
@@ -11,7 +19,6 @@
       <th>Preis</th>
     </tr>
   </thead>
-
   <tbody>
     @for(order of orders; let i = $index; track order.id) {
     <tr>

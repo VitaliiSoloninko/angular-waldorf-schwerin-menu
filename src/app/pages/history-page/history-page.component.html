@@ -1,7 +1,8 @@
 <div class="container">
   <app-title colorTitle="Meine" title=" Bestelungen" class="mb16" />
 
-  <div class="mb16">
+  @if (userId) {
+  <div>
     <app-month-switcher (monthChanged)="onMonthChanged($event)" />
   </div>
 
@@ -10,6 +11,26 @@
     [totalPrice]="totalPrice"
     [currentMonthName]="getCurrentMonthName()"
   ></app-user-month-orders-table>
+  } @else {
+  <p class="mb16 text">Ihre Bestellungen pro Monat</p>
+  <div class="mb16">
+    <lucide-icon
+      [img]="contactRound"
+      color="var(--gray-color)"
+      [size]="100"
+      class="my-icon"
+    ></lucide-icon>
+  </div>
+  <div class="max-width-450 mb16">
+    <p>
+      Bitte melden Sie sich oder registrieren Sie sich an, um Ihre Bestellungen
+      einzusehen.
+    </p>
+    <div class="mt32 center">
+      <a class="btn" routerLink="/login">Zur Anmelden</a>
+    </div>
+  </div>
+  }
 </div>
 
 <app-bg-logo [logoName]="'Green'" />
